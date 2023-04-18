@@ -1,20 +1,66 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+/* @ts-check */
+
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import * as React from "react";
+import AgentsIcon from "./src/components/AgentsIcon";
+import HomeIcon from "./src/components/HomeIcon";
+import MapsIcon from "./src/components/MapsIcon";
+import ProfileIcon from "./src/components/ProfileIcon";
+import WeaponsIcon from "./src/components/WeaponsIcon";
+import { colors } from "./src/lib/colors";
+import AgentsTab from "./src/tabs/AgentsTab";
+import HomeTab from "./src/tabs/HomeTab";
+import MapsTab from "./src/tabs/MapsTab";
+import ProfileTab from "./src/tabs/ProfileTab";
+import WeaponsTab from "./src/tabs/WeaponsTab";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer
+      theme={{
+        dark: true,
+        colors: {
+          primary: colors.highlights,
+          background: colors.darkBase,
+          card: colors.base,
+          text: colors.neutral,
+          border: colors.darkBase,
+          notification: colors.details,
+        },
+      }}
+    >
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => {
+            switch (route.name) {
+              case "Profile":
+                return <ProfileIcon color={color} size={size} />;
+
+              case "Agents":
+                return <AgentsIcon color={color} size={size} />;
+
+              case "Home":
+                return <HomeIcon color={color} size={size} />;
+
+              case "Weapons":
+                return <WeaponsIcon color={color} size={size} />;
+
+              case "Maps":
+                return <MapsIcon color={color} size={size} />;
+            }
+          },
+          headerShown: false,
+        })}
+      >
+        <Tab.Screen name="Profile" component={ProfileTab} />
+        <Tab.Screen name="Agents" component={AgentsTab} />
+        <Tab.Screen name="Home" component={HomeTab} />
+        <Tab.Screen name="Weapons" component={WeaponsTab} />
+        <Tab.Screen name="Maps" component={MapsTab} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
