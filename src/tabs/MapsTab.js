@@ -1,6 +1,6 @@
-import FavoriteButton from "../components/FavoriteButton";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text } from "react-native";
+import MapListScreen from "../screens/MapListScreen";
+import MapItemScreen from "../screens/MapItemScreen";
 import { colors } from "../lib/colors";
 
 const Stack = createNativeStackNavigator();
@@ -9,21 +9,14 @@ export default function MapsTab() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitle: "MapsTab",
-        headerRight: FavoriteButton,
+        headerTitle: "",
         statusBarColor: colors.base,
         navigationBarColor: colors.base,
+        animation: "slide_from_right",
       }}
     >
-      <Stack.Screen name="MapsTab1" children={MapsTab1} />
+      <Stack.Screen name="MapList" children={MapListScreen} />
+      <Stack.Screen name="MapItem" children={MapItemScreen} />
     </Stack.Navigator>
-  );
-}
-
-function MapsTab1() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={{ color: "white" }}>Maps!</Text>
-    </View>
   );
 }
