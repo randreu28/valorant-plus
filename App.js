@@ -14,10 +14,16 @@ import HomeTab from "./src/tabs/HomeTab";
 import MapsTab from "./src/tabs/MapsTab";
 import ProfileTab from "./src/tabs/ProfileTab";
 import WeaponsTab from "./src/tabs/WeaponsTab";
+import { useFonts } from "expo-font";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  useFonts({
+    valorant: require("./assets/fonts/valorant.ttf"),
+    tungsten: require("./assets/fonts/tungsten.otf"),
+  });
+
   return (
     <NavigationContainer
       theme={{
