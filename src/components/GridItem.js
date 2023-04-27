@@ -2,36 +2,59 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { colors } from '../lib/colors';
 import { useState, useEffect } from 'react';
+import ButtonPlus from './ButtonPlus';
 
-export default function GridItem({item, imageBg = colors.highlights, size = 'normal', button = true, buttonType = 'more'}) {
+export default function GridItem({ item, imageBg = colors.highlights, size = 'normal', button = true, buttonType = 'more', imageType = 'crop', title }) {
 
   const [imgBg, setImgBg] = useState();
   const [btn, setBtn] = useState();
-  const [imageSize, setImageSize] = useState({width: 100, height: 100});
+  const [containerSize, setContainerSize] = useState({ width: 154, height: 208 });
+  const [imgType, setImgType] = useState();
   const [btnType, setBtnType] = useState();
+  const defaultImage = '../../assets/icon.png';
 
   useEffect(() => {
     setImgBg(imageBg);
     setBtn(button);
-    setBtnType(buttonType)
+    setBtnType(buttonType);
+    setImgType(imageType);
     switch (size) {
       case 'normal':
-        setImageSize({width: 120, height: 111});
+        setContainerSize({ width: 154, height: 208 });
         break;
       case 'large':
-        setImageSize({width: 141, height: 122});
+        setContainerSize({ width: 180, height: 220 });
+        break;
+      case 'full-width':
+        setContainerSize({ width: '100%', height: 176 });
         break;
     }
-  }, [imageBg, button, size, buttonType]);
+  }, [imageBg, button, size, buttonType, imageType]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width: containerSize.width, height: containerSize.height }]} >
       <View style={styles.decorationTopLeft} />
-      <View style={[styles.imageWrapper, {backgroundColor: imgBg}]}>
-        <Image source={item.displayIconSmall} style={[styles.image]}></Image>
-      </View>
-      <Text style={styles.name}>{item.displayName}</Text>
-      {btn ? btnType === 'more' ? <Text>See +</Text> : <Text>Favorite</Text> : null}
+      {item ?
+        (
+          <>
+            <View style={[styles.imageWrapper, { backgroundColor: imgBg }]}>
+              <Image source={{ uri: item.displayIconSmall, }} style={[styles.image, imgType === 'center' ? styles.imageCenter : null]}></Image>
+            </View>
+            <View style={[styles.infoWrapper, size === 'full-width' ? styles.infoWrapperFullWidth : null]}>
+              <Text style={styles.name}>{item.displayName}</Text>
+              {btn ? btnType === 'more' ? <ButtonPlus type='more' /> : <ButtonPlus type="favorite" /> : null}
+            </View>
+          </>
+        ) : (
+          
+          <View style={styles.imageWrapper}>
+            <Image source={{ uri: defaultImage, }} style={[styles.image, styles.imageCenter]}></Image>
+            <View style={styles.infoWrapper}>
+              <Text style={styles.name}>Text</Text>
+            </View>
+          </View>
+        )
+        }
       <View style={styles.decorationBottomRight} />
     </View>
   )
@@ -86,8 +109,23 @@ const styles = StyleSheet.create({
   image: {
     resizeMode: 'cover',
     width: '100%',
-    height: 111,
+    height: '100%',
     position: 'relative',
     left: '-20%',
+  },
+  imageCenter: {
+    resizeMode: 'contain',
+    left: '0%',
+  },
+  infoWrapper: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+  },
+  infoWrapperFullWidth: {
+    flexDirection: 'row',
+    flex: 0.3,
+    paddingTop: 15
   }
 });

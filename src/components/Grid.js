@@ -32,7 +32,6 @@ const Grid = ({ items, imageBg, size, button, buttonType }) => {
 const styles = StyleSheet.create({
     gridItemWrapper: {
         margin: 10,
-        width: 200,
     }
 });
 
