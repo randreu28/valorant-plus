@@ -110,8 +110,10 @@ const styles = StyleSheet.create({
   },
   noImageWrapper: {
     backgroundColor: '#444',
-    borderWidth: 4,
+    borderWidth: 5,
     borderColor: '#333',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   image: {
     resizeMode: 'cover',
