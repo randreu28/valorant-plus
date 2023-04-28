@@ -36,7 +36,7 @@ export default function GridItem({ item, imageBg = colors.highlights, size, butt
     <View style={[styles.container, { width: containerSize.width, height: containerSize.height }]} >
       <View style={styles.decorationTopLeft} />
       <View style={[styles.imageWrapper, { backgroundColor: imageBg }]}>
-        <Image source={{ uri: item.displayIcon, }} style={[styles.image, imageType === 'center' ? styles.imageCenter : null]}></Image>
+        <Image source={{ uri: item.displayIcon, }} style={[styles.image, imageType === 'center' ? styles.imageCenter : null, size === 'full-width' ? styles.imageFullWidth : null]}></Image>
       </View>
       <View style={[styles.infoWrapper, size === 'full-width' ? styles.infoWrapperFullWidth : null]}>
         <Text style={styles.name}>{item.displayName}</Text>
@@ -115,6 +115,12 @@ const styles = StyleSheet.create({
   },
   imageCenter: {
     resizeMode: 'contain',
+    width: '100%',
+    height: '100%',
+    left: '0%',
+  },
+  imageFullWidth: {
+    resizeMode: 'cover',
     width: '100%',
     height: '100%',
     left: '0%',
