@@ -1,64 +1,50 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { colors } from '../lib/colors';
-import { useState, useEffect } from 'react';
 import ButtonPlus from './ButtonPlus';
 import ValorantLogo from './ValorantLogo';
 
-export default function GridItem({ item, imageBg = colors.highlights, size = 'normal', button = true, buttonType = 'more', imageType = 'crop', title }) {
+export default function GridItem({ item, imageBg = colors.highlights, size, button = true, buttonType = 'more', imageType = 'crop', title }) {
 
-  const [imgBg, setImgBg] = useState();
-  const [btn, setBtn] = useState();
-  const [containerSize, setContainerSize] = useState({ width: 154, height: 208 });
-  const [imgType, setImgType] = useState();
-  const [btnType, setBtnType] = useState();
+  let containerSize = { width: 154, height: 208 };
 
-  useEffect(() => {
-    setImgBg(imageBg);
-    setBtn(button);
-    setBtnType(buttonType);
-    setImgType(imageType);
-    switch (size) {
-      case 'normal':
-        setContainerSize({ width: 154, height: 208 });
-        break;
-      case 'large':
-        setContainerSize({ width: 180, height: 220 });
-        break;
-      case 'full-width':
-        setContainerSize({ width: '100%', height: 176 });
-        break;
-    }
-  }, [imageBg, button, size, buttonType, imageType]);
+  switch (size) {
+    case 'large':
+      containerSize = { width: 180, height: 220 };
+      break;
+    case 'full-width':
+      containerSize = { width: '100%', height: 176 };
+      break;
+  }
+
+  if (!item) {
+    return (
+      <View style={[styles.container, { width: containerSize.width, height: containerSize.height }]} >
+        <View style={styles.decorationTopLeft} />
+        <View style={[styles.imageWrapper, styles.noImageWrapper]}>
+          <ValorantLogo style={styles.noimage} />
+        </View>
+        <View style={styles.infoWrapper}>
+          <Text style={styles.name}>{title}</Text>
+        </View>
+        <View style={styles.decorationBottomRight} />
+      </View>
+    );
+  }
 
   return (
     <View style={[styles.container, { width: containerSize.width, height: containerSize.height }]} >
       <View style={styles.decorationTopLeft} />
-      {item ?
-        (
-          <>
-            <View style={[styles.imageWrapper, { backgroundColor: imgBg }]}>
-              <Image source={{ uri: item.displayIcon, }} style={[styles.image, imgType === 'center' ? styles.imageCenter : null]}></Image>
-            </View>
-            <View style={[styles.infoWrapper, size === 'full-width' ? styles.infoWrapperFullWidth : null]}>
-              <Text style={styles.name}>{item.displayName}</Text>
-              {btn ? btnType === 'more' ? <ButtonPlus type='more' /> : <ButtonPlus type="favorite" /> : null}
-            </View>
-          </>
-        ) : (
-          <>
-            <View style={[styles.imageWrapper, styles.noImageWrapper]}>
-              <ValorantLogo style={styles.noimage} />
-            </View>
-            <View style={styles.infoWrapper}>
-              <Text style={styles.name}>Text</Text>
-            </View>
-          </>
-        )
-      }
+      <View style={[styles.imageWrapper, { backgroundColor: imageBg }]}>
+        <Image source={{ uri: item.displayIcon, }} style={[styles.image, imageType === 'center' ? styles.imageCenter : null]}></Image>
+      </View>
+      <View style={[styles.infoWrapper, size === 'full-width' ? styles.infoWrapperFullWidth : null]}>
+        <Text style={styles.name}>{item.displayName}</Text>
+        {button ? buttonType === 'more' ? <ButtonPlus type='more' /> : <ButtonPlus type="favorite" /> : null}
+      </View>
       <View style={styles.decorationBottomRight} />
     </View>
-  )
+  );
 
 }
 

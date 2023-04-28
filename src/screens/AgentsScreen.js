@@ -23,13 +23,11 @@ const AgentsScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
-                {agents !== null ? (
-
+                {(agents !== null && weapons !== null) ? (
                     <View>
-
                         <View style={styles.componentWrapper}>
-                            <Text style={styles.componentTitle}>GridItem (size = 'normal')</Text>
-                            <GridItem item={agents[0]} size="normal" />
+                            <Text style={styles.componentTitle}>GridItem</Text>
+                            <GridItem item={agents[0]} />
                         </View>
 
                         <View style={styles.componentWrapper}>
@@ -78,8 +76,8 @@ const AgentsScreen = () => {
                         </View>
 
                         <View style={styles.componentWrapper}>
-                            <Text style={styles.componentTitle}>Grid (singleLine = true)</Text>
-                            <Grid items={agents} singleLine={true} />
+                            <Text style={styles.componentTitle}>Grid (isSingleLine = true)</Text>
+                            <Grid items={agents} isSingleLine={true} />
                         </View>
 
                         <View style={styles.componentWrapper}>
@@ -92,7 +90,7 @@ const AgentsScreen = () => {
                 ) : (
                     <View style={styles.centered}>
                         <Text>Loading...</Text>
-                        <ActivityIndicator color="blue" size="large"></ActivityIndicator>
+                        <ActivityIndicator color={colors.neutral} size="large"></ActivityIndicator>
                     </View>
                 )}
             </ScrollView>
