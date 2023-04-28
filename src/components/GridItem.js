@@ -38,7 +38,7 @@ export default function GridItem({ item, imageBg = colors.highlights, size = 'no
         (
           <>
             <View style={[styles.imageWrapper, { backgroundColor: imgBg }]}>
-              <Image source={{ uri: item.displayIconSmall, }} style={[styles.image, imgType === 'center' ? styles.imageCenter : null]}></Image>
+              <Image source={{ uri: item.displayIcon, }} style={[styles.image, imgType === 'center' ? styles.imageCenter : null]}></Image>
             </View>
             <View style={[styles.infoWrapper, size === 'full-width' ? styles.infoWrapperFullWidth : null]}>
               <Text style={styles.name}>{item.displayName}</Text>
@@ -48,7 +48,7 @@ export default function GridItem({ item, imageBg = colors.highlights, size = 'no
         ) : (
           <>
             <View style={[styles.imageWrapper, styles.noImageWrapper]}>
-              <ValorantLogo style={styles.noimage}/>
+              <ValorantLogo style={styles.noimage} />
             </View>
             <View style={styles.infoWrapper}>
               <Text style={styles.name}>Text</Text>

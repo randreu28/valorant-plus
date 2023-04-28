@@ -2,13 +2,21 @@ import { View, Text, StyleSheet } from 'react-native'
 import { React, useState, useEffect } from 'react'
 import GridItem from './GridItem'
 
-const Grid = ({ items, singleLine = false, imageBg, size, button, buttonType }) => {
+const Grid = ({ items, singleLine = false, imageBg, imageType, size, button, buttonType }) => {
 
     const [isSingleLine, setisSingleLine] = useState(singleLine);
 
     useEffect(() => {
         setisSingleLine(singleLine);
     }, [singleLine]);
+
+    if (items === null) {
+        return (
+            <View>
+                <Text>Loading...</Text>
+            </View>
+        );
+    }
 
     return (
         <View>
@@ -24,6 +32,7 @@ const Grid = ({ items, singleLine = false, imageBg, size, button, buttonType }) 
                                 key={item.uuid}
                                 item={item}
                                 imageBg={imageBg}
+                                imageType={imageType}
                                 size={size}
                                 button={button}
                                 buttonType={buttonType}

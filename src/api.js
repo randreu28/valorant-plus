@@ -6,3 +6,9 @@ export const getAgents = async() => {
     console.log(agents.data);
     return agents.data;
 }
+export const getWeapons = async() => {
+    const response = await fetch(`${API_ROOT}/weapons`);
+    const agents = await response.json();
+    console.log(agents.data);
+    return agents.data;
+}

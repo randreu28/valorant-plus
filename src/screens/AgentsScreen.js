@@ -2,17 +2,21 @@ import { View, Text, StyleSheet, ActivityIndicator, SafeAreaView, ScrollView } f
 import React from 'react'
 import Grid from '../components/Grid'
 import { useEffect, useState } from 'react'
-import { getAgents } from '../api'
+import { getAgents, getWeapons } from '../api'
 import { colors } from '../lib/colors'
 import GridItem from '../components/GridItem'
 
 const AgentsScreen = () => {
 
     const [agents, setAgents] = useState(null);
+    const [weapons, setWeapons] = useState(null);
 
     useEffect(() => {
         getAgents()
             .then(setAgents)
+            .catch(error => console.error(error));
+        getWeapons()
+            .then(setWeapons)
             .catch(error => console.error(error));
     }, []);
 
@@ -76,6 +80,11 @@ const AgentsScreen = () => {
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>Grid (singleLine = true)</Text>
                             <Grid items={agents} singleLine={true} />
+                        </View>
+
+                        <View style={styles.componentWrapper}>
+                            <Text style={styles.componentTitle}>Grid Weapons</Text>
+                            <Grid items={weapons} imageType='center' />
                         </View>
 
                     </View>
