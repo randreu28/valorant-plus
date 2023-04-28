@@ -64,8 +64,18 @@ const AgentsScreen = () => {
                         </View>
 
                         <View style={styles.componentWrapper}>
+                            <Text style={styles.componentTitle}>GridItem without item info ( title = 'Lorem ipsum')</Text>
+                            <GridItem title="Lorem ipsum" size='large' />
+                        </View>
+
+                        <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>Grid</Text>
                             <Grid items={agents} />
+                        </View>
+
+                        <View style={styles.componentWrapper}>
+                            <Text style={styles.componentTitle}>Grid (singleLine = true)</Text>
+                            <Grid items={agents} singleLine={true} />
                         </View>
 
                     </View>

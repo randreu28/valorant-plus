@@ -3,6 +3,7 @@ import React from 'react'
 import { colors } from '../lib/colors';
 import { useState, useEffect } from 'react';
 import ButtonPlus from './ButtonPlus';
+import ValorantLogo from './ValorantLogo';
 
 export default function GridItem({ item, imageBg = colors.highlights, size = 'normal', button = true, buttonType = 'more', imageType = 'crop', title }) {
 
@@ -11,7 +12,6 @@ export default function GridItem({ item, imageBg = colors.highlights, size = 'no
   const [containerSize, setContainerSize] = useState({ width: 154, height: 208 });
   const [imgType, setImgType] = useState();
   const [btnType, setBtnType] = useState();
-  const defaultImage = '../../assets/icon.png';
 
   useEffect(() => {
     setImgBg(imageBg);
@@ -47,8 +47,8 @@ export default function GridItem({ item, imageBg = colors.highlights, size = 'no
           </>
         ) : (
           <>
-            <View style={styles.imageWrapper}>
-              <Image source={{ uri: defaultImage, }} style={[styles.image, styles.imageCenter]}></Image>
+            <View style={[styles.imageWrapper, styles.noImageWrapper]}>
+              <ValorantLogo style={styles.noimage}/>
             </View>
             <View style={styles.infoWrapper}>
               <Text style={styles.name}>Text</Text>
@@ -108,12 +108,22 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
     overflow: 'hidden',
   },
+  noImageWrapper: {
+    backgroundColor: '#444',
+    borderWidth: 4,
+    borderColor: '#333',
+  },
   image: {
     resizeMode: 'cover',
     width: '110%',
     height: '110%',
     position: 'relative',
     left: '-20%',
+  },
+  noimage: {
+    color: 'red',
+    width: '100%',
+    height: 'auto',
   },
   imageCenter: {
     resizeMode: 'contain',

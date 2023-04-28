@@ -1,8 +1,15 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { React, useState, useEffect } from 'react'
 import GridItem from './GridItem'
 
-const Grid = ({ items, imageBg, size, button, buttonType }) => {
+const Grid = ({ items, singleLine = false, imageBg, size, button, buttonType }) => {
+
+    const [isSingleLine, setisSingleLine] = useState(singleLine);
+
+    useEffect(() => {
+        setisSingleLine(singleLine);
+    }, [singleLine]);
+
     return (
         <View>
             {items === null ?
@@ -11,7 +18,7 @@ const Grid = ({ items, imageBg, size, button, buttonType }) => {
                         <Text>Loading...</Text>
                     </View>
                 ) : (
-                    <View style={styles.gridItemWrapper}>
+                    <View style={[styles.gridItemWrapper, isSingleLine ? styles.gridItemWrapperSingleLine : null]}>
                         {items.map((item) =>
                             <GridItem
                                 key={item.uuid}
@@ -35,10 +42,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         margin: 10,
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignContent: 'space-around',
         gap: 20,
-    }
+    },
+    gridItemWrapperSingleLine: {
+        flexWrap: 'nowrap',
+        overflow: 'scroll',
+    },
 });
 
 export default Grid;
