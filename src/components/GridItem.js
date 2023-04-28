@@ -46,23 +46,25 @@ export default function GridItem({ item, imageBg = colors.highlights, size = 'no
             </View>
           </>
         ) : (
-          
-          <View style={styles.imageWrapper}>
-            <Image source={{ uri: defaultImage, }} style={[styles.image, styles.imageCenter]}></Image>
+          <>
+            <View style={styles.imageWrapper}>
+              <Image source={{ uri: defaultImage, }} style={[styles.image, styles.imageCenter]}></Image>
+            </View>
             <View style={styles.infoWrapper}>
               <Text style={styles.name}>Text</Text>
             </View>
-          </View>
+          </>
         )
-        }
+      }
       <View style={styles.decorationBottomRight} />
     </View>
   )
+
 }
 
 const styles = StyleSheet.create({
   container: {
-    position: 'relative',
+    flexBasis: 'auto',
     alignItems: "center",
     backgroundColor: colors.darkBase,
     borderTopRightRadius: 10,
@@ -108,13 +110,15 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'cover',
-    width: '100%',
-    height: '100%',
+    width: '110%',
+    height: '110%',
     position: 'relative',
     left: '-20%',
   },
   imageCenter: {
     resizeMode: 'contain',
+    width: '100%',
+    height: '100%',
     left: '0%',
   },
   infoWrapper: {

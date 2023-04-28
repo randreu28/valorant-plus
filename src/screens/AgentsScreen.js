@@ -73,7 +73,7 @@ const AgentsScreen = () => {
                 ) : (
                     <View style={styles.centered}>
                         <Text>Loading...</Text>
-                        <ActivityIndicator color="blue" size="normal"></ActivityIndicator>
+                        <ActivityIndicator color="blue" size="large"></ActivityIndicator>
                     </View>
                 )}
             </ScrollView>
