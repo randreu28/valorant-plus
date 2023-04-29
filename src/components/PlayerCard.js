@@ -41,7 +41,7 @@ export default function PlayerCard({
         <TouchableHighlight
           onPress={() => {
             /* @ts-ignore */
-            navigate("ProfilePlayerRank");
+            navigate("ProfileRank");
           }}
           style={{
             borderColor: colors.highlights,
