@@ -1,6 +1,6 @@
-import FavoriteButton from "../components/FavoriteButton";
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text } from "react-native";
+import FavoriteButton from "../components/FavoriteButton";
 import { colors } from "../lib/colors";
 import MainProfileScreen from "../screens/MainProfileScreen";
 
@@ -16,7 +16,18 @@ export default function ProfileTab() {
         navigationBarColor: colors.base,
       }}
     >
-      <Stack.Screen name="MainProfileScreen" children={MainProfileScreen} />
+      <Stack.Screen
+        initialParams={{
+          isEditable: false,
+          playerRank:
+            "https://media.valorant-api.com/competitivetiers/edb72a72-7e6d-6010-9591-7c053bbdbf48/13/largeicon.png",
+          playerTitle: "Spicy",
+          playerCard:
+            "https://media.valorant-api.com/playercards/33c1f011-4eca-068c-9751-f68c788b2eee/largeart.png",
+        }}
+        name="MainProfileScreen"
+        children={MainProfileScreen}
+      />
     </Stack.Navigator>
   );
 }

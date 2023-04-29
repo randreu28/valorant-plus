@@ -1,19 +1,30 @@
-// @ts-check
-
+import { useRoute } from "@react-navigation/native";
 import React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
+import PlayerCard from "../components/PlayerCard";
 
 export default function MainProfileScreen() {
+  const { params } = useRoute();
+
+  if (params === undefined) {
+    throw Error("Invalid route params");
+  }
+
   return (
-    <View
-      style={{
-        flex: 1,
-        gap: 10,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text style={{ color: "white" }}>MainProfileScreen</Text>
-    </View>
+    <>
+      {/* TODO: Use Title component instead */}
+      <Text
+        style={{
+          color: "white",
+          marginTop: 20,
+          textAlign: "center",
+          fontSize: 50,
+        }}
+      >
+        Profile
+      </Text>
+
+      <PlayerCard {...params} />
+    </>
   );
 }
