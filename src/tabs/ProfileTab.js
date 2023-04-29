@@ -40,6 +40,10 @@ export default function ProfileTab() {
 
       <Stack.Screen
         options={{ headerTitle: "" }}
+        initialParams={{
+          url: "https://media.valorant-api.com/playercards/33c1f011-4eca-068c-9751-f68c788b2eee/largeart.png",
+          title: "Bird card",
+        }}
         name="ProfilePlayerCard"
         children={PlayerCardScreen}
       />
