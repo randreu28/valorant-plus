@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { getAgents, getWeapons } from '../api'
 import { colors } from '../lib/colors'
 import GridItem from '../components/GridItem'
+import Slider from '../components/Slider'
 
 const AgentsScreen = () => {
 
@@ -25,6 +26,16 @@ const AgentsScreen = () => {
             <ScrollView style={styles.scrollView}>
                 {(agents !== null && weapons !== null) ? (
                     <View>
+                        <View style={[styles.componentWrapper, { height: 600 }]}>
+                            <Text style={styles.componentTitle}>Slider</Text>
+                            <Slider items={agents} />
+                        </View>
+
+                        <View style={[styles.componentWrapper, { height: 300 }]}>
+                            <Text style={styles.componentTitle}>Slider (mode=skins)</Text>
+                            <Slider items={weapons[0].skins} mode="skins" />
+                        </View>
+
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem</Text>
                             <GridItem item={agents[0]} />

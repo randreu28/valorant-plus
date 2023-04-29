@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { colors } from '../lib/colors';
 import ButtonPlus from './ButtonPlus';
-import ValorantLogo from './ValorantLogo';
+import ValorantLogo from './icons/ValorantLogo';
 
 export default function GridItem({ item, imageBg = colors.highlights, size, button = true, buttonType = 'more', imageType = 'crop', title }) {
 
@@ -39,7 +39,7 @@ export default function GridItem({ item, imageBg = colors.highlights, size, butt
         <Image source={{ uri: item.displayIcon, }} style={[styles.image, imageType === 'center' ? styles.imageCenter : null, size === 'full-width' ? styles.imageFullWidth : null]}></Image>
       </View>
       <View style={[styles.infoWrapper, size === 'full-width' ? styles.infoWrapperFullWidth : null]}>
-        <Text style={styles.name}>{item.displayName}</Text>
+        <Text style={styles.name}>{item.displayName ? item.displayName : title}</Text>
         {button ? buttonType === 'more' ? <ButtonPlus type='more' /> : <ButtonPlus type="favorite" /> : null}
       </View>
       <View style={styles.decorationBottomRight} />
