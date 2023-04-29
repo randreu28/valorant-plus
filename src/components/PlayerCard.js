@@ -91,7 +91,7 @@ export default function PlayerCard({
       <TouchableHighlight
         onPress={() => {
           /* @ts-ignore */
-          navigate("ProfilePlayerCard");
+          navigate("ProfilePlayerCardGrid");
         }}
         style={{
           flex: 1,
