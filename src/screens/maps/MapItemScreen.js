@@ -1,6 +1,7 @@
 import { View, Text, Button } from "react-native";
-import FavoriteButton from "../components/FavoriteButton";
+import FavoriteButton from "../../components/FavoriteButton";
 import { useEffect } from "react";
+import React from "react";
 
 export default function MapItemScreen({ navigation }) {
   useEffect(() => {

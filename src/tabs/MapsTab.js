@@ -1,6 +1,7 @@
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MapListScreen from "../screens/MapListScreen";
-import MapItemScreen from "../screens/MapItemScreen";
+import MapListScreen from "../screens/maps/MapListScreen";
+import MapItemScreen from "../screens/maps/MapItemScreen";
 import { colors } from "../lib/colors";
 
 const Stack = createNativeStackNavigator();
