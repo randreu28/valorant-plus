@@ -18,6 +18,7 @@ export default function ProfileTab() {
         headerRight: FavoriteButton,
         statusBarColor: colors.base,
         navigationBarColor: colors.base,
+        animation: "slide_from_right",
       }}
     >
       <Stack.Screen
