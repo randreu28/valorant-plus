@@ -3,7 +3,7 @@ import React from "react";
 import { Text } from "react-native";
 import PlayerCard from "../components/PlayerCard";
 
-export default function MainProfileScreen() {
+export default function ProfileMainScreen() {
   const { params } = useRoute();
 
   if (params === undefined) {
