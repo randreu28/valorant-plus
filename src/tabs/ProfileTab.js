@@ -2,8 +2,8 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import FavoriteButton from "../components/FavoriteButton";
 import { colors } from "../lib/colors";
-import ProfileMainScreen from "../screens/ProfileMainScreen";
-import ProfileRankScreen from "../screens/ProfileRankScreen";
+import MainScreen from "../screens/profile/MainScreen";
+import RankScreen from "../screens/profile/RankScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,12 +28,12 @@ export default function ProfileTab() {
             "https://media.valorant-api.com/playercards/33c1f011-4eca-068c-9751-f68c788b2eee/largeart.png",
         }}
         name="ProfileMainScreen"
-        children={ProfileMainScreen}
+        children={MainScreen}
       />
       <Stack.Screen
         options={{ headerTitle: "" }}
         name="ProfileRankScreen"
-        children={ProfileRankScreen}
+        children={RankScreen}
       />
     </Stack.Navigator>
   );

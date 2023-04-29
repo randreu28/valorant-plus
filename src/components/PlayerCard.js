@@ -38,7 +38,11 @@ export default function PlayerCard({
           justifyContent: "space-between",
         }}
       >
-        <View
+        <TouchableHighlight
+          onPress={() => {
+            /* @ts-ignore */
+            navigate("ProfilePlayerRank");
+          }}
           style={{
             borderColor: colors.highlights,
             borderWidth: isEditable ? 3 : 0,
@@ -57,8 +61,12 @@ export default function PlayerCard({
               margin: 20,
             }}
           />
-        </View>
-        <View
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={() => {
+            /* @ts-ignore */
+            navigate("ProfilePlayerTitle");
+          }}
           style={{
             backgroundColor: "rgba(0 ,0 ,0 ,0.5)",
             borderColor: colors.highlights,
@@ -77,13 +85,13 @@ export default function PlayerCard({
           >
             {playerTitle}
           </Text>
-        </View>
+        </TouchableHighlight>
       </View>
 
       <TouchableHighlight
         onPress={() => {
           /* @ts-ignore */
-          navigate("ProfileRankScreen");
+          navigate("ProfilePlayerCard");
         }}
         style={{
           flex: 1,

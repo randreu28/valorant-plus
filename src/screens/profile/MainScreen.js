@@ -1,9 +1,9 @@
 import { useRoute } from "@react-navigation/native";
 import React from "react";
 import { Text } from "react-native";
-import PlayerCard from "../components/PlayerCard";
+import PlayerCard from "../../components/PlayerCard";
 
-export default function ProfileMainScreen() {
+export default function MainScreen() {
   const { params } = useRoute();
 
   if (params === undefined) {
