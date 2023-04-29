@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Image, Text } from "react-native";
+import { View, Image, Text, TouchableHighlight } from "react-native";
 import { colors } from "../lib/colors";
+import { useNavigation } from "@react-navigation/native";
 
 /**
  * A component to display the player's Card
@@ -17,6 +18,7 @@ export default function PlayerCard({
   playerTitle = "-",
   playerRank = "https://media.valorant-api.com/competitivetiers/564d8e28-c226-3180-6285-e48a390db8b1/0/largeicon.png",
 }) {
+  const { navigate } = useNavigation();
   return (
     <View
       style={{
@@ -78,7 +80,11 @@ export default function PlayerCard({
         </View>
       </View>
 
-      <View
+      <TouchableHighlight
+        onPress={() => {
+          /* @ts-ignore */
+          navigate("ProfileRankScreen");
+        }}
         style={{
           flex: 1,
           width: "100%",
@@ -97,7 +103,7 @@ export default function PlayerCard({
             backgroundColor: colors.base,
           }}
         />
-      </View>
+      </TouchableHighlight>
     </View>
   );
 }

@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import FavoriteButton from "../components/FavoriteButton";
 import { colors } from "../lib/colors";
 import ProfileMainScreen from "../screens/ProfileMainScreen";
+import ProfileRankScreen from "../screens/ProfileRankScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -10,13 +11,14 @@ export default function ProfileTab() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitle: "ProfileTab",
+        headerTitle: "",
         headerRight: FavoriteButton,
         statusBarColor: colors.base,
         navigationBarColor: colors.base,
       }}
     >
       <Stack.Screen
+        options={{ headerTitle: "" }}
         initialParams={{
           isEditable: false,
           playerRank:
@@ -27,6 +29,11 @@ export default function ProfileTab() {
         }}
         name="ProfileMainScreen"
         children={ProfileMainScreen}
+      />
+      <Stack.Screen
+        options={{ headerTitle: "" }}
+        name="ProfileRankScreen"
+        children={ProfileRankScreen}
       />
     </Stack.Navigator>
   );
