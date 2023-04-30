@@ -1,17 +1,23 @@
-import { View, Text, StyleSheet, Pressable, ActivityIndicator, Animated } from 'react-native'
-import React, { useState, useEffect } from 'react'
-import ArrowLeftIcon from './icons/ArrowLeftIcon'
-import ArrowRightIcon from './icons/ArrowRightIcon'
-import ArrowUpIcon from './icons/ArrowUpIcon'
-import Slide from './Slide'
-import { colors } from '../lib/colors'
-import DecorationWeaponLeft from './icons/DecorationWeaponLeft'
-import DecorationWeaponRight from './icons/DecorationWeaponRight'
-import DecorationAgentLeft from './icons/DecorationAgentLeft'
-import DecorationAgentRight from './icons/DecorationAgentRight'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  ActivityIndicator,
+  Animated,
+} from "react-native";
+import React, { useState, useEffect } from "react";
+import ArrowLeftIcon from "./icons/ArrowLeftIcon";
+import ArrowRightIcon from "./icons/ArrowRightIcon";
+import ArrowUpIcon from "./icons/ArrowUpIcon";
+import Slide from "./Slide";
+import { colors } from "../lib/colors";
+import DecorationWeaponLeft from "./icons/DecorationWeaponLeft";
+import DecorationWeaponRight from "./icons/DecorationWeaponRight";
+import DecorationAgentLeft from "./icons/DecorationAgentLeft";
+import DecorationAgentRight from "./icons/DecorationAgentRight";
 
-const Slider = ({ items, mode = 'agents' }) => {
-
+const Slider = ({ items, mode = "agents" }) => {
   let newItemAnimation;
   const [previousItem, setPreviousItem] = useState(items.length - 1);
   const [currentItem, setCurrentItem] = useState(0);
@@ -29,7 +35,7 @@ const Slider = ({ items, mode = 'agents' }) => {
 
   let buttonsColor, showButtonUp;
   switch (mode) {
-    case 'skins':
+    case "skins":
       buttonsColor = colors.neutral;
       showButtonUp = false;
       break;
@@ -60,8 +66,8 @@ const Slider = ({ items, mode = 'agents' }) => {
 
   const goToItem = () => {
     return () => {
-      if (mode === 'agents' || mode === 'weapons') {
-        console.log('Go to item ' + items[currentItem].uuid);
+      if (mode === "agents" || mode === "weapons") {
+        console.log("Go to item " + items[currentItem].uuid);
       }
     };
   };
@@ -77,7 +83,7 @@ const Slider = ({ items, mode = 'agents' }) => {
         toValue: 1,
         duration: 400,
         useNativeDriver: true,
-      })
+      }),
     ]).start(() => {
       setNewSliderStates(newItem);
     });
@@ -107,71 +113,100 @@ const Slider = ({ items, mode = 'agents' }) => {
 
   return (
     <View style={styles.container}>
-      <Pressable style={[styles.swipeButton, styles.swipeButtonLeft]} onPress={() => viewItem(-1)}>
+      <Pressable
+        style={[styles.swipeButton, styles.swipeButtonLeft]}
+        onPress={() => viewItem(-1)}
+      >
         <ArrowLeftIcon color={buttonsColor} />
       </Pressable>
-      <Pressable style={[styles.swipeButton, styles.swipeButtonRight]} onPress={() => viewItem(1)}>
+      <Pressable
+        style={[styles.swipeButton, styles.swipeButtonRight]}
+        onPress={() => viewItem(1)}
+      >
         <ArrowRightIcon color={buttonsColor} />
       </Pressable>
 
       <Pressable style={styles.buttonUp} onPress={goToItem()}>
-        <Animated.View style={[styles.titleWrapper, { opacity: previousItemFadeAnimation }]}>
-          <Text style={[styles.title, mode === 'skins' ? styles.titleSkins : null]}>{items[previousItem].displayName}</Text>
+        <Animated.View
+          style={[styles.titleWrapper, { opacity: previousItemFadeAnimation }]}
+        >
+          <Text
+            style={[styles.title, mode === "skins" ? styles.titleSkins : null]}
+          >
+            {items[previousItem].displayName}
+          </Text>
         </Animated.View>
-        <Animated.View style={[styles.titleWrapper, { opacity: currentItemFadeAnimation }]}>
-          <Text style={[styles.title, mode === 'skins' ? styles.titleSkins : null]}>{items[currentItem].displayName}</Text>
+        <Animated.View
+          style={[styles.titleWrapper, { opacity: currentItemFadeAnimation }]}
+        >
+          <Text
+            style={[styles.title, mode === "skins" ? styles.titleSkins : null]}
+          >
+            {items[currentItem].displayName}
+          </Text>
         </Animated.View>
-        <Animated.View style={[styles.titleWrapper, { opacity: nextItemFadeAnimation }]}>
-          <Text style={[styles.title, mode === 'skins' ? styles.titleSkins : null]}>{items[nextItem].displayName}</Text>
+        <Animated.View
+          style={[styles.titleWrapper, { opacity: nextItemFadeAnimation }]}
+        >
+          <Text
+            style={[styles.title, mode === "skins" ? styles.titleSkins : null]}
+          >
+            {items[nextItem].displayName}
+          </Text>
         </Animated.View>
-        {mode === 'agents' || mode === 'weapons' ?
+        {mode === "agents" || mode === "weapons" ? (
           <ArrowUpIcon color={buttonsColor} />
-          : null}
+        ) : null}
       </Pressable>
       <Pressable onPress={goToItem()} style={styles.slideWrapper}>
-        {mode === 'agents' ?
+        {mode === "agents" ? (
           <View style={[styles.decoration, styles.decorationAgentLeft]}>
             <DecorationAgentLeft />
           </View>
-          : mode === 'weapons' ?
-            <View style={[styles.decoration, styles.decorationWeaponLeft]}>
-              <DecorationWeaponLeft />
-            </View>
-            : null}
-        <Animated.View style={[styles.slide, { opacity: previousItemFadeAnimation }]}>
+        ) : mode === "weapons" ? (
+          <View style={[styles.decoration, styles.decorationWeaponLeft]}>
+            <DecorationWeaponLeft />
+          </View>
+        ) : null}
+        <Animated.View
+          style={[styles.slide, { opacity: previousItemFadeAnimation }]}
+        >
           <Slide item={items[previousItem]} />
         </Animated.View>
-        <Animated.View style={[styles.slide, { opacity: currentItemFadeAnimation }]}>
+        <Animated.View
+          style={[styles.slide, { opacity: currentItemFadeAnimation }]}
+        >
           <Slide item={items[currentItem]} />
         </Animated.View>
-        <Animated.View style={[styles.slide, { opacity: nextItemFadeAnimation }]}>
+        <Animated.View
+          style={[styles.slide, { opacity: nextItemFadeAnimation }]}
+        >
           <Slide item={items[nextItem]} />
         </Animated.View>
-        {mode === 'agents' ?
+        {mode === "agents" ? (
           <View style={[styles.decoration, styles.decorationAgentRight]}>
             <DecorationAgentRight />
           </View>
-          : mode === 'weapons' ?
-            <View style={[styles.decoration, styles.decorationWeaponRight]}>
-              <DecorationWeaponRight />
-            </View>
-            : null}
+        ) : mode === "weapons" ? (
+          <View style={[styles.decoration, styles.decorationWeaponRight]}>
+            <DecorationWeaponRight />
+          </View>
+        ) : null}
       </Pressable>
     </View>
   );
-
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    position: 'relative',
-    backgroundColor: '#000',
-    overflow: 'hidden',
+    position: "relative",
+    backgroundColor: "#000",
+    overflow: "hidden",
   },
   swipeButton: {
-    position: 'absolute',
-    top: '50%',
+    position: "absolute",
+    top: "50%",
     marginTop: -19,
     zIndex: 3,
   },
@@ -182,32 +217,32 @@ const styles = StyleSheet.create({
     right: 5,
   },
   buttonUp: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
-    textAlign: 'center',
-    alignItems: 'center',
-    width: '100%',
+    textAlign: "center",
+    alignItems: "center",
+    width: "100%",
     zIndex: 3,
   },
   titleWrapper: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
+    position: "absolute",
+    width: "100%",
+    height: "100%",
     bottom: 60,
   },
   title: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 50,
-    fontWeight: 'bold',
-    fontFamily: 'Tungsten',
+    fontWeight: "bold",
+    fontFamily: "tungsten",
     marginBottom: 0,
-    textTransform: 'uppercase',
-    textAlign: 'center',
+    textTransform: "uppercase",
+    textAlign: "center",
   },
   titleSkins: {
     fontSize: 30,
-    textTransform: 'capitalize',
+    textTransform: "capitalize",
   },
   slideWrapper: {
     flex: 1,
@@ -215,13 +250,13 @@ const styles = StyleSheet.create({
   },
   slide: {
     flex: 1,
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
+    position: "absolute",
+    width: "100%",
+    height: "100%",
     zIndex: 2,
   },
   decoration: {
-    position: 'absolute',
+    position: "absolute",
     bottom: -18,
     zIndex: 0,
   },
@@ -239,4 +274,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Slider
+export default Slider;
