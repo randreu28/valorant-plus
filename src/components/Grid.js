@@ -18,7 +18,8 @@ const Grid = ({ items, isSingleLine = false, imageBg, imageType, size, button, b
             {items.map((item) =>
                 <GridItem
                     key={item.uuid}
-                    item={item}
+                    title={item.displayName}
+                    imageUrl = {item.displayIcon}
                     imageBg={imageBg}
                     imageType={imageType}
                     size={size}

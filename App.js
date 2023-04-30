@@ -3,11 +3,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import * as React from "react";
-import AgentsIcon from "./src/components/icons/AgentsIcon";
-import HomeIcon from "./src/components/icons//HomeIcon";
-import MapsIcon from "./src/components/icons/MapsIcon";
-import ProfileIcon from "./src/components/icons/ProfileIcon";
-import WeaponsIcon from "./src/components/icons/WeaponsIcon";
+import AgentsIcon from "./src/components/Icons/AgentsIcon";
+import HomeIcon from "./src/components/Icons//HomeIcon";
+import MapsIcon from "./src/components/Icons/MapsIcon";
+import ProfileIcon from "./src/components/Icons/ProfileIcon";
+import WeaponsIcon from "./src/components/Icons/WeaponsIcon";
 import { colors } from "./src/lib/colors";
 import AgentsTab from "./src/tabs/AgentsTab";
 import HomeTab from "./src/tabs/HomeTab";

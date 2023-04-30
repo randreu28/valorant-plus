@@ -2,9 +2,9 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { colors } from '../lib/colors';
 import ButtonPlus from './ButtonPlus';
-import ValorantLogo from './icons/ValorantLogo';
+import HomeIcon from './Icons/HomeIcon';
 
-export default function GridItem({ item, imageBg = colors.highlights, size, button = true, buttonType = 'more', imageType = 'crop', title }) {
+export default function GridItem({ imageBg = colors.highlights, size, button = true, buttonType = 'more', imageType = 'crop', title, imageUrl, }) {
 
   let containerSize = { width: 154, height: 208 };
 
@@ -17,12 +17,12 @@ export default function GridItem({ item, imageBg = colors.highlights, size, butt
       break;
   }
 
-  if (!item) {
+  if (!imageUrl) {
     return (
       <View style={[styles.container, { width: containerSize.width, height: containerSize.height }]} >
         <View style={styles.decorationTopLeft} />
         <View style={[styles.imageWrapper, styles.noImageWrapper]}>
-          <ValorantLogo style={styles.noimage} />
+          <HomeIcon color='#333' size={80} />
         </View>
         <View style={styles.infoWrapper}>
           <Text style={styles.name}>{title}</Text>
@@ -36,10 +36,10 @@ export default function GridItem({ item, imageBg = colors.highlights, size, butt
     <View style={[styles.container, { width: containerSize.width, height: containerSize.height }]} >
       <View style={styles.decorationTopLeft} />
       <View style={[styles.imageWrapper, { backgroundColor: imageBg }]}>
-        <Image source={{ uri: item.displayIcon, }} style={[styles.image, imageType === 'center' ? styles.imageCenter : null, size === 'full-width' ? styles.imageFullWidth : null]}></Image>
+        <Image source={{ uri: imageUrl, }} style={[styles.image, imageType === 'center' ? styles.imageCenter : null, size === 'full-width' ? styles.imageFullWidth : null]}></Image>
       </View>
       <View style={[styles.infoWrapper, size === 'full-width' ? styles.infoWrapperFullWidth : null]}>
-        <Text style={styles.name}>{item.displayName ? item.displayName : title}</Text>
+        <Text style={styles.name}>{title}</Text>
         {button ? buttonType === 'more' ? <ButtonPlus type='more' /> : <ButtonPlus type="favorite" /> : null}
       </View>
       <View style={styles.decorationBottomRight} />

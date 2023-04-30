@@ -26,9 +26,15 @@ const AgentsScreen = () => {
             <ScrollView style={styles.scrollView}>
                 {(agents !== null && weapons !== null) ? (
                     <View>
+                        
                         <View style={[styles.componentWrapper, { height: 600 }]}>
-                            <Text style={styles.componentTitle}>Slider</Text>
-                            <Slider items={agents} />
+                            <Text style={styles.componentTitle}>Slider (mode=agents)</Text>
+                            <Slider items={agents} mode="agents" />
+                        </View>
+
+                        <View style={[styles.componentWrapper, { height: 600 }]}>
+                            <Text style={styles.componentTitle}>Slider (mode=weapons)</Text>
+                            <Slider items={weapons}  mode="weapons" />
                         </View>
 
                         <View style={[styles.componentWrapper, { height: 300 }]}>
@@ -38,37 +44,37 @@ const AgentsScreen = () => {
 
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem</Text>
-                            <GridItem item={agents[0]} />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} />
                         </View>
-
+                        
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (size = 'large')</Text>
-                            <GridItem item={agents[0]} size="large" />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} size="large" />
                         </View>
-
+                        
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (size = 'full-width')</Text>
-                            <GridItem item={agents[0]} size="full-width" />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} size="full-width" />
                         </View>
 
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (button = false)</Text>
-                            <GridItem item={agents[0]} button={false} />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} button={false} />
                         </View>
 
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (buttonType = 'favorite')</Text>
-                            <GridItem item={agents[0]} buttonType="favorite" />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} buttonType="favorite" />
                         </View>
 
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (imageBg = '#0c1823')</Text>
-                            <GridItem item={agents[0]} imageBg={colors.darkBase} />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} imageBg={colors.darkBase} />
                         </View>
 
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (imageType = 'center')</Text>
-                            <GridItem item={agents[0]} imageType='center' />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} imageType='center' />
                         </View>
 
                         <View style={styles.componentWrapper}>
@@ -95,7 +101,7 @@ const AgentsScreen = () => {
                             <Text style={styles.componentTitle}>Grid Weapons</Text>
                             <Grid items={weapons} imageType='center' />
                         </View>
-
+                        
                     </View>
 
                 ) : (
@@ -115,7 +121,7 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         backgroundColor: colors.base,
-        padding: 20,
+        padding: 0,
     },
     centered: {
         flex: 1,
