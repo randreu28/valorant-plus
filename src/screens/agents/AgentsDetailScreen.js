@@ -4,6 +4,7 @@ import Title from "../../components/Title";
 import { colors } from "../../lib/colors";
 import { FontAwesome } from "@expo/vector-icons";
 
+
 export default function AgentsDetailScreen() {
   return (
     <View style={{ justifyContent: "center", flex: 1, alignItems: "center" }}>

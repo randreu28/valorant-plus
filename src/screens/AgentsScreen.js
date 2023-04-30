@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ActivityIndicator, SafeAreaView, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ActivityIndicator, SafeAreaView, ScrollView, Button } from 'react-native'
 import React from 'react'
 import Grid from '../components/Grid'
 import { useEffect, useState } from 'react'
@@ -6,8 +6,12 @@ import { getAgents, getWeapons } from '../api'
 import { colors } from '../lib/colors'
 import GridItem from '../components/GridItem'
 import Slider from '../components/Slider'
+import { useNavigation } from "@react-navigation/native";
 
 const AgentsScreen = () => {
+
+    
+    const navigation = useNavigation();
 
     const [agents, setAgents] = useState(null);
     const [weapons, setWeapons] = useState(null);
@@ -24,6 +28,8 @@ const AgentsScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
+                <Button title='Agents Details' onPress={()=>navigation.navigate("AgentsDetails")}></Button>
+
                 {(agents !== null && weapons !== null) ? (
                     <View>
                         
