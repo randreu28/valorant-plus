@@ -1,10 +1,50 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { colors } from "../lib/colors";
+/**
+ *
+ *@param {{
+ *  children: React.ReactNode,
+ *  isHeader?: boolean
+ *  subtitle?: React.ReactNode
+ * }} Props
+ */
+export default function Title({ children, subtitle, isHeader = false }) {
+  if (isHeader) return <Header>{children}</Header>;
+
+  return (
+    <View style={{ marginTop: 20 }}>
+      {subtitle && (
+        <Text
+          style={{
+            color: colors.highlights,
+            textAlign: "center",
+            fontSize: 25,
+            fontFamily: "tungsten",
+          }}
+        >
+          {subtitle}
+        </Text>
+      )}
+
+      <Text
+        style={{
+          fontFamily: "tungsten",
+          color: subtitle ? "white" : colors.highlights,
+
+          textAlign: "center",
+          fontSize: 50,
+        }}
+      >
+        {children}
+      </Text>
+    </View>
+  );
+}
 
 const fontSize = 50;
 
-export default function Title({ children }) {
+function Header({ children }) {
   return (
     <View>
       <Text

@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
-import { Image, Text, View } from "react-native";
-import FavoriteButton from "../../components/FavoriteButton";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import React, { useEffect } from "react";
+import { Image, View } from "react-native";
+import FavoriteButton from "../../components/FavoriteButton";
+import Title from "../../components/Title";
 
 export default function MapItemScreen() {
   const navigation = useNavigation();
@@ -16,6 +17,7 @@ export default function MapItemScreen() {
   if (params === undefined) {
     throw Error("Invalid route params");
   }
+
   return (
     <>
       <Image
@@ -36,9 +38,7 @@ export default function MapItemScreen() {
           paddingVertical: 100,
         }}
       >
-        <Text style={{ textAlign: "center", fontSize: 50, color: "white" }}>
-          Ascent
-        </Text>
+        <Title subtitle="MAPS">ASCENT</Title>
         <Image
           source={{
             uri: params["displayIcon"],

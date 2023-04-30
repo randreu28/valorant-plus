@@ -13,7 +13,7 @@ export default function MainScreen() {
 
   return (
     <>
-      <Title>PROFILE</Title>
+      <Title isHeader>PROFILE</Title>
       <PlayerCard {...params} />
     </>
   );
