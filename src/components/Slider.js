@@ -33,14 +33,16 @@ const Slider = ({ items, mode = "agents" }) => {
   const previousItemFadeAnimation = new Animated.Value(0);
   const nextItemFadeAnimation = new Animated.Value(0);
 
-  let buttonsColor, showButtonUp;
+  let buttonsColor, buttonsColorPressed, showButtonUp;
   switch (mode) {
     case "skins":
       buttonsColor = colors.neutral;
+      buttonsColorPressed = colors.highlights;
       showButtonUp = false;
       break;
     default:
       buttonsColor = colors.highlights;
+      buttonsColorPressed = colors.neutral;
       showButtonUp = true;
       break;
   }
@@ -115,83 +117,73 @@ const Slider = ({ items, mode = "agents" }) => {
     <View style={styles.container}>
       <Pressable
         style={[styles.swipeButton, styles.swipeButtonLeft]}
-        onPress={() => viewItem(-1)}
-      >
-        <ArrowLeftIcon color={buttonsColor} />
+        onPress={() => viewItem(-1)}>
+        {({ pressed }) => (
+          <ArrowLeftIcon color={pressed ? buttonsColorPressed : buttonsColor} />
+        )}
       </Pressable>
       <Pressable
         style={[styles.swipeButton, styles.swipeButtonRight]}
-        onPress={() => viewItem(1)}
-      >
-        <ArrowRightIcon color={buttonsColor} />
+        onPress={() => viewItem(1)}>
+        {({ pressed }) => (
+          <ArrowRightIcon color={pressed ? buttonsColorPressed : buttonsColor} />
+        )}
       </Pressable>
 
-      <Pressable style={styles.buttonUp} onPress={goToItem()}>
-        <Animated.View
-          style={[styles.titleWrapper, { opacity: previousItemFadeAnimation }]}
-        >
-          <Text
-            style={[styles.title, mode === "skins" ? styles.titleSkins : null]}
-          >
-            {items[previousItem].displayName}
-          </Text>
-        </Animated.View>
-        <Animated.View
-          style={[styles.titleWrapper, { opacity: currentItemFadeAnimation }]}
-        >
-          <Text
-            style={[styles.title, mode === "skins" ? styles.titleSkins : null]}
-          >
-            {items[currentItem].displayName}
-          </Text>
-        </Animated.View>
-        <Animated.View
-          style={[styles.titleWrapper, { opacity: nextItemFadeAnimation }]}
-        >
-          <Text
-            style={[styles.title, mode === "skins" ? styles.titleSkins : null]}
-          >
-            {items[nextItem].displayName}
-          </Text>
-        </Animated.View>
-        {mode === "agents" || mode === "weapons" ? (
-          <ArrowUpIcon color={buttonsColor} />
-        ) : null}
-      </Pressable>
-      <Pressable onPress={goToItem()} style={styles.slideWrapper}>
-        {mode === "agents" ? (
-          <View style={[styles.decoration, styles.decorationAgentLeft]}>
-            <DecorationAgentLeft />
-          </View>
-        ) : mode === "weapons" ? (
-          <View style={[styles.decoration, styles.decorationWeaponLeft]}>
-            <DecorationWeaponLeft />
-          </View>
-        ) : null}
-        <Animated.View
-          style={[styles.slide, { opacity: previousItemFadeAnimation }]}
-        >
-          <Slide item={items[previousItem]} />
-        </Animated.View>
-        <Animated.View
-          style={[styles.slide, { opacity: currentItemFadeAnimation }]}
-        >
-          <Slide item={items[currentItem]} />
-        </Animated.View>
-        <Animated.View
-          style={[styles.slide, { opacity: nextItemFadeAnimation }]}
-        >
-          <Slide item={items[nextItem]} />
-        </Animated.View>
-        {mode === "agents" ? (
-          <View style={[styles.decoration, styles.decorationAgentRight]}>
-            <DecorationAgentRight />
-          </View>
-        ) : mode === "weapons" ? (
-          <View style={[styles.decoration, styles.decorationWeaponRight]}>
-            <DecorationWeaponRight />
-          </View>
-        ) : null}
+      <Pressable style={styles.slideWrapper} onPress={goToItem()}>
+        {({ pressed }) => (
+          <>
+            {showButtonUp ? (mode === "agents" ? (
+              <View style={[styles.decoration, styles.decorationAgentLeft]}>
+                <DecorationAgentLeft />
+              </View>
+            ) : mode === "weapons" ? (
+              <View style={[styles.decoration, styles.decorationWeaponLeft]}>
+                <DecorationWeaponLeft />
+              </View>
+            ) : null) : null}
+            <Animated.View style={[styles.slide, { opacity: previousItemFadeAnimation }]}>
+              <Slide item={items[previousItem]} />
+            </Animated.View>
+            <Animated.View style={[styles.slide, { opacity: currentItemFadeAnimation }]}>
+              <Slide item={items[currentItem]} />
+            </Animated.View>
+            <Animated.View style={[styles.slide, { opacity: nextItemFadeAnimation }]}>
+              <Slide item={items[nextItem]} />
+            </Animated.View>
+            {mode === "agents" ? (
+              <View style={[styles.decoration, styles.decorationAgentRight]}>
+                <DecorationAgentRight />
+              </View>
+            ) : mode === "weapons" ? (
+              <View style={[styles.decoration, styles.decorationWeaponRight]}>
+                <DecorationWeaponRight />
+              </View>
+            ) : null}
+            <View style={styles.callToAction}>
+              <Animated.View style={[styles.titleWrapper, { opacity: previousItemFadeAnimation }, mode === 'skins' ? {bottom: 0} : null]}>
+                <Text style={[styles.title, mode === "skins" ? styles.titleSkins : null]}>
+                  {items[previousItem].displayName}
+                </Text>
+              </Animated.View>
+              <Animated.View style={[styles.titleWrapper, { opacity: currentItemFadeAnimation }, mode === 'skins' ? {bottom: 0} : null]}>
+                <Text style={[styles.title, mode === "skins" ? styles.titleSkins : null]}>
+                  {items[currentItem].displayName}
+                </Text>
+              </Animated.View>
+              <Animated.View style={[styles.titleWrapper, { opacity: nextItemFadeAnimation }, mode === 'skins' ? {bottom: 0} : null]}>
+                <Text style={[styles.title, mode === "skins" ? styles.titleSkins : null]}>
+                  {items[nextItem].displayName}
+                </Text>
+              </Animated.View>
+              {mode === "agents" || mode === "weapons" ? (
+                <View style={styles.buttonUp}>
+                  <ArrowUpIcon color={pressed ? buttonsColorPressed : buttonsColor} />
+                </View>
+              ) : null}
+            </View>
+          </>
+        )}
       </Pressable>
     </View>
   );
@@ -219,17 +211,20 @@ const styles = StyleSheet.create({
   buttonUp: {
     position: "absolute",
     bottom: 0,
+  },
+  callToAction: {
+    position: "absolute",
+    bottom: 0,
     left: 0,
     textAlign: "center",
     alignItems: "center",
     width: "100%",
+    height: '100%',
     zIndex: 3,
   },
   titleWrapper: {
     position: "absolute",
-    width: "100%",
-    height: "100%",
-    bottom: 60,
+    bottom: 50,
   },
   title: {
     color: "#fff",
@@ -257,7 +252,7 @@ const styles = StyleSheet.create({
   },
   decoration: {
     position: "absolute",
-    bottom: -18,
+    bottom: 0,
     zIndex: 0,
   },
   decorationAgentLeft: {

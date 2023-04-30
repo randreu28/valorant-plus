@@ -50,37 +50,37 @@ const AgentsScreen = () => {
 
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem</Text>
-                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} id={agents[0].uuid} />
                         </View>
                         
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (size = 'large')</Text>
-                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} size="large" />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} id={agents[0].uuid} size="large" />
                         </View>
                         
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (size = 'full-width')</Text>
-                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} size="full-width" />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} id={agents[0].uuid} size="full-width" />
                         </View>
 
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (button = false)</Text>
-                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} button={false} />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} id={agents[0].uuid} button={false} />
                         </View>
 
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (buttonType = 'favorite')</Text>
-                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} buttonType="favorite" />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} id={agents[0].uuid} buttonType="favorite" />
                         </View>
 
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (imageBg = '#0c1823')</Text>
-                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} imageBg={colors.darkBase} />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} id={agents[0].uuid} imageBg={colors.darkBase} />
                         </View>
 
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (imageType = 'center')</Text>
-                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} imageType='center' />
+                            <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} id={agents[0].uuid} imageType='center' />
                         </View>
 
                         <View style={styles.componentWrapper}>
@@ -93,7 +93,7 @@ const AgentsScreen = () => {
                             <GridItem title="Lorem ipsum" size='large' />
                         </View>
 
-                        <View style={styles.componentWrapper}>
+                        <View style={[styles.componentWrapper, {height: 400, overflow: 'hidden'}]}>
                             <Text style={styles.componentTitle}>Grid</Text>
                             <Grid items={agents} />
                         </View>

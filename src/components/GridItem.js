@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native'
 import React from 'react'
 import { colors } from '../lib/colors';
 import ButtonPlus from './ButtonPlus';
 import HomeIcon from './icons/HomeIcon';
 
-export default function GridItem({ imageBg = colors.highlights, size, button = true, buttonType = 'more', imageType = 'crop', title, imageUrl, }) {
+export default function GridItem({ id, imageBg = colors.highlights, size, button = true, buttonType = 'more', imageType = 'crop', title, imageUrl, link }) {
 
   let containerSize = { width: 154, height: 208 };
 
@@ -32,8 +32,14 @@ export default function GridItem({ imageBg = colors.highlights, size, button = t
     );
   }
 
+  function goToDetail() {
+    if (id) {
+      console.log('go to item: ' + id);
+    }
+  }
+
   return (
-    <View style={[styles.container, { width: containerSize.width, height: containerSize.height }]} >
+    <Pressable style={({ pressed }) => [styles.container, { width: containerSize.width, height: containerSize.height }, { backgroundColor: pressed ? colors.bg : colors.darkBase }]} onPress={() => {goToDetail()}} >
       <View style={styles.decorationTopLeft} />
       <View style={[styles.imageWrapper, { backgroundColor: imageBg }]}>
         <Image source={{ uri: imageUrl, }} style={[styles.image, imageType === 'center' ? styles.imageCenter : null, size === 'full-width' ? styles.imageFullWidth : null]}></Image>
@@ -43,7 +49,7 @@ export default function GridItem({ imageBg = colors.highlights, size, button = t
         {button ? buttonType === 'more' ? <ButtonPlus type='more' /> : <ButtonPlus type="favorite" /> : null}
       </View>
       <View style={styles.decorationBottomRight} />
-    </View>
+    </Pressable>
   );
 
 }

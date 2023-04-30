@@ -3,11 +3,9 @@ import React from 'react'
 
 const Slide = ({ item }) => {
     return (
-        
-            <ImageBackground source={{ uri: item.background, }} resizeMode="cover" style={styles.backgroundImage} imageStyle={{ opacity: 0.1 }} >
-                <Image style={styles.image} source={{ uri: item.displayIcon, }} />
-            </ImageBackground>
-        
+        <ImageBackground source={{ uri: item.background, }} resizeMode="cover" style={styles.backgroundImage} imageStyle={{ opacity: 0.1 }} >
+            <Image style={styles.image} source={{ uri: item.displayIcon, }} />
+        </ImageBackground>
     )
 }
 
