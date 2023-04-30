@@ -29,3 +29,17 @@ function WeaponsTab1() {
     </View>
   );
 }
+
+const HitColor = () => {
+  let color;
+  if (value === 0) {
+    color = "#ffffff";
+  } else if (value >= 1 && value < 85) {
+    color = "#ffffff";
+  } else if (value >= 85 && value < 170) {
+    color = "#80ffde";
+  } else if (value >= 170 && value < 255) {
+    color = "##00ffbc";
+  }
+  return color;
+};
