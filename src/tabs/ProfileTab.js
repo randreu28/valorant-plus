@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import FavoriteButton from "../components/FavoriteButton";
+import EditButton from "../components/EditButton";
 import { colors } from "../lib/colors";
 import MainScreen from "../screens/profile/MainScreen";
 import RankScreen from "../screens/profile/RankScreen";
@@ -15,7 +15,7 @@ export default function ProfileTab() {
     <Stack.Navigator
       screenOptions={{
         headerTitle: "",
-        headerRight: FavoriteButton,
+        headerRight: EditButton,
         statusBarColor: colors.base,
         navigationBarColor: colors.base,
         animation: "slide_from_right",
