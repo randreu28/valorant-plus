@@ -1,6 +1,7 @@
 import { useRoute } from "@react-navigation/native";
 import React from "react";
-import { Text } from "react-native";
+import Title from "../../components/Title";
+
 import PlayerCard from "../../components/PlayerCard";
 
 export default function MainScreen() {
@@ -12,18 +13,7 @@ export default function MainScreen() {
 
   return (
     <>
-      {/* TODO: Use Title component instead */}
-      <Text
-        style={{
-          color: "white",
-          marginTop: 20,
-          textAlign: "center",
-          fontSize: 50,
-        }}
-      >
-        Profile
-      </Text>
-
+      <Title>PROFILE</Title>
       <PlayerCard {...params} />
     </>
   );
