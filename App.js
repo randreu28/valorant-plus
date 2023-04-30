@@ -7,7 +7,7 @@ import AgentsIcon from "./src/components/icons/AgentsIcon";
 import HomeIcon from "./src/components/icons//HomeIcon";
 import MapsIcon from "./src/components/icons/MapsIcon";
 import ProfileIcon from "./src/components/icons/ProfileIcon";
-import WeaponsIcon from "./src/components/Icons/WeaponsIcon";
+import WeaponsIcon from "./src/components/icons/WeaponsIcon";
 import { colors } from "./src/lib/colors";
 import AgentsTab from "./src/tabs/AgentsTab";
 import HomeTab from "./src/tabs/HomeTab";
@@ -20,7 +20,9 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   useFonts({
+    // @ts-ignore
     valorant: require("./assets/fonts/valorant.ttf"),
+    // @ts-ignore
     tungsten: require("./assets/fonts/tungsten.otf"),
   });
 
