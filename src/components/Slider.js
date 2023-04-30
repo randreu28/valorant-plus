@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet, Pressable, ActivityIndicator, Animated } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import ArrowLeftIcon from './Icons/ArrowLeftIcon'
-import ArrowRightIcon from './Icons/ArrowRightIcon'
-import ArrowUpIcon from './Icons/ArrowUpIcon'
+import ArrowLeftIcon from './icons/ArrowLeftIcon'
+import ArrowRightIcon from './icons/ArrowRightIcon'
+import ArrowUpIcon from './icons/ArrowUpIcon'
 import Slide from './Slide'
 import { colors } from '../lib/colors'
-import DecorationWeaponLeft from './Icons/DecorationWeaponLeft'
-import DecorationWeaponRight from './Icons/DecorationWeaponRight'
-import DecorationAgentLeft from './Icons/DecorationAgentLeft'
-import DecorationAgentRight from './Icons/DecorationAgentRight'
+import DecorationWeaponLeft from './icons/DecorationWeaponLeft'
+import DecorationWeaponRight from './icons/DecorationWeaponRight'
+import DecorationAgentLeft from './icons/DecorationAgentLeft'
+import DecorationAgentRight from './icons/DecorationAgentRight'
 
 const Slider = ({ items, mode = 'agents' }) => {
 

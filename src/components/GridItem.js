@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { colors } from '../lib/colors';
 import ButtonPlus from './ButtonPlus';
-import HomeIcon from './Icons/HomeIcon';
+import HomeIcon from './icons/HomeIcon';
 
 export default function GridItem({ imageBg = colors.highlights, size, button = true, buttonType = 'more', imageType = 'crop', title, imageUrl, }) {
 
