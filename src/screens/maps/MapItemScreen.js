@@ -7,15 +7,22 @@ import { colors } from "../../lib/colors";
 export default function MapItemScreen() {
   const { params } = useRoute();
 
+  let myParams = params;
   if (params === undefined) {
-    throw Error("Invalid route params");
+    myParams = {
+      splashImage:
+        "https://media.valorant-api.com/maps/d960549e-485c-e861-8d71-aa9d1aed12a2/splash.png",
+      displayIcon:
+        "https://media.valorant-api.com/maps/d960549e-485c-e861-8d71-aa9d1aed12a2/displayicon.png",
+    };
   }
 
   return (
-    <>
+    <View style={{ position: "relative", flex: 1 }}>
       <Image
         source={{
-          uri: params["splashImage"],
+          // @ts-ignore
+          uri: myParams["splashImage"],
         }}
         style={{ flex: 1, height: "100%", opacity: 0.5 }}
       />
@@ -47,11 +54,18 @@ export default function MapItemScreen() {
         <Title subtitle="MAPS">ASCENT</Title>
         <Image
           source={{
-            uri: params["displayIcon"],
+            // @ts-ignore
+            uri: myParams["displayIcon"],
           }}
-          style={{ width: '95%', height: '95%', margin: 20, zIndex: 5, resizeMode:"contain" }}
+          style={{
+            width: "95%",
+            height: "95%",
+            margin: 20,
+            zIndex: 5,
+            resizeMode: "contain",
+          }}
         />
       </View>
-    </>
+    </View>
   );
 }
