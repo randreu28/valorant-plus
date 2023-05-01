@@ -15,7 +15,7 @@ export default function FavoriteButton() {
         paddingVertical: 5,
         borderColor: colors.highlights,
         borderWidth: 2,
-        backgroundColor: isFavorite ? colors.highlights : colors.base,
+        backgroundColor: isFavorite ? colors.highlights : "rgba(0, 0, 0, 0)",
       }}
     >
       <View
