@@ -1,16 +1,21 @@
 import React from "react";
-import Title from "../../components/Title";
-import WeaponStats from "../../components/WeaponStats";
+import { View, Text, Button } from "react-native";
 
-export default function WeaponsMainScreen() {
+export default function WeaponsMainScreen({ navigation }) {
   return (
-    <>
-      <Title subtitle="WEAPONS">SHERIFF</Title>
-
-      {/* ... */}
-
-      <Title subtitle="STATIS TICS"> </Title>
-      <WeaponStats head={182} body={95} legs={55} />
-    </>
+    <View
+      style={{
+        flex: 1,
+        gap: 10,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text style={{ color: "white" }}>Weapons Main Screen!</Text>
+      <Button
+        title="Go to Weapons Details screen"
+        onPress={() => navigation.navigate("WeaponsDetails")}
+      />
+    </View>
   );
 }

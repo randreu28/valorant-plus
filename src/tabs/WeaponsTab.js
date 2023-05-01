@@ -15,6 +15,7 @@ export default function WeaponsTab() {
         headerRight: FavoriteButton,
         statusBarColor: colors.base,
         navigationBarColor: colors.base,
+        animation: "slide_from_right",
       }}
     >
       <Stack.Screen name="WeaponsMain" children={WeaponsMainScreen} />
