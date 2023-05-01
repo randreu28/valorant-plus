@@ -38,7 +38,7 @@ export default function MainScreen() {
       <Title>TITLE VARIANT</Title>
       <Title isHeader>TITLE HEADER</Title>
       <Title subtitle="WITH SUBTITLE">TITLE VARIANT</Title>
-      <Title subtitle="ONLY SUBTITLE"> </Title>
+      <Title subtitle="Only Subtitle"> </Title>
 
       <View style={{ width: 120 }}>
         <GridButton />

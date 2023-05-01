@@ -60,10 +60,10 @@ function Header({ children }) {
           transform: [{ translateY: -(fontSize * 1.5) / 5 }],
           textShadowColor: colors.highlights,
           textShadowOffset: {
-            height:1,
-            width:-1,
+            height:0,
+            width:0,
           },
-          textShadowRadius:1,
+          textShadowRadius:5,
           
           /* position: "absolute",
           width: "100%",

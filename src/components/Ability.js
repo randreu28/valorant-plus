@@ -19,7 +19,6 @@ export default function Ability({image, title, description}) {
         style={{
           width: 50,
           height: 50,
-          color: colors.details,
           marginTop: 10,
         }}
         source={{

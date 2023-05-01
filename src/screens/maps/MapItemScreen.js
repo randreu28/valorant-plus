@@ -28,7 +28,7 @@ export default function MapItemScreen() {
           height: "100%",
           width: "100%",
           backgroundColor: colors.base,
-          opacity: 0.25,
+          opacity: 0.5,
         }}
       />
 
@@ -49,7 +49,7 @@ export default function MapItemScreen() {
           source={{
             uri: params["displayIcon"],
           }}
-          style={{ width: 300, height: 300, margin: 20, zIndex: 5 }}
+          style={{ width: '95%', height: '95%', margin: 20, zIndex: 5, resizeMode:"contain" }}
         />
       </View>
     </>
