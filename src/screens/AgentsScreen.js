@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, ActivityIndicator, SafeAreaView, ScrollView, Bu
 import React from 'react'
 import Grid from '../components/Grid'
 import { useEffect, useState } from 'react'
-import { getAgents, getWeapons } from '../api'
+import { getAgents, getIntroSlides, getWeapons } from '../api'
 import { colors } from '../lib/colors'
 import GridItem from '../components/GridItem'
 import Slider from '../components/Slider'
@@ -10,11 +10,12 @@ import { useNavigation } from "@react-navigation/native";
 
 const AgentsScreen = () => {
 
-    
+
     const navigation = useNavigation();
 
     const [agents, setAgents] = useState(null);
     const [weapons, setWeapons] = useState(null);
+    const [introSlides, setIntroSlides] = useState(null);
 
     useEffect(() => {
         getAgents()
@@ -23,16 +24,24 @@ const AgentsScreen = () => {
         getWeapons()
             .then(setWeapons)
             .catch(error => console.error(error));
+        getIntroSlides()
+            .then(setIntroSlides)
+            .catch(error => console.error(error));
     }, []);
 
     return (
-        <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollView}>
-                <Button title='Agents Details' onPress={()=>navigation.navigate("AgentsDetails")}></Button>
+        <ScrollView>
+            <View>
+                <Button title='Agents Details' onPress={() => navigation.navigate("AgentsDetails")}></Button>
 
                 {(agents !== null && weapons !== null) ? (
                     <View>
-                        
+
+                        <View style={[styles.componentWrapper, { height: 600 }]}>
+                            <Text style={styles.componentTitle}>Slider (mode=intro)</Text>
+                            <Slider items={introSlides} mode="intro" />
+                        </View>
+
                         <View style={[styles.componentWrapper, { height: 600 }]}>
                             <Text style={styles.componentTitle}>Slider (mode=agents)</Text>
                             <Slider items={agents} mode="agents" />
@@ -40,7 +49,7 @@ const AgentsScreen = () => {
 
                         <View style={[styles.componentWrapper, { height: 600 }]}>
                             <Text style={styles.componentTitle}>Slider (mode=weapons)</Text>
-                            <Slider items={weapons}  mode="weapons" />
+                            <Slider items={weapons} mode="weapons" />
                         </View>
 
                         <View style={[styles.componentWrapper, { height: 300 }]}>
@@ -52,12 +61,12 @@ const AgentsScreen = () => {
                             <Text style={styles.componentTitle}>GridItem</Text>
                             <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} id={agents[0].uuid} />
                         </View>
-                        
+
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (size = 'large')</Text>
                             <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} id={agents[0].uuid} size="large" />
                         </View>
-                        
+
                         <View style={styles.componentWrapper}>
                             <Text style={styles.componentTitle}>GridItem (size = 'full-width')</Text>
                             <GridItem title={agents[0].displayName} imageUrl={agents[0].displayIcon} id={agents[0].uuid} size="full-width" />
@@ -93,7 +102,7 @@ const AgentsScreen = () => {
                             <GridItem title="Lorem ipsum" size='large' />
                         </View>
 
-                        <View style={[styles.componentWrapper, {height: 400, overflow: 'hidden'}]}>
+                        <View style={[styles.componentWrapper, { height: 400, overflow: 'hidden' }]}>
                             <Text style={styles.componentTitle}>Grid</Text>
                             <Grid items={agents} />
                         </View>
@@ -107,7 +116,7 @@ const AgentsScreen = () => {
                             <Text style={styles.componentTitle}>Grid Weapons</Text>
                             <Grid items={weapons} imageType='center' />
                         </View>
-                        
+
                     </View>
 
                 ) : (
@@ -116,8 +125,8 @@ const AgentsScreen = () => {
                         <ActivityIndicator color={colors.neutral} size="large"></ActivityIndicator>
                     </View>
                 )}
-            </ScrollView>
-        </SafeAreaView>
+            </View>
+        </ScrollView>
     )
 }
 
