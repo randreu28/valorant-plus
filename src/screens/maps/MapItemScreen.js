@@ -2,6 +2,7 @@ import { useRoute } from "@react-navigation/native";
 import React from "react";
 import { Image, View } from "react-native";
 import Title from "../../components/Title";
+import { colors } from "../../lib/colors";
 
 export default function MapItemScreen() {
   const { params } = useRoute();
@@ -18,6 +19,19 @@ export default function MapItemScreen() {
         }}
         style={{ flex: 1, height: "100%", opacity: 0.5 }}
       />
+
+      <View
+        style={{
+          position: "absolute",
+          zIndex: 1.5,
+          flex: 1,
+          height: "100%",
+          width: "100%",
+          backgroundColor: colors.base,
+          opacity: 0.25,
+        }}
+      />
+
       <View
         style={{
           position: "absolute",
