@@ -1,18 +1,10 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { useEffect } from "react";
+import { useRoute } from "@react-navigation/native";
+import React from "react";
 import { Image, View } from "react-native";
-import FavoriteButton from "../../components/FavoriteButton";
 import Title from "../../components/Title";
 
 export default function MapItemScreen() {
-  const navigation = useNavigation();
   const { params } = useRoute();
-
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: FavoriteButton,
-    });
-  }, [navigation]);
 
   if (params === undefined) {
     throw Error("Invalid route params");

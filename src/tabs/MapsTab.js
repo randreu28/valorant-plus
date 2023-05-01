@@ -1,8 +1,9 @@
-import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MapListScreen from "../screens/maps/MapListScreen";
-import MapItemScreen from "../screens/maps/MapItemScreen";
+import React from "react";
+import FavoriteButton from "../components/FavoriteButton";
 import { colors } from "../lib/colors";
+import MapItemScreen from "../screens/maps/MapItemScreen";
+import MapListScreen from "../screens/maps/MapListScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ export default function MapsTab() {
         }}
         name="MapItem"
         children={MapItemScreen}
+        options={{ headerRight: FavoriteButton }}
       />
     </Stack.Navigator>
   );
