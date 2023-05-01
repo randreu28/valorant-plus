@@ -49,7 +49,23 @@ function Header({ children }) {
     <View>
       <Text
         style={{
+          
+          color: colors.base,
+          marginTop: 20,
+          width: "100%",
+          fontFamily: "tungsten",
+          textAlign: "center",
           position: "absolute",
+          fontSize: fontSize * 1.5,
+          transform: [{ translateY: -(fontSize * 1.5) / 5 }],
+          textShadowColor: colors.highlights,
+          textShadowOffset: {
+            height:1,
+            width:-1,
+          },
+          textShadowRadius:1,
+          
+          /* position: "absolute",
           width: "100%",
           fontFamily: "tungsten",
           color: "white",
@@ -57,7 +73,7 @@ function Header({ children }) {
           textAlign: "center",
           opacity: 0.2,
           fontSize: fontSize * 1.5,
-          transform: [{ translateY: -(fontSize * 1.5) / 5 }],
+          transform: [{ translateY: -(fontSize * 1.5) / 5 }], */
         }}
       >
         {children}
