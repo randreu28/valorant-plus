@@ -1,0 +1,65 @@
+import React from "react";
+import { View, Text } from "react-native";
+import Mannequin from "./icons/Mannequin";
+
+/**
+ * @param {{
+ *  head: number
+ *  body: number,
+ *  legs: number
+ * }} Props
+ */
+export default function WeaponStats({ head, body, legs }) {
+  return (
+    <View style={{ flex: 1, alignItems: "center" }}>
+      <Text style={{ color: "white", fontFamily: "tungsten", fontSize: 20 }}>
+        0 - 30M
+      </Text>
+      <View
+        style={{
+          flexDirection: "row",
+          flex: 1,
+          paddingTop: 20,
+        }}
+      >
+        <Mannequin
+          head={computeColor(head)}
+          body={computeColor(body)}
+          legs={computeColor(legs)}
+        ></Mannequin>
+        <View style={{ gap: 30, marginVertical: 20 }}>
+          <Text style={{ color: computeColor(head), fontFamily: "tungsten" }}>
+            {head}
+          </Text>
+          <Text style={{ color: computeColor(body), fontFamily: "tungsten" }}>
+            {body}
+          </Text>
+          <Text style={{ color: computeColor(legs), fontFamily: "tungsten" }}>
+            {legs}
+          </Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function computeColor(value) {
+  if (value > 255 || value < 0) {
+    throw Error("Value must be between 0 and 255");
+  }
+
+  let color;
+  if (value === 0) {
+    color = "#ffffff";
+  } else if (value >= 1 && value < 85) {
+    color = "#ffffff";
+  } else if (value >= 85 && value < 170) {
+    color = "#80ffde";
+  } else if (value >= 170 && value < 255) {
+    color = "#00ffbc";
+  } else {
+    throw Error("Value must be between 0 and 255");
+  }
+
+  return color;
+}
