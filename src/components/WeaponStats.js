@@ -6,40 +6,95 @@ import Mannequin from "./icons/Mannequin";
  * @param {{
  *  head: number
  *  body: number,
- *  legs: number
+ *  legs: number,
+ * reloadTime: number,
+ * fireRate: number,
+ * magCapacity: number,
  * }} Props
  */
-export default function WeaponStats({ head, body, legs }) {
+export default function WeaponStats({
+  head,
+  body,
+  legs,
+  fireRate,
+  magCapacity,
+  reloadTime,
+}) {
   return (
-    <View style={{ flex: 1, alignItems: "center" }}>
-      <Text style={{ color: "white", fontFamily: "tungsten", fontSize: 20 }}>
-        0 - 30M
-      </Text>
+    <>
+      <View style={{ flex: 1, alignItems: "center" }}>
+        <Text style={{ color: "white", fontFamily: "tungsten", fontSize: 20 }}>
+          0 - 30M
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            flex: 1,
+            paddingTop: 20,
+          }}
+        >
+          <Mannequin
+            head={computeColor(head)}
+            body={computeColor(body)}
+            legs={computeColor(legs)}
+          ></Mannequin>
+          <View style={{ gap: 30, marginVertical: 20 }}>
+            <Text style={{ color: computeColor(head), fontFamily: "tungsten" }}>
+              {head}
+            </Text>
+            <Text style={{ color: computeColor(body), fontFamily: "tungsten" }}>
+              {body}
+            </Text>
+            <Text style={{ color: computeColor(legs), fontFamily: "tungsten" }}>
+              {legs}
+            </Text>
+          </View>
+        </View>
+      </View>
+
       <View
         style={{
           flexDirection: "row",
           flex: 1,
-          paddingTop: 20,
+          alignItems: "baseline",
+          justifyContent: "space-between",
+          maxWidth: "100%",
         }}
       >
-        <Mannequin
-          head={computeColor(head)}
-          body={computeColor(body)}
-          legs={computeColor(legs)}
-        ></Mannequin>
-        <View style={{ gap: 30, marginVertical: 20 }}>
-          <Text style={{ color: computeColor(head), fontFamily: "tungsten" }}>
-            {head}
-          </Text>
-          <Text style={{ color: computeColor(body), fontFamily: "tungsten" }}>
-            {body}
-          </Text>
-          <Text style={{ color: computeColor(legs), fontFamily: "tungsten" }}>
-            {legs}
-          </Text>
+        <View style={{ paddingHorizontal: 40 }}>
+          <WeaponInfo isLeft>Reload time</WeaponInfo>
+          <WeaponInfo isLeft>Fire rate</WeaponInfo>
+          <WeaponInfo isLeft>Mag capacity</WeaponInfo>
+        </View>
+
+        <View style={{ paddingHorizontal: 40 }}>
+          <WeaponInfo>{reloadTime} seconds</WeaponInfo>
+          <WeaponInfo>{fireRate} bullets per second</WeaponInfo>
+          <WeaponInfo>{magCapacity} bullets</WeaponInfo>
         </View>
       </View>
-    </View>
+    </>
+  );
+}
+
+/**
+ * @param {{
+ * children: React.ReactNode,
+ * isLeft?: boolean,
+ * }} Props
+ */
+function WeaponInfo({ children, isLeft = false }) {
+  return (
+    <Text
+      style={{
+        color: "white",
+        fontSize: 15,
+        textAlign: isLeft ? "left" : "right",
+        paddingVertical: 10,
+      }}
+    >
+      {children}
+    </Text>
   );
 }
 
