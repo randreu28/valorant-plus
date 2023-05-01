@@ -27,7 +27,10 @@ export default function MapsTab() {
         }}
         name="MapItem"
         children={MapItemScreen}
-        options={{ headerRight: FavoriteButton }}
+        options={{
+          headerRight: FavoriteButton,
+          headerTransparent: true,
+        }}
       />
     </Stack.Navigator>
   );
