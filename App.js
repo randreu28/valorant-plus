@@ -39,6 +39,7 @@ export default function App() {
       >
         <Tab.Navigator
           screenOptions={({ route }) => ({
+            tabBarInactiveTintColor: "white",
             tabBarIcon: ({ color, size }) => {
               switch (route.name) {
                 case "Profile":

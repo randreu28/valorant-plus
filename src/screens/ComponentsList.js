@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   componentWrapper: {
-    backgroundColor: "#ffffff0d",
+    backgroundColor: colors.darkBase,
     borderWidth: 2,
     padding: 10,
     marginBottom: 10,

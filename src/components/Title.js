@@ -50,7 +50,7 @@ function Header({ children }) {
     <View>
       <Text
         style={{
-          color: colors.base,
+          color: colors.darkBase,
           marginTop: 20,
           width: "100%",
           fontFamily: "tungsten",
