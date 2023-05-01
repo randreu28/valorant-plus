@@ -2,7 +2,9 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { colors } from "../lib/colors";
 
-export default function Ability() {
+export default function Ability({image, title, description}) {
+
+
   return (
     <View
       style={{
@@ -22,7 +24,7 @@ export default function Ability() {
         }}
         source={{
           uri:
-            "https://media.valorant-api.com/agents/e370fa57-4757-3604-3648-499e1f642d3f/abilities/ability1/displayicon.png",
+            image,
         }}
       />
       <View
@@ -43,7 +45,7 @@ export default function Ability() {
             textAlign: "left",
           }}
         >
-          Wingman
+          {title}
         </Text>
         <Text
           style={{
@@ -52,13 +54,7 @@ export default function Ability() {
             textAlign: "justify",
           }}
         >
-          EQUIP Wingman. FIRE to send Wingman forward seeking enemies. Wingman
-          unleashes a concussive blast toward the first enemy he sees ALT FIRE
-          when targeting a Spike site or planted Spike to have Wingman defuse or
-          plant the Spike. To plant, Gekko must have the Spike in his inventory.
-          When Wingman expires he reverts into a dormant globule INTERACT to
-          reclaim the globule and gain another Wingman charge after a short
-          cooldown.
+          {description}
         </Text>
       </View>
     </View>

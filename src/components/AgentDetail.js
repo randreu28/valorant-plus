@@ -3,7 +3,7 @@ import React from "react";
 import { colors } from "../lib/colors";
 import { FontAwesome } from "@expo/vector-icons";
 
-export default function AgentDetail() {
+export default function AgentDetail({ icon, rol, quote, inforol, bg, agent }) {
   return (
     <View
       style={{
@@ -22,8 +22,7 @@ export default function AgentDetail() {
         <Image
           style={{ width: 15, height: 15, tintColor: colors.details }}
           source={{
-            uri:
-              "https://media.valorant-api.com/agents/roles/1b47567f-8f7b-444b-aae3-b0c634622d10/displayicon.png",
+            uri: icon,
           }}
         />
         <Text
@@ -34,7 +33,7 @@ export default function AgentDetail() {
             textAlign: "center",
           }}
         >
-          INITIATOR
+          {rol}
         </Text>
       </View>
       <Image
@@ -48,15 +47,13 @@ export default function AgentDetail() {
           right: 0,
         }}
         source={{
-          uri:
-            "https://media.valorant-api.com/agents/e370fa57-4757-3604-3648-499e1f642d3f/background.png",
+          uri: bg,
         }}
       />
       <Image
         style={{ width: 400, height: 400 }}
         source={{
-          uri:
-            "https://media.valorant-api.com/agents/e370fa57-4757-3604-3648-499e1f642d3f/fullportrait.png",
+          uri: agent,
         }}
       />
       <View
@@ -92,7 +89,7 @@ export default function AgentDetail() {
               textAlign: "center",
             }}
           >
-            "Gekko the Angeleno leads...to regroup and go again."
+            {quote}
           </Text>
         </View>
       </View>
@@ -108,8 +105,7 @@ export default function AgentDetail() {
         <Image
           style={{ width: 30, height: 30, tintColor: colors.details }}
           source={{
-            uri:
-              "https://media.valorant-api.com/agents/roles/1b47567f-8f7b-444b-aae3-b0c634622d10/displayicon.png",
+            uri: icon,
           }}
         />
         <View
@@ -129,8 +125,7 @@ export default function AgentDetail() {
               textAlign: "center",
             }}
           >
-            Initiators challenge angles by setting up their team to enter
-            contested ground and push defenders away.
+            {inforol}
           </Text>
         </View>
       </View>
