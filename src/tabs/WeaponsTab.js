@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text } from "react-native";
 import { colors } from "../lib/colors";
 import Mannequin from "../components/icons/Mannequin";
+import Title from "../components/Title";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,13 +24,53 @@ export default function WeaponsTab() {
 
 function WeaponsTab1() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Text style={{ color: "white" }}>Weapons!</Text>
-      <Mannequin head="#ff0000" body="#00ff00" legs="#0000ff"></Mannequin>
+      <Title subtitle="Stadistics"></Title>
+      <WeaponStats></WeaponStats>
     </View>
   );
 }
 
+function WeaponStats() {
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text style={{ color: "white", fontFamily: "tungsten" }}>Distance</Text>
+
+      <View
+        style={{
+          flexDirection: "row",
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Mannequin head="#00ffbc" body="#80ffde" legs="#ffffff"></Mannequin>
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
+          <Text style={{ color: "#00ffbc", fontFamily: "tungsten" }}>182</Text>
+          <Text style={{ color: "#80ffde", fontFamily: "tungsten" }}>95</Text>
+          <Text style={{ color: "#ffffff", fontFamily: "tungsten" }}>55</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
 const HitColor = () => {
   let color;
   if (value === 0) {
