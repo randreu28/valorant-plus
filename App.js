@@ -2,19 +2,15 @@
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { useFonts } from "expo-font";
 import * as React from "react";
-import AgentsIcon from "./src/components/icons/AgentsIcon";
 import HomeIcon from "./src/components/icons//HomeIcon";
+import AgentsIcon from "./src/components/icons/AgentsIcon";
 import MapsIcon from "./src/components/icons/MapsIcon";
 import ProfileIcon from "./src/components/icons/ProfileIcon";
 import WeaponsIcon from "./src/components/icons/WeaponsIcon";
 import { colors } from "./src/lib/colors";
-import AgentsTab from "./src/tabs/AgentsTab";
-import HomeTab from "./src/tabs/HomeTab";
-import MapsTab from "./src/tabs/MapsTab";
-import ProfileTab from "./src/tabs/ProfileTab";
-import WeaponsTab from "./src/tabs/WeaponsTab";
-import { useFonts } from "expo-font";
+import ComponentsList from "./src/screens/ComponentsList";
 
 const Tab = createBottomTabNavigator();
 
@@ -64,11 +60,11 @@ export default function App() {
             headerShown: false,
           })}
         >
-          <Tab.Screen name="Profile" component={ProfileTab} />
-          <Tab.Screen name="Agents" component={AgentsTab} />
-          <Tab.Screen name="Home" component={HomeTab} />
-          <Tab.Screen name="Weapons" component={WeaponsTab} />
-          <Tab.Screen name="Maps" component={MapsTab} />
+          <Tab.Screen name="Profile" component={ComponentsList} />
+          <Tab.Screen name="Agents" component={ComponentsList} />
+          <Tab.Screen name="Home" component={ComponentsList} />
+          <Tab.Screen name="Weapons" component={ComponentsList} />
+          <Tab.Screen name="Maps" component={ComponentsList} />
         </Tab.Navigator>
       </NavigationContainer>
     );
