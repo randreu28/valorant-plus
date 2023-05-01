@@ -16,9 +16,12 @@ import DecorationWeaponLeft from "./icons/DecorationWeaponLeft";
 import DecorationWeaponRight from "./icons/DecorationWeaponRight";
 import DecorationAgentLeft from "./icons/DecorationAgentLeft";
 import DecorationAgentRight from "./icons/DecorationAgentRight";
+import Bullets from "./Bullets";
+import GestureRecognizer from 'react-native-swipe-gestures';
 
 const Slider = ({ items, mode = "agents" }) => {
   let newItemAnimation;
+
   const [previousItem, setPreviousItem] = useState(items.length - 1);
   const [currentItem, setCurrentItem] = useState(0);
   const [nextItem, setNextItem] = useState(1);
@@ -33,16 +36,28 @@ const Slider = ({ items, mode = "agents" }) => {
   const previousItemFadeAnimation = new Animated.Value(0);
   const nextItemFadeAnimation = new Animated.Value(0);
 
-  let buttonsColor, buttonsColorPressed, showButtonUp;
+  let buttonsColor, buttonsColorPressed, showButtons, showButtonUp, showBullets;
+  let skipButton = false;
   switch (mode) {
     case "skins":
       buttonsColor = colors.neutral;
       buttonsColorPressed = colors.highlights;
+      showButtons = true;
       showButtonUp = false;
       break;
+    case "intro":
+      buttonsColor = colors.neutral;
+      buttonsColorPressed = colors.highlights;
+      showBullets = true;
+      showButtons = false;
+      showButtonUp = true;
+      skipButton = true;
+      break;
     default:
+      showBullets = false;
       buttonsColor = colors.highlights;
       buttonsColorPressed = colors.neutral;
+      showButtons = true;
       showButtonUp = true;
       break;
   }
@@ -105,6 +120,10 @@ const Slider = ({ items, mode = "agents" }) => {
     }
   }
 
+  function skipIntro() {
+    console.log("Skip intro");
+  }
+
   if (!items) {
     return (
       <View>
@@ -114,25 +133,35 @@ const Slider = ({ items, mode = "agents" }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Pressable
-        style={[styles.swipeButton, styles.swipeButtonLeft]}
-        onPress={() => viewItem(-1)}>
-        {({ pressed }) => (
-          <ArrowLeftIcon color={pressed ? buttonsColorPressed : buttonsColor} />
-        )}
-      </Pressable>
-      <Pressable
-        style={[styles.swipeButton, styles.swipeButtonRight]}
-        onPress={() => viewItem(1)}>
-        {({ pressed }) => (
-          <ArrowRightIcon color={pressed ? buttonsColorPressed : buttonsColor} />
-        )}
-      </Pressable>
+    <GestureRecognizer style={[styles.container, mode === 'intro' ? styles.containerIntro : null]}
+      onSwipeLeft={() => { mode !== 'intro' ? viewItem(1) : currentItem < items.length - 1 ? viewItem(1) : null }}
+      onSwipeRight={() => { mode !== 'intro' ? viewItem(-1) : null }}
+    >
+    
+      {showButtons ? (
+        <>
+          <Pressable
+            style={[styles.swipeButton, styles.swipeButtonLeft]}
+            onPress={() => viewItem(-1)}>
+            {({ pressed }) => (
+              <ArrowLeftIcon color={pressed ? buttonsColorPressed : buttonsColor} />
+            )}
+          </Pressable>
+          <Pressable
+            style={[styles.swipeButton, styles.swipeButtonRight]}
+            onPress={() => viewItem(1)}>
+            {({ pressed }) => (
+              <ArrowRightIcon color={pressed ? buttonsColorPressed : buttonsColor} />
+            )}
+          </Pressable>
+        </>
+      ) : null}
 
-      <Pressable style={styles.slideWrapper} onPress={goToItem()}>
+      <Pressable style={[styles.slideWrapper, mode === 'intro' ? styles.slideWrapperIntro : null]} onPress={goToItem()}>
         {({ pressed }) => (
           <>
+
+            {/* LEFT DECORATION */}
             {showButtonUp ? (mode === "agents" ? (
               <View style={[styles.decoration, styles.decorationAgentLeft]}>
                 <DecorationAgentLeft />
@@ -142,15 +171,19 @@ const Slider = ({ items, mode = "agents" }) => {
                 <DecorationWeaponLeft />
               </View>
             ) : null) : null}
-            <Animated.View style={[styles.slide, { opacity: previousItemFadeAnimation }]}>
-              <Slide item={items[previousItem]} />
+
+            {/* SLIDE */}
+            <Animated.View style={[styles.slide, mode === 'intro' ? styles.slideIntro : null, { opacity: previousItemFadeAnimation }]}>
+              <Slide item={items[previousItem]} mode={mode} />
             </Animated.View>
-            <Animated.View style={[styles.slide, { opacity: currentItemFadeAnimation }]}>
-              <Slide item={items[currentItem]} />
+            <Animated.View style={[styles.slide, mode === 'intro' ? styles.slideIntro : null, { opacity: currentItemFadeAnimation }]}>
+              <Slide item={items[currentItem]} mode={mode} />
             </Animated.View>
-            <Animated.View style={[styles.slide, { opacity: nextItemFadeAnimation }]}>
-              <Slide item={items[nextItem]} />
+            <Animated.View style={[styles.slide, mode === 'intro' ? styles.slideIntro : null, { opacity: nextItemFadeAnimation }]}>
+              <Slide item={items[nextItem]} mode={mode} />
             </Animated.View>
+
+            {/* RIGHT DECORATION */}
             {mode === "agents" ? (
               <View style={[styles.decoration, styles.decorationAgentRight]}>
                 <DecorationAgentRight />
@@ -160,32 +193,46 @@ const Slider = ({ items, mode = "agents" }) => {
                 <DecorationWeaponRight />
               </View>
             ) : null}
-            <View style={styles.callToAction}>
-              <Animated.View style={[styles.titleWrapper, { opacity: previousItemFadeAnimation }, mode === 'skins' ? {bottom: 0} : null]}>
-                <Text style={[styles.title, mode === "skins" ? styles.titleSkins : null]}>
+
+            {/* CALL TO ACTION */}
+            <View style={[styles.callToAction, mode === 'intro' ? styles.callToActionIntro : null]}>
+              <Animated.View style={[styles.titleWrapper, mode === "intro" ? styles.titleWrapperIntro : null, { opacity: previousItemFadeAnimation }, mode === 'skins' ? { bottom: 0 } : null]}>
+                <Text style={[styles.title, mode === "skins" ? styles.titleSkins : mode === 'intro' ? styles.titleIntro : null]}>
                   {items[previousItem].displayName}
                 </Text>
               </Animated.View>
-              <Animated.View style={[styles.titleWrapper, { opacity: currentItemFadeAnimation }, mode === 'skins' ? {bottom: 0} : null]}>
-                <Text style={[styles.title, mode === "skins" ? styles.titleSkins : null]}>
+              <Animated.View style={[styles.titleWrapper, mode === "intro" ? styles.titleWrapperIntro : null, { opacity: currentItemFadeAnimation }, mode === 'skins' ? { bottom: 0 } : null]}>
+                <Text style={[styles.title, mode === "skins" ? styles.titleSkins : mode === 'intro' ? styles.titleIntro : null]}>
                   {items[currentItem].displayName}
                 </Text>
               </Animated.View>
-              <Animated.View style={[styles.titleWrapper, { opacity: nextItemFadeAnimation }, mode === 'skins' ? {bottom: 0} : null]}>
-                <Text style={[styles.title, mode === "skins" ? styles.titleSkins : null]}>
+              <Animated.View style={[styles.titleWrapper, mode === "intro" ? styles.titleWrapperIntro : null, { opacity: nextItemFadeAnimation }, mode === 'skins' ? { bottom: 0 } : null]}>
+                <Text style={[styles.title, mode === "skins" ? styles.titleSkins : mode === 'intro' ? styles.titleIntro : null]}>
                   {items[nextItem].displayName}
                 </Text>
               </Animated.View>
-              {mode === "agents" || mode === "weapons" ? (
-                <View style={styles.buttonUp}>
-                  <ArrowUpIcon color={pressed ? buttonsColorPressed : buttonsColor} />
+              {mode === "agents" || mode === "weapons" || (mode === "intro" && currentItem === items.length -1) ? (
+                <View style={[styles.buttonUp, mode === 'intro' ? styles.buttonUpIntro : null ]}>
+                  <ArrowUpIcon color={pressed ?  mode === 'intro' ? colors.neutral : buttonsColorPressed : mode === 'intro' ? colors.details : buttonsColor} />
                 </View>
               ) : null}
             </View>
+            {showBullets ? (
+              <View style={styles.bulletsWrapper}>
+                <Bullets key={'bullet' + currentItem} num={items.length} activeNum={currentItem} />
+              </View>
+            ) : null}
+            {skipButton ? (
+              <Pressable style={styles.skipButtonWrapper} onPress={() => (skipIntro())}>
+                <Text style={styles.skipButton}>Skip</Text>
+              </Pressable>
+            ) : null}
+
           </>
         )}
       </Pressable>
-    </View>
+    
+    </GestureRecognizer>
   );
 };
 
@@ -195,6 +242,9 @@ const styles = StyleSheet.create({
     position: "relative",
     backgroundColor: "#000",
     overflow: "hidden",
+  },
+  containerIntro: {
+    backgroundColor: colors.highlights,
   },
   swipeButton: {
     position: "absolute",
@@ -212,6 +262,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
   },
+  buttonUpIntro: {
+    bottom: 80,
+  },
   callToAction: {
     position: "absolute",
     bottom: 0,
@@ -222,14 +275,20 @@ const styles = StyleSheet.create({
     height: '100%',
     zIndex: 3,
   },
+  callToActionIntro: {
+    position: 'relative',
+    flex: 1,
+  },
   titleWrapper: {
     position: "absolute",
     bottom: 50,
   },
+  titleWrapperIntro: {
+    bottom: 10,
+  },
   title: {
     color: "#fff",
     fontSize: 50,
-    fontWeight: "bold",
     fontFamily: "tungsten",
     marginBottom: 0,
     textTransform: "uppercase",
@@ -239,9 +298,17 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textTransform: "capitalize",
   },
+  titleIntro: {
+    fontSize: 15,
+    fontWeight: "normal",
+    textTransform: "none",
+  },
   slideWrapper: {
     flex: 1,
     zIndex: 2,
+  },
+  slideWrapperIntro: {
+    flex: 5,
   },
   slide: {
     flex: 1,
@@ -249,6 +316,9 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     zIndex: 2,
+  },
+  slideIntro: {
+
   },
   decoration: {
     position: "absolute",
@@ -266,6 +336,22 @@ const styles = StyleSheet.create({
   },
   decorationWeaponRight: {
     right: -50,
+  },
+  bulletsWrapper: {
+    position: "absolute",
+    bottom: 40,
+    left: 0,
+    width: "100%",
+    height: 50,
+    zIndex: 10,
+  },
+  skipButtonWrapper: {
+  },
+  skipButton: {
+    color: colors.neutral,
+    textDecorationLine: 'underline',
+    textAlign: 'center',
+    marginBottom: 10,
   },
 });
 

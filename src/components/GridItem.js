@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   },
   infoWrapperFullWidth: {
     flexDirection: 'row',
-    flex: 0.3,
-    paddingTop: 15
+    flex: 0.45,
+    paddingTop: 10
   }
 });
