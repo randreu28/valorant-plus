@@ -4,6 +4,9 @@ import Title from "../../components/Title";
 
 import PlayerCard from "../../components/PlayerCard";
 import { ScrollView, View } from "react-native";
+import GridButton from "../../components/GridButton";
+import FavoriteButton from "../../components/FavoriteButton";
+import SeeMoreButton from "../../components/SeeMoreButton";
 
 export default function MainScreen() {
   const { params } = useRoute();
@@ -30,6 +33,17 @@ export default function MainScreen() {
 
       <View style={{ height: 700 }}>
         <PlayerCard isEditable />
+      </View>
+
+      <Title>TITLE VARIANT</Title>
+      <Title isHeader>TITLE HEADER</Title>
+      <Title subtitle="WITH SUBTITLE">TITLE VARIANT</Title>
+      <Title subtitle="ONLY SUBTITLE"> </Title>
+
+      <View style={{ width: 120 }}>
+        <GridButton />
+        <FavoriteButton />
+        <SeeMoreButton onPress={() => null} />
       </View>
     </ScrollView>
   );
