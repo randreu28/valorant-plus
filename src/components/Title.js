@@ -29,8 +29,9 @@ export default function Title({ children, subtitle, isHeader = false }) {
 
       <Text
         style={{
-          fontFamily: "tungsten",
-          color: subtitle ? "white" : colors.highlights,
+          fontFamily: !subtitle && !isHeader ? "valorant" : "tungsten",
+          color:
+            subtitle || (!subtitle && !isHeader) ? "white" : colors.highlights,
 
           textAlign: "center",
           fontSize: 50,
@@ -49,7 +50,6 @@ function Header({ children }) {
     <View>
       <Text
         style={{
-          
           color: colors.base,
           marginTop: 20,
           width: "100%",
@@ -60,11 +60,11 @@ function Header({ children }) {
           transform: [{ translateY: -(fontSize * 1.5) / 5 }],
           textShadowColor: colors.highlights,
           textShadowOffset: {
-            height:0,
-            width:0,
+            height: 0,
+            width: 0,
           },
-          textShadowRadius:5,
-          
+          textShadowRadius: 5,
+
           /* position: "absolute",
           width: "100%",
           fontFamily: "tungsten",
