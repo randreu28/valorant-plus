@@ -1,6 +1,9 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { colors } from "../lib/colors";
+
+
+// GENIAL: El uso de tipos para "developer experience"!
 /**
  *
  *@param {{
@@ -10,8 +13,10 @@ import { colors } from "../lib/colors";
  * }} Props
  */
 export default function Title({ children, subtitle, isHeader = false }) {
+  // SUGERENCIA: Usar llaves aquí, si no el 'if' pasa desapercibido a la vista.
   if (isHeader) return <Header>{children}</Header>;
 
+  // FIXME: Usar un StyleSheet en estos estilos!
   return (
     <View style={{ marginTop: 20 }}>
       {subtitle && (

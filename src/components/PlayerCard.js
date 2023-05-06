@@ -3,6 +3,8 @@ import { View, Image, Text, TouchableHighlight } from "react-native";
 import { colors } from "../lib/colors";
 import { useNavigation } from "@react-navigation/native";
 
+// GENIAL: El componente es muy bueno, la pinta que tiene el editable es perfecta
+
 /**
  * A component to display the player's Card
  * @param {{
@@ -19,6 +21,8 @@ export default function PlayerCard({
   playerRank = "https://media.valorant-api.com/competitivetiers/564d8e28-c226-3180-6285-e48a390db8b1/0/largeicon.png",
 }) {
   const { navigate } = useNavigation();
+
+  // FIXME: Usar StyleSheets (y 2)?
   return (
     <View
       style={{
@@ -88,6 +92,7 @@ export default function PlayerCard({
         </TouchableHighlight>
       </View>
 
+      {/* SUGERENCIA: Yo haría un Pressable en vez de TouchableHighlight, aunque es algo más de trabajo... */}
       <TouchableHighlight
         onPress={() => {
           /* @ts-ignore */

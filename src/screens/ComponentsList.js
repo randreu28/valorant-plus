@@ -24,6 +24,8 @@ import WeaponStats from "../components/WeaponStats";
 import { colors } from "../lib/colors";
 import MapItemScreen from "./maps/MapItemScreen";
 
+// GENIAL: Están muy, muy bien estos componentes!
+
 const ComponentsList = () => {
   const navigation = useNavigation();
 
@@ -45,11 +47,15 @@ const ComponentsList = () => {
 
   return (
     <ScrollView>
+      {/* GENIAL: Me encanta el componentWrapper este... */}
       <View style={styles.componentWrapper}>
         <Text style={styles.componentTitle}>Title</Text>
         <Title>MAIN TITLE</Title>
       </View>
 
+      {/* SUGERENCIA: pero en realidad hay mucha repetición, porque se usa la
+      misma combinación de View con ese estilo y Texto 20 veces... un
+      componente? */}
       <View style={styles.componentWrapper}>
         <Text style={styles.componentTitle}>Title (header)</Text>
         <Title isHeader>PAGE TITLE</Title>
@@ -111,9 +117,14 @@ const ComponentsList = () => {
 
       <View style={styles.componentWrapper}>
         <Text style={styles.componentTitle}>Player title Search bar</Text>
+        {/* FIXME: Al SearchBar le faltaría un prop para poner una función que se llame al buscar. */}
         <SearchBar />
       </View>
 
+      {/* SUGERENCIA: En todos estos componentes, la URL de las imágenes no es 
+      súper-predecible? Si es así, habría que permitir a quien llama al 
+      componente que solo ponga lo esencial, el ID, y el nombre base del asset, 
+      quizás... */}
       <View style={styles.componentWrapper}>
         <Text style={styles.componentTitle}>Agent detail</Text>
         <AgentDetail

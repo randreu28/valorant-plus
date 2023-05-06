@@ -15,6 +15,7 @@ import ComponentsList from "./src/screens/ComponentsList";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  // GENIAL: El uso de fuentes sin que lo haya explicado en clase
   const [fontsHaveLoaded, error] = useFonts({
     // @ts-ignore
     valorant: require("./assets/fonts/valorant.ttf"),
