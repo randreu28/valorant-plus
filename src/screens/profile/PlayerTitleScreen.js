@@ -6,6 +6,7 @@ import { colors } from "../../lib/colors";
 import Title from "../../components/Title";
 import PlayerTitle from "../../components/PlayerTitle";
 import { useNavigation } from "@react-navigation/native";
+import SearchBar from "../../components/SearchBar";
 
 export default function PlayerTitleScreen() {
   const [text, onChangeText] = useState();
@@ -21,26 +22,7 @@ export default function PlayerTitleScreen() {
     <View style={{}}>
       <Title subtitle="PROFILE">PLAYER TITLE</Title>
 
-      <View
-        style={{
-          borderRadius: 40,
-          backgroundColor: colors.bg,
-          height: 60,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          margin: 20,
-          padding: 20,
-        }}
-      >
-        <TextInput
-          placeholder="Search a title..."
-          placeholderTextColor="#A5A5A5"
-          onChangeText={onChangeText}
-          value={text}
-        />
-        <FontAwesome name="search" size={20} color="white" />
-      </View>
+      <SearchBar />
 
       <PlayerTitle>Catalyst</PlayerTitle>
       <PlayerTitle>Chicken</PlayerTitle>
