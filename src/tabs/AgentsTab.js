@@ -1,9 +1,9 @@
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import FavoriteButton from "../components/FavoriteButton";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { colors } from "../lib/colors";
-import ComponentsList from "../screens/ComponentsList";
 import AgentsDetailScreen from "../screens/agents/AgentsDetailScreen";
+import AgentsMainScreen from "../screens/agents/AgentsMainScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +18,7 @@ export default function AgentsTab() {
         animation: "slide_from_right",
       }}
     >
-      <Stack.Screen name="AgentsMain" component={ComponentsList} />
+      <Stack.Screen name="AgentsMain" component={AgentsMainScreen} />
       <Stack.Screen name="AgentsDetails" component={AgentsDetailScreen} />
     </Stack.Navigator>
   );
