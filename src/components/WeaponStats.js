@@ -59,15 +59,16 @@ export default function WeaponStats({
           alignItems: "baseline",
           justifyContent: "space-between",
           maxWidth: "100%",
+          paddingHorizontal: 20,
         }}
       >
-        <View style={{ paddingHorizontal: 40 }}>
+        <View style={{ marginTop: 40 }}>
           <WeaponInfo isLeft>Reload time</WeaponInfo>
           <WeaponInfo isLeft>Fire rate</WeaponInfo>
           <WeaponInfo isLeft>Mag capacity</WeaponInfo>
         </View>
 
-        <View style={{ paddingHorizontal: 40 }}>
+        <View>
           <WeaponInfo>{reloadTime} seconds</WeaponInfo>
           <WeaponInfo>{fireRate} bullets per second</WeaponInfo>
           <WeaponInfo>{magCapacity} bullets</WeaponInfo>

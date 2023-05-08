@@ -1,3 +1,22 @@
 {
-    "prettier.configPath": ".prettierrc"
+    "prettier.configPath": ".prettierrc",
+    "todo-tree.general.tags": ["FIXME", "TODO", "SUGERENCIA", "GENIAL", "NOTA"],
+    "todo-tree.highlights.customHighlight": {
+      "FIXME": {
+        "icon": "flame",
+        "iconColour": "#eeff00"
+      },
+      "GENIAL": {
+        "icon": "north-star",
+        "iconColour": "#bc25be"
+      },
+      "SUGERENCIA": {
+        "icon": "note",
+      },
+      "NOTA": {
+        "icon": "note",
+        "iconColour": "#ccc"
+      }
+    }
+  
 }

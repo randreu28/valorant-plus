@@ -41,7 +41,7 @@ export default function AgentDetail({ icon, rol, quote, inforol, bg, agent }) {
           height: 500,
           position: "absolute",
           opacity: 0.1,
-          top: 90,
+          top: 0,
           bottom: 0,
           left: 0,
           right: 0,
