@@ -7,22 +7,12 @@ import { colors } from "../../lib/colors";
 export default function MapItemScreen() {
   const { params } = useRoute();
 
-  let myParams = params;
-  if (params === undefined) {
-    myParams = {
-      splashImage:
-        "https://media.valorant-api.com/maps/d960549e-485c-e861-8d71-aa9d1aed12a2/splash.png",
-      displayIcon:
-        "https://media.valorant-api.com/maps/d960549e-485c-e861-8d71-aa9d1aed12a2/displayicon.png",
-    };
-  }
-
   return (
     <View style={{ position: "relative", flex: 1 }}>
       <Image
         source={{
           // @ts-ignore
-          uri: myParams["splashImage"],
+          uri: params["splashImage"],
         }}
         style={{ flex: 1, height: "100%", opacity: 0.5 }}
       />
@@ -55,7 +45,7 @@ export default function MapItemScreen() {
         <Image
           source={{
             // @ts-ignore
-            uri: myParams["displayIcon"],
+            uri: params["displayIcon"],
           }}
           style={{
             width: "95%",
