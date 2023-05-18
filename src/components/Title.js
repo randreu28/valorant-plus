@@ -52,7 +52,7 @@ const fontSize = 50;
 
 function Header({ children }) {
   return (
-    <View>
+    <View style={{width: '100%'}}>
       <Text
         style={{
           color: colors.darkBase,
@@ -91,6 +91,7 @@ function Header({ children }) {
           marginTop: 20,
           textAlign: "center",
           fontSize: fontSize,
+          zIndex: 1,
         }}
       >
         {children}
