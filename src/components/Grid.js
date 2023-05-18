@@ -3,8 +3,10 @@ import { React } from 'react'
 import { colors } from '../lib/colors'
 import GridItem from './GridItem'
 import { Dimensions } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import Title from './Title';
 
-const Grid = ({ items, isSingleLine = false, imageBg, imageType, size, button, buttonType }) => {
+const Grid = ({ items, isSingleLine = false, imageBg, imageType, size, button, buttonType, title }) => {
 
     let columns;
     const space = 20;
@@ -28,7 +30,7 @@ const Grid = ({ items, isSingleLine = false, imageBg, imageType, size, button, b
                 numColumns={!isSingleLine ? columns : 1}
                 data={items}
                 renderItem={({ item }) =>
-                    <View style={isSingleLine ? { marginRight: 20 } : {height: '100%', marginBottom: space}}>
+                    <View style={isSingleLine ? { marginRight: 20 } : { height: '100%', marginBottom: space }}>
                         <GridItem
                             key={item.uuid}
                             id={item.uuid}
@@ -43,6 +45,8 @@ const Grid = ({ items, isSingleLine = false, imageBg, imageType, size, button, b
                     </View>}
                 keyExtractor={item => item.uuid}
                 columnWrapperStyle={!isSingleLine ? { justifyContent: 'space-around' } : null}
+                ListHeaderComponent={title ? <View style={styles.titleWrapper}><Title isHeader>{title}</Title></View> : null}
+
             >
             </FlatList>
         </SafeAreaView>
@@ -52,6 +56,10 @@ const Grid = ({ items, isSingleLine = false, imageBg, imageType, size, button, b
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        width: '95%',
+    },
+    titleWrapper: {
+        marginBottom: 20,
     },
 });
 
