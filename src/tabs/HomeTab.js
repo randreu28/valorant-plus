@@ -2,6 +2,7 @@ import FavoriteButton from "../components/FavoriteButton";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text } from "react-native";
 import { colors } from "../lib/colors";
+import HomeMainScreen from "../screens/home/HomeMainScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,15 +15,8 @@ export default function HomeTab() {
         navigationBarColor: colors.base,
       }}
     >
-      <Stack.Screen name="HomeScreen1" children={HomeScreen1} />
+      <Stack.Screen name="HomeMainScreen" children={HomeMainScreen} />
     </Stack.Navigator>
   );
 }
 
-function HomeScreen1() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={{ color: "white" }}>Home!</Text>
-    </View>
-  );
-}
