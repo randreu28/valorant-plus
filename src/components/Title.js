@@ -26,6 +26,7 @@ export default function Title({ children, subtitle, isHeader = false }) {
             textAlign: "center",
             fontSize: 25,
             fontFamily: "tungsten",
+            textTransform: "uppercase",
           }}
         >
           {subtitle}
@@ -40,6 +41,7 @@ export default function Title({ children, subtitle, isHeader = false }) {
 
           textAlign: "center",
           fontSize: 50,
+          textTransform: "uppercase",
         }}
       >
         {children}
