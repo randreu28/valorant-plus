@@ -3,6 +3,7 @@ import React from "react";
 import { colors } from "../lib/colors";
 import ButtonPlus from "./ButtonPlus";
 import HomeIcon from "./icons/HomeIcon";
+import { useNavigation } from '@react-navigation/native';
 
 export default function GridItem({
   id,
@@ -15,6 +16,9 @@ export default function GridItem({
   imageUrl,
   link,
 }) {
+
+  const navigation = useNavigation();
+
   let containerSize = { width: 154, height: 208 };
 
   switch (size) {
@@ -48,7 +52,8 @@ export default function GridItem({
 
   function goToDetail() {
     if (id) {
-      console.log("go to item: " + id);
+      console.log("navigate to item: " + id);
+      navigation.navigate('AgentsDetails', { uuid: id });
     }
   }
 

@@ -10,7 +10,6 @@ export default function HomeTab() {
     <Stack.Navigator
       screenOptions={{
         headerTitle: "HomeTab",
-        headerRight: FavoriteButton,
         statusBarColor: colors.base,
         navigationBarColor: colors.base,
       }}

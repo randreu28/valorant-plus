@@ -1,22 +1,16 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React, { useState } from "react";
-import { Text, TouchableHighlight, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Pressable, Text, View, StyleSheet } from "react-native";
 import { colors } from "../lib/colors";
+import { observer } from "mobx-react-lite";
+import { state } from "../state";
 
-export default function GridButton() {
-  const [isGrid, setIsGrid] = useState(false);
+const GridButton = ({context}) => {
 
   return (
-    <TouchableHighlight
-      onPress={() => setIsGrid(!isGrid)}
-      style={{
-        borderRadius: 20,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        borderColor: colors.highlights,
-        borderWidth: 2,
-        backgroundColor: isGrid ? colors.highlights : colors.base,
-      }}
+    <Pressable
+      onPress={() => state.toggleView(context)}
+      style={[styles.gridButton, state.getView(context) === 'grid' ? styles.GridButtonActive : null]}
     >
       <View
         style={{
@@ -30,17 +24,38 @@ export default function GridButton() {
         <MaterialCommunityIcons
           name="dots-grid"
           size={18}
-          color={isGrid ? colors.darkBase : colors.highlights}
+          color={state.getView(context) === 'grid' ? colors.darkBase : colors.highlights}
         />
         <Text
-          style={{
-            color: isGrid ? colors.darkBase : colors.highlights,
-            textAlign: "center",
-          }}
+          style={[styles.textButton, state.getView(context) === 'grid' ? styles.textButtonActive : null]}
         >
           Grid
         </Text>
       </View>
-    </TouchableHighlight>
+    </Pressable>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  gridButton:
+  {
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderColor: colors.highlights,
+    borderWidth: 2,
+    backgroundColor: colors.base,
+  },
+  GridButtonActive: {
+    backgroundColor: colors.highlights,
+  },
+  textButton: {
+    color: colors.highlights,
+    textAlign: "center",
+  },
+  textButtonActive: {
+    color: colors.darkBase,
+  },
+});
+
+export default observer(GridButton);

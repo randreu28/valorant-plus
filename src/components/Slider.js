@@ -18,8 +18,12 @@ import DecorationAgentLeft from "./icons/DecorationAgentLeft";
 import DecorationAgentRight from "./icons/DecorationAgentRight";
 import Bullets from "./Bullets";
 import GestureRecognizer from 'react-native-swipe-gestures';
+import { useNavigation } from "@react-navigation/native";
 
 const Slider = ({ items, mode = "agents" }) => {
+
+  const navigation = useNavigation();
+
   let newItemAnimation;
 
   const [previousItem, setPreviousItem] = useState(items.length - 1);
@@ -84,6 +88,7 @@ const Slider = ({ items, mode = "agents" }) => {
   const goToItem = () => {
     return () => {
       if (mode === "agents" || mode === "weapons") {
+        navigation.navigate('AgentsDetails', { uuid: items[currentItem].uuid });
         console.log("Go to item " + items[currentItem].uuid);
       }
     };
@@ -240,7 +245,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: "relative",
-    backgroundColor: "#000",
     overflow: "hidden",
   },
   containerIntro: {

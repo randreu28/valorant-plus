@@ -13,10 +13,15 @@ import HomeTab from "./src/tabs/HomeTab";
 import MapsTab from "./src/tabs/MapsTab";
 import ProfileTab from "./src/tabs/ProfileTab";
 import WeaponsTab from "./src/tabs/WeaponsTab";
+import { state } from "./src/state";
+import { useEffect } from "react";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  
+  state.load();
+  
   // GENIAL: El uso de fuentes sin que lo haya explicado en clase
   const [fontsHaveLoaded, error] = useFonts({
     // @ts-ignore

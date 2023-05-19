@@ -1,22 +1,16 @@
-import React, { useState } from "react";
-import { Text, TouchableHighlight, View } from "react-native";
+import React, { useEffect } from "react";
+import { Pressable, Text, View, StyleSheet } from "react-native";
 import { colors } from "../lib/colors";
 import { AntDesign } from "@expo/vector-icons";
+import { state } from "../state";
+import { observer } from "mobx-react-lite";
 
-export default function FavoriteButton() {
-  const [isFavorite, setIsFavorite] = useState(false);
+const FavoriteButton = ({ context, uuid }) => {
 
   return (
-    <TouchableHighlight
-      onPress={() => setIsFavorite(!isFavorite)}
-      style={{
-        borderRadius: 20,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        borderColor: colors.highlights,
-        borderWidth: 2,
-        backgroundColor: isFavorite ? colors.highlights : "rgba(0, 0, 0, 0)",
-      }}
+    <Pressable
+      onPress={() => state.toggleFavorite(context, uuid)}
+      style={[styles.favoriteButton, state.isFavorite(context, uuid) ? styles.favoriteButtonActive : null]}
     >
       <View
         style={{
@@ -28,19 +22,39 @@ export default function FavoriteButton() {
         }}
       >
         <AntDesign
-          name={isFavorite ? "heart" : "hearto"}
+          name={state.isFavorite(context, uuid) ? "heart" : "hearto"}
           size={18}
-          color={isFavorite ? colors.darkBase : colors.highlights}
+          color={state.isFavorite(context, uuid) ? colors.darkBase : colors.highlights}
         />
         <Text
-          style={{
-            color: isFavorite ? colors.darkBase : colors.highlights,
-            textAlign: "center",
-          }}
+          style={[styles.textButton, state.isFavorite(context, uuid) ? styles.textButtonActive : null]}
         >
           Favorite
         </Text>
       </View>
-    </TouchableHighlight>
+    </Pressable>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  favoriteButton: {
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderColor: colors.highlights,
+    borderWidth: 2,
+    backgroundColor: "rgba(0, 0, 0, 0)",
+  },
+  favoriteButtonActive: {
+    backgroundColor: colors.highlights,
+  },
+  textButton: {
+    color: colors.highlights,
+    textAlign: "center",
+  },
+  textButtonActive: {
+    color: colors.darkBase,
+  },
+});
+
+export default observer(FavoriteButton);

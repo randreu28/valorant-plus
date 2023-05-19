@@ -6,8 +6,11 @@ import Grid from "../../components/Grid";
 import Title from "../../components/Title";
 import GridButton from "../../components/GridButton";
 import { LinearGradient } from "expo-linear-gradient";
+import { state } from "../../state";
+import { observer } from "mobx-react-lite";
+import Slider from "../../components/Slider";
 
-export default function AgentsMainScreen({ navigation }) {
+const AgentsMainScreen = ({ navigation }) => {
 
   const [agents, setAgents] = useState(null)
 
@@ -19,25 +22,35 @@ export default function AgentsMainScreen({ navigation }) {
 
   if (!agents) {
     return (
-      <View>
+      <View style={styles.screen}>
         <ActivityIndicator color={colors.neutral} size="large"></ActivityIndicator>
       </View>
     );
   }
 
   return (
-    <View style={styles.screen}>
-      <Grid items={agents} title="AGENTS" />
-    </View >
+    <>
+      {state.getView('agents') === 'grid'
+        ? <View style={styles.gridWrapper}>
+          <Grid items={agents} title="AGENTS" />
+        </View>
+        : <View style={styles.sliderWrapper}>
+          <Title isHeader>AGENTS</Title>
+          <Slider items={agents} mode="agents" />
+        </View>}
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: {
+  gridWrapper: {
     flex: 1,
     gap: 10,
     justifyContent: "center",
     alignItems: "center",
+  },
+  sliderWrapper: {
+    height: "100%",
   },
   titleWrapper: {
     position: 'absolute',
@@ -48,3 +61,5 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 });
+
+export default observer(AgentsMainScreen);

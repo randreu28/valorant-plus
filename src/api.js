@@ -1,7 +1,8 @@
 const API_ROOT = "https://valorant-api.com/v1";
 
-export const getAgents = async () => {
-  const response = await fetch(`${API_ROOT}/agents`);
+export const getAgents = async (uuid) => {
+
+  const response = await fetch(`${API_ROOT}/agents/${uuid? uuid : ""}`);
   const agents = await response.json();
   return agents.data;
 };

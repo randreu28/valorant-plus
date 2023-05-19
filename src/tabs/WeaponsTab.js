@@ -13,14 +13,13 @@ export default function WeaponsTab() {
     <Stack.Navigator
       screenOptions={{
         headerTitle: "",
-        headerRight: FavoriteButton,
         statusBarColor: colors.base,
         navigationBarColor: colors.base,
         animation: "slide_from_right",
       }}
     >
       <Stack.Screen
-        options={{ headerRight: GridButton }}
+        options={{ headerRight: () => <GridButton context="agents" /> }}
         name="WeaponsMain"
         children={WeaponsMainScreen}
       />
