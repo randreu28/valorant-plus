@@ -40,6 +40,7 @@ export default function AgentsDetailScreen() {
           inforol={agent.role.description}
           bg={agent.background}
           agent={agent.fullPortrait}
+          soundUrl={agent.voiceLine.mediaList[0]?.wave}
         />
 
         {/* ability component */}

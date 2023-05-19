@@ -1,9 +1,37 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import React from "react";
 import { colors } from "../lib/colors";
 import { FontAwesome } from "@expo/vector-icons";
+import { Audio } from 'expo-av';
+import { useState, useEffect } from "react";
 
-export default function AgentDetail({ icon, rol, quote, inforol, bg, agent }) {
+export default function AgentDetail({ icon, rol, quote, inforol, bg, agent, soundUrl }) {
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const soundObject = new Audio.Sound();
+  const playSound = async () => {
+    if (!isPlaying) {
+      try {
+        const { sound } = await Audio.Sound.createAsync(
+          { uri: soundUrl },
+          { shouldPlay: true },
+          (status) => {
+            if (status.didJustFinish) {
+              setIsPlaying(false);
+            }
+          }
+        );
+        setIsPlaying(true);
+      } catch (error) {
+        console.log('Error en la reproducció del fitxer de so:', error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    playSound();
+  }, []);
+
   return (
     <View
       style={{
@@ -66,12 +94,14 @@ export default function AgentDetail({ icon, rol, quote, inforol, bg, agent }) {
           gap: 10,
         }}
       >
-        <FontAwesome
-          name="music"
-          size={30}
-          color={colors.details}
-          style={{ marginBottom: 10 }}
-        />
+        <Pressable onPress={playSound}>
+          <FontAwesome
+            name="music"
+            size={30}
+            color={isPlaying ? colors.highlights : colors.details}
+            style={{ marginBottom: 10 }}
+          />
+        </Pressable>
         <View
           style={{
             flex: 1,
