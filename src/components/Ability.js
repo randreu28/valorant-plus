@@ -12,14 +12,20 @@ export default function Ability({ image, title, description }) {
         }}
       />
       <View style={styles.abilityViewCol}>
-        <Text style={styles.abilityText}>{title}</Text>
-        <Text style={styles.abilityText2}>{description}</Text>
+        <Text style={styles.abilityTitle}>{title}</Text>
+        <Text style={styles.abilityDescription}>{description}</Text>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  abilityView: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    width: "90%",
+  },
   abilityViewRow: {
     flex: 1,
     alignContent: "flex-start",
@@ -39,13 +45,14 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     padding: 10,
   },
-  abilityText: {
+  abilityTitle: {
     fontSize: 28,
     color: colors.highlights,
     fontFamily: "tungsten",
     textAlign: "left",
+    marginBottom: 3
   },
-  abilityText2: {
+  abilityDescription: {
     fontSize: 14,
     color: "white",
     textAlign: "justify",

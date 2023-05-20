@@ -45,6 +45,5 @@ export default function AgentsDetailScreen() {
 const styles = StyleSheet.create({
   abilityWrapper: {
     flex: 1,
-    alignItems: "left",
   },
 });
