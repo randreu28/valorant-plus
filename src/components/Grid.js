@@ -1,10 +1,19 @@
-import { View, StyleSheet, ActivityIndicato, SafeAreaView, FlatList } from 'react-native'
+import { View, StyleSheet, ActivityIndicator, SafeAreaView, FlatList } from 'react-native'
 import { React } from 'react'
 import { colors } from '../lib/colors'
 import GridItem from './GridItem'
 import { Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Title from './Title';
+
+/**
+*
+*@param {{
+*  items: Array,
+*  isSingleLine?: [boolean],
+*  imageBg?: ,
+*}} Props
+*/
 
 const Grid = ({ items, isSingleLine = false, imageBg, imageType, size, button, buttonType, title }) => {
 

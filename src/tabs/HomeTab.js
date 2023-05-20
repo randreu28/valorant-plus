@@ -15,7 +15,7 @@ export default function HomeTab() {
         navigationBarColor: colors.base,
       }}
     >
-      <Stack.Screen name="HomeMainScreen" children={HomeMainScreen} />
+      <Stack.Screen name="HomeMainScreen" component={HomeMainScreen} />
     </Stack.Navigator>
   );
 }
