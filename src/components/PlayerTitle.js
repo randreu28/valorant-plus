@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import FavoriteButton from "../components/FavoriteButton";
 
-export default function PlayerTitle({ children }) {
+export default function PlayerTitle({ children, uuid }) {
   return (
     <View
       style={{
@@ -19,7 +19,7 @@ export default function PlayerTitle({ children }) {
         {children}
       </Text>
 
-      <FavoriteButton />
+      <FavoriteButton context="player-title" uuid={uuid} />
     </View>
   );
 }

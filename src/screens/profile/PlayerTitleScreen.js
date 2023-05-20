@@ -9,8 +9,8 @@ import { useValorantApi } from "../../lib/hooks";
 import { colors } from "../../lib/colors";
 
 export default function PlayerTitleScreen() {
-  const [text, onChangeText] = useState();
-
+  const [text, onChangeText] = useState("");
+  const { data, error, isLoading } = useValorantApi("/playertitles");
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -18,8 +18,6 @@ export default function PlayerTitleScreen() {
       headerRight: null,
     });
   }, [navigation]);
-
-  const { data, error, isLoading } = useValorantApi("/playertitles");
 
   if (isLoading) {
     return (
@@ -48,11 +46,20 @@ export default function PlayerTitleScreen() {
     <View>
       <Title subtitle="PROFILE">PLAYER TITLE</Title>
 
-      <SearchBar />
+      <SearchBar onChangeText={onChangeText} />
 
       <FlatList
-        data={data}
-        renderItem={({ item }) => <PlayerTitle>{item.titleText}</PlayerTitle>}
+        data={data.filter((item) => {
+          if (text === "") {
+            return true;
+          } else {
+            const titleText = String(item.titleText);
+            return titleText.includes(text);
+          }
+        })}
+        renderItem={({ item }) => (
+          <PlayerTitle uuid={item.uuid}>{item.titleText}</PlayerTitle>
+        )}
       />
     </View>
   );

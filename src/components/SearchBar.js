@@ -3,7 +3,7 @@ import React from "react";
 import { TextInput, View } from "react-native";
 import { colors } from "../lib/colors";
 
-export default function SearchBar() {
+export default function SearchBar({ onChangeText }) {
   return (
     <View
       style={{
@@ -20,6 +20,7 @@ export default function SearchBar() {
       <TextInput
         placeholder="Search a title..."
         placeholderTextColor="#A5A5A5"
+        onChangeText={onChangeText}
         style={{ color: colors.neutral }}
       />
       <FontAwesome name="search" size={20} color="white" />
