@@ -1,22 +1,8 @@
-import React, { useEffect } from "react";
-import { View, Text, Image } from "react-native";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import React from "react";
+import { Image, Text, View } from "react-native";
 import { colors } from "../../lib/colors";
 
 export default function PlayerCardScreen() {
-  const { params } = useRoute();
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: null,
-    });
-  }, [navigation]);
-
-  if (params === undefined) {
-    throw Error("Invalid route params");
-  }
-
   return (
     <>
       <View
@@ -35,10 +21,12 @@ export default function PlayerCardScreen() {
             marginVertical: 10,
           }}
         >
-          {params["title"]}
+          Bird card
         </Text>
         <Image
-          source={{ uri: params["url"] }}
+          source={{
+            uri: "https://media.valorant-api.com/playercards/fc209787-414b-10d0-dcac-04832fc2c654/largeart.png",
+          }}
           style={{
             flex: 1,
             borderRadius: 20,
