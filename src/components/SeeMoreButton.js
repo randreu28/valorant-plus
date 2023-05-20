@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, TouchableHighlight, View } from "react-native";
+import { Text, TouchableHighlight, View, StyleSheet } from "react-native";
 import { colors } from "../lib/colors";
 import { AntDesign } from "@expo/vector-icons";
 /**
