@@ -3,35 +3,21 @@ import { Text, View, StyleSheet } from "react-native";
 import Grid from "../../components/Grid";
 import { useMaps } from "../../lib/hooks";
 import Loading from "../../components/Loading";
+import Error from "../../components/Error";
 
 export default function MapListScreen({ navigation }) {
   const { data: maps, error, isLoading } = useMaps();
 
   if (isLoading) {
-    return (
-      <Loading/>
-    );
+    return <Loading />;
   }
 
   if (error) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          gap: 10,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ color: "white" }}>Loading...</Text>
-      </View>
-    );
+    return <Error />;
   }
 
   return (
-    <View
-      style={styles.mapsView}
-    >
+    <View style={styles.mapsView}>
       <Grid
         items={maps}
         title="MAPS"
