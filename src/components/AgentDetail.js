@@ -1,12 +1,19 @@
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import React from "react";
 import { colors } from "../lib/colors";
 import { FontAwesome } from "@expo/vector-icons";
-import { Audio } from 'expo-av';
+import { Audio } from "expo-av";
 import { useState, useEffect } from "react";
 
-export default function AgentDetail({ icon, rol, quote, inforol, bg, agent, soundUrl }) {
-
+export default function AgentDetail({
+  icon,
+  rol,
+  quote,
+  inforol,
+  bg,
+  agent,
+  soundUrl,
+}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const soundObject = new Audio.Sound();
   const playSound = async () => {
@@ -23,7 +30,7 @@ export default function AgentDetail({ icon, rol, quote, inforol, bg, agent, soun
         );
         setIsPlaying(true);
       } catch (error) {
-        console.log('Error en la reproducció del fitxer de so:', error);
+        console.log("Error en la reproducció del fitxer de so:", error);
       }
     }
   };
@@ -33,67 +40,29 @@ export default function AgentDetail({ icon, rol, quote, inforol, bg, agent, soun
   }, []);
 
   return (
-    <View
-      style={{
-        alignContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <View
-        style={{
-          alignContent: "center",
-          flexDirection: "row",
-          gap: 5,
-          alignItems: "center",
-        }}
-      >
+    <View style={styles.detailsGlobalView}>
+      <View style={styles.detailsTitleView}>
         <Image
-          style={{ width: 15, height: 15, tintColor: colors.details }}
+          style={styles.detailsIconView}
           source={{
             uri: icon,
           }}
         />
-        <Text
-          style={{
-            fontSize: 20,
-            color: colors.details,
-            fontFamily: "tungsten",
-            textAlign: "center",
-          }}
-        >
-          {rol}
-        </Text>
+        <Text style={styles.detailsTitleText}>{rol}</Text>
       </View>
       <Image
-        style={{
-          height: 500,
-          position: "absolute",
-          opacity: 0.1,
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-        }}
+        style={styles.detailsBgImg}
         source={{
           uri: bg,
         }}
       />
       <Image
-        style={{ width: 400, height: 400 }}
+        style={styles.detailsAgentImg}
         source={{
           uri: agent,
         }}
       />
-      <View
-        style={{
-          alignContent: "center",
-          flexDirection: "row",
-          alignItems: "center",
-          paddingHorizontal: 50,
-          paddingVertical: 10,
-          gap: 10,
-        }}
-      >
+      <View style={styles.detailsinfoView}>
         <Pressable onPress={playSound}>
           <FontAwesome
             name="music"
@@ -102,63 +71,103 @@ export default function AgentDetail({ icon, rol, quote, inforol, bg, agent, soun
             style={{ marginBottom: 10 }}
           />
         </Pressable>
-        <View
-          style={{
-            flex: 1,
-            alignContent: "flex-start",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            padding: 10,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 16,
-              color: "white",
-              fontFamily: "tungsten",
-              textAlign: "center",
-            }}
-          >
-            {quote}
-          </Text>
+        <View style={styles.detailsquoteView}>
+          <Text style={styles.detailsquoteText}>{quote}</Text>
         </View>
       </View>
 
-      <View
-        style={{
-          alignContent: "center",
-          flexDirection: "row",
-          alignItems: "center",
-          padding: 25,
-        }}
-      >
+      <View style={styles.detailsiconView}>
         <Image
-          style={{ width: 30, height: 30, tintColor: colors.details }}
+          style={styles.detailsiconImg}
           source={{
             uri: icon,
           }}
         />
-        <View
-          style={{
-            flex: 1,
-            alignContent: "flex-start",
-            flexDirection: "column",
-            alignItems: "flex-start",
-
-            padding: 10,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 12,
-              color: colors.details,
-              textAlign: "center",
-            }}
-          >
-            {inforol}
-          </Text>
+        <View style={styles.detailsinforolView}>
+          <Text style={styles.detailsinforolText}>{inforol}</Text>
         </View>
       </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  detailsGlobalView: {
+    alignContent: "center",
+    alignItems: "center",
+  },
+  detailsTitleView: {
+    alignContent: "center",
+    flexDirection: "row",
+    gap: 5,
+    alignItems: "center",
+  },
+  detailsIconView: {
+    width: 15,
+    height: 15,
+    tintColor: colors.details,
+  },
+  detailsTitleText: {
+    fontSize: 20,
+    color: colors.details,
+    fontFamily: "tungsten",
+    textAlign: "center",
+  },
+  detailsBgImg: {
+    height: 500,
+    position: "absolute",
+    opacity: 0.1,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  detailsAgentImg: {
+    width: 400,
+    height: 400,
+  },
+  detailsinfoView: {
+    alignContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 50,
+    paddingVertical: 10,
+    gap: 10,
+  },
+  detailsquoteView: {
+    flex: 1,
+    alignContent: "flex-start",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    padding: 10,
+  },
+  detailsquoteText: {
+    fontSize: 16,
+    color: "white",
+    fontFamily: "tungsten",
+    textAlign: "center",
+  },
+  detailsiconView: {
+    alignContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 25,
+  },
+  detailsiconImg: {
+    width: 30,
+    height: 30,
+    tintColor: colors.details,
+  },
+  detailsinforolView: {
+    flex: 1,
+    alignContent: "flex-start",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    padding: 10,
+  },
+  detailsinforolText: {
+    fontSize: 12,
+    color: colors.details,
+    textAlign: "center",
+  },
+});
