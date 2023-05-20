@@ -1,7 +1,6 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import Grid from "../../components/Grid";
-
 import { useMaps } from "../../lib/hooks";
 
 export default function MapListScreen({ navigation }) {
@@ -39,12 +38,7 @@ export default function MapListScreen({ navigation }) {
 
   return (
     <View
-      style={{
-        flex: 1,
-        gap: 10,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      style={styles.mapsView}
     >
       <Grid
         items={maps}
@@ -58,3 +52,12 @@ export default function MapListScreen({ navigation }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  mapsView: {
+    flex: 1,
+    gap: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
