@@ -23,24 +23,24 @@ export default function ProfileTab() {
       <Stack.Screen
         options={{ headerTitle: "" }}
         name="ProfileMain"
-        children={MainScreen}
+        component={MainScreen}
       />
       <Stack.Screen
         options={{ headerTitle: "" }}
         name="ProfileRank"
-        children={RankScreen}
+        component={RankScreen}
       />
 
       <Stack.Screen
         options={{ headerTitle: "" }}
         name="ProfilePlayerCard"
-        children={PlayerCardScreen}
+        component={PlayerCardScreen}
       />
 
       <Stack.Screen
         options={{ headerTitle: "" }}
         name="ProfilePlayerTitle"
-        children={PlayerTitleScreen}
+        component={PlayerTitleScreen}
       />
     </Stack.Navigator>
   );

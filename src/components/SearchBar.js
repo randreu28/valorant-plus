@@ -1,8 +1,7 @@
-import { View, Text } from "react-native";
-import { colors } from "../lib/colors";
-import { TextInput } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
+import { TextInput, View } from "react-native";
+import { colors } from "../lib/colors";
 
 export default function SearchBar() {
   return (

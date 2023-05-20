@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { View, TextInput } from "react-native";
-import {} from "react-native-web";
-import { FontAwesome } from "@expo/vector-icons";
-import { colors } from "../../lib/colors";
-import Title from "../../components/Title";
-import PlayerTitle from "../../components/PlayerTitle";
 import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, View, Text, FlatList } from "react-native";
+import {} from "react-native-web";
+import PlayerTitle from "../../components/PlayerTitle";
 import SearchBar from "../../components/SearchBar";
+import Title from "../../components/Title";
+import { useValorantApi } from "../../lib/hooks";
+import { colors } from "../../lib/colors";
 
 export default function PlayerTitleScreen() {
   const [text, onChangeText] = useState();
@@ -18,15 +18,42 @@ export default function PlayerTitleScreen() {
       headerRight: null,
     });
   }, [navigation]);
+
+  const { data, error, isLoading } = useValorantApi("/playertitles");
+
+  if (isLoading) {
+    return (
+      <View>
+        <ActivityIndicator color={colors.neutral} size="large" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          gap: 10,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "white" }}>{error}</Text>
+      </View>
+    );
+  }
+
   return (
-    <View style={{}}>
+    <View>
       <Title subtitle="PROFILE">PLAYER TITLE</Title>
 
       <SearchBar />
 
-      <PlayerTitle>Catalyst</PlayerTitle>
-      <PlayerTitle>Chicken</PlayerTitle>
-      <PlayerTitle>Foxy</PlayerTitle>
+      <FlatList
+        data={data}
+        renderItem={({ item }) => <PlayerTitle>{item.titleText}</PlayerTitle>}
+      />
     </View>
   );
 }
