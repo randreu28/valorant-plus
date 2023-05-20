@@ -6,28 +6,29 @@ import { state } from "../state";
 import { observer } from "mobx-react-lite";
 
 const FavoriteButton = ({ context, uuid }) => {
-
   return (
     <Pressable
       onPress={() => state.toggleFavorite(context, uuid)}
-      style={[styles.favoriteButton, state.isFavorite(context, uuid) ? styles.favoriteButtonActive : null]}
+      style={[
+        styles.favoriteButton,
+        state.isFavorite(context, uuid) ? styles.favoriteButtonActive : null,
+      ]}
     >
-      <View
-        style={{
-          flex: 1,
-          flexDirection: "row",
-          gap: 10,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <View style={styles.favoriteButtonView}>
         <AntDesign
           name={state.isFavorite(context, uuid) ? "heart" : "hearto"}
           size={18}
-          color={state.isFavorite(context, uuid) ? colors.darkBase : colors.highlights}
+          color={
+            state.isFavorite(context, uuid)
+              ? colors.darkBase
+              : colors.highlights
+          }
         />
         <Text
-          style={[styles.textButton, state.isFavorite(context, uuid) ? styles.textButtonActive : null]}
+          style={[
+            styles.textButton,
+            state.isFavorite(context, uuid) ? styles.textButtonActive : null,
+          ]}
         >
           Favorite
         </Text>
@@ -47,6 +48,13 @@ const styles = StyleSheet.create({
   },
   favoriteButtonActive: {
     backgroundColor: colors.highlights,
+  },
+  favoriteButtonView: {
+    flex: 1,
+    flexDirection: "row",
+    gap: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   textButton: {
     color: colors.highlights,
