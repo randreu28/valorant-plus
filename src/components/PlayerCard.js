@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text, TouchableHighlight } from "react-native";
+import { View, Image, Text, TouchableHighlight, StyleSheet } from "react-native";
 import { colors } from "../lib/colors";
 import { useNavigation } from "@react-navigation/native";
 
