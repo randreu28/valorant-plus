@@ -1,7 +1,42 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { Text, View } from "react-native";
+import Grid from "../../components/Grid";
+
+import { useMaps } from "../../lib/hooks";
 
 export default function MapListScreen({ navigation }) {
+  const { data: maps, error, isLoading } = useMaps();
+
+  if (isLoading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          gap: 10,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "white" }}>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          gap: 10,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "white" }}>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <View
       style={{
@@ -11,10 +46,14 @@ export default function MapListScreen({ navigation }) {
         alignItems: "center",
       }}
     >
-      <Text style={{ color: "white" }}>MapListScreen!</Text>
-      <Button
-        title="Go to Map item"
-        onPress={() => navigation.navigate("MapItem")}
+      <Grid
+        items={maps}
+        title="MAPS"
+        imageBg={undefined}
+        imageType={undefined}
+        size="full-width"
+        button={undefined}
+        buttonType={undefined}
       />
     </View>
   );
