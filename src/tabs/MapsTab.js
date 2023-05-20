@@ -17,7 +17,7 @@ export default function MapsTab() {
         animation: "slide_from_right",
       }}
     >
-      <Stack.Screen name="MapList" children={MapListScreen} />
+      <Stack.Screen name="MapList" component={MapListScreen} />
       <Stack.Screen
         initialParams={{
           splashImage:
@@ -26,10 +26,15 @@ export default function MapsTab() {
             "https://media.valorant-api.com/maps/d960549e-485c-e861-8d71-aa9d1aed12a2/displayicon.png",
         }}
         name="MapItem"
-        children={MapItemScreen}
-        options={{
-          headerRight: FavoriteButton,
-          headerTransparent: true,
+        component={MapItemScreen}
+        options={({ route }) => {
+          const { params } = route;
+          const uuid = params && params["uuid"];
+          return {
+            headerTitle: "",
+            headerTransparent: true,
+            headerRight: () => <FavoriteButton context="maps" uuid={uuid} />,
+          };
         }}
       />
     </Stack.Navigator>
