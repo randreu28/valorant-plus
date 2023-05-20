@@ -22,48 +22,21 @@ export default function PlayerCard({
 }) {
   const { navigate } = useNavigation();
 
-  // FIXME: Usar StyleSheets (y 2)?
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "flex-start",
-        alignItems: "center",
-        padding: 20,
-      }}
-    >
-      <View
-        style={{
-          position: "absolute",
-          zIndex: 2,
-          padding: 20,
-          flex: 1,
-          height: "100%",
-          justifyContent: "space-between",
-        }}
-      >
+    <View style={styles.generalView}>
+      <View style={styles.view}>
         <TouchableHighlight
           onPress={() => {
             /* @ts-ignore */
             navigate("ProfileRank");
           }}
-          style={{
-            borderColor: colors.highlights,
-            borderWidth: isEditable ? 3 : 0,
-            borderStyle: "dashed",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            margin: 20,
-          }}
+          style={styles.touchableView}
         >
           <Image
             source={{
               uri: playerRank,
             }}
-            style={{
-              width: 100,
-              height: 100,
-              margin: 20,
-            }}
+            style={styles.touchableImg}
           />
         </TouchableHighlight>
         <TouchableHighlight
@@ -71,24 +44,9 @@ export default function PlayerCard({
             /* @ts-ignore */
             navigate("ProfilePlayerTitle");
           }}
-          style={{
-            backgroundColor: "rgba(0 ,0 ,0 ,0.5)",
-            borderColor: colors.highlights,
-            borderWidth: isEditable ? 3 : 0,
-            borderStyle: "dashed",
-          }}
+          style={styles.touchableView2}
         >
-          <Text
-            style={{
-              color: "white",
-              fontSize: 20,
-              textAlign: "center",
-              padding: 10,
-              borderRadius: 5,
-            }}
-          >
-            {playerTitle}
-          </Text>
+          <Text style={styles.touchableText}>{playerTitle}</Text>
         </TouchableHighlight>
       </View>
 
@@ -98,25 +56,66 @@ export default function PlayerCard({
           /* @ts-ignore */
           navigate("ProfilePlayerCard");
         }}
-        style={{
-          flex: 1,
-          width: "100%",
-          borderRadius: 20,
-          borderColor: colors.highlights,
-          borderWidth: isEditable ? 3 : 0,
-          borderStyle: "dashed",
-        }}
+        style={styles.touchableView3}
       >
-        <Image
-          source={{ uri: playerCard }}
-          style={{
-            flex: 1,
-            borderRadius: 20,
-            width: "100%",
-            backgroundColor: colors.base,
-          }}
-        />
+        <Image source={{ uri: playerCard }} style={styles.touchableImg2} />
       </TouchableHighlight>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  generalView: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    padding: 20,
+  },
+  view: {
+    position: "absolute",
+    zIndex: 2,
+    padding: 20,
+    flex: 1,
+    height: "100%",
+    justifyContent: "space-between",
+  },
+  touchableView: {
+    borderColor: colors.highlights,
+    borderWidth: isEditable ? 3 : 0,
+    borderStyle: "dashed",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    margin: 20,
+  },
+  touchableImg: {
+    width: 100,
+    height: 100,
+    margin: 20,
+  },
+  touchableView2: {
+    backgroundColor: "rgba(0 ,0 ,0 ,0.5)",
+    borderColor: colors.highlights,
+    borderWidth: isEditable ? 3 : 0,
+    borderStyle: "dashed",
+  },
+  touchableText: {
+    color: "white",
+    fontSize: 20,
+    textAlign: "center",
+    padding: 10,
+    borderRadius: 5,
+  },
+  touchableView3: {
+    flex: 1,
+    width: "100%",
+    borderRadius: 20,
+    borderColor: colors.highlights,
+    borderWidth: isEditable ? 3 : 0,
+    borderStyle: "dashed",
+  },
+  touchableImg2: {
+    flex: 1,
+    borderRadius: 20,
+    width: "100%",
+    backgroundColor: colors.base,
+  },
+});
