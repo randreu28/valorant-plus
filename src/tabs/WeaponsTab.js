@@ -1,10 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import FavoriteButton from "../components/FavoriteButton";
-import { colors } from "../lib/colors";
-import WeaponsMainScreen from "../screens/weapons/WeaponsMainScreen";
-import WeaponsDetailsScreen from "../screens/weapons/WeaponsDetailsScreen";
 import GridButton from "../components/GridButton";
+import { colors } from "../lib/colors";
+import WeaponsDetailsScreen from "../screens/weapons/WeaponsDetailsScreen";
+import WeaponsMainScreen from "../screens/weapons/WeaponsMainScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,11 +18,11 @@ export default function WeaponsTab() {
       }}
     >
       <Stack.Screen
-        options={{ headerRight: () => <GridButton context="agents" /> }}
+        /*  options={{ headerRight: () => <GridButton context="weapons" /> }} */
         name="WeaponsMain"
-        children={WeaponsMainScreen}
+        component={WeaponsMainScreen}
       />
-      <Stack.Screen name="WeaponsDetails" children={WeaponsDetailsScreen} />
+      <Stack.Screen name="WeaponsDetails" component={WeaponsDetailsScreen} />
     </Stack.Navigator>
   );
 }
