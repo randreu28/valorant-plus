@@ -4,48 +4,31 @@ import Title from "../../components/Title";
 import Ability from "../../components/Ability";
 import AgentDetail from "../../components/AgentDetail";
 import { useRoute } from '@react-navigation/native';
-import { getAgents } from "../../api";
-import { useState, useEffect } from "react";
 import { colors } from "../../lib/colors";
 
 export default function AgentsDetailScreen() {
 
   const route = useRoute();
-  const { uuid } = route.params;
+  const { item } = route.params;
 
-  const [agent, setAgent] = useState(null)
-
-  useEffect(() => {
-    getAgents(uuid)
-      .then(setAgent)
-      .catch((error) => console.error(error));
-  }, [uuid]);
-
-  if (!agent) {
-    return (
-      <View style={{ justifyContent: "center", flex: 1, alignItems: "center" }}>
-        <ActivityIndicator color={colors.neutral} size="large"></ActivityIndicator>
-      </View>
-    );
-  }
   return (
     <ScrollView>
       <View style={{ justifyContent: "center", flex: 1, alignItems: "center" }}>
-        <Title subtitle="AGENTS">{agent.displayName}</Title>
+        <Title subtitle="AGENTS">{item.displayName}</Title>
         {/* agent details component */}
         <AgentDetail
-          icon={agent.role.displayIcon}
-          rol={agent.role.displayName}
-          quote={agent.description}
-          inforol={agent.role.description}
-          bg={agent.background}
-          agent={agent.fullPortrait}
-          soundUrl={agent.voiceLine.mediaList[0]?.wave}
+          icon={item.role.displayIcon}
+          rol={item.role.displayName}
+          quote={item.description}
+          inforol={item.role.description}
+          bg={item.background}
+          agent={item.fullPortrait}
+          soundUrl={item.voiceLine.mediaList[0]?.wave}
         />
 
         {/* ability component */}
         <View style={styles.abilityWrapper}>
-          {agent.abilities.map((ability, index) => (
+          {item.abilities.map((ability, index) => (
             <Ability
               key={index}
               image={ability.displayIcon}
