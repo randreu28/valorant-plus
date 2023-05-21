@@ -4,6 +4,7 @@ import GridButton from "../components/GridButton";
 import { colors } from "../lib/colors";
 import WeaponsDetailsScreen from "../screens/weapons/WeaponsDetailsScreen";
 import WeaponsMainScreen from "../screens/weapons/WeaponsMainScreen";
+import FavoriteButton from "../components/FavoriteButton";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +23,18 @@ export default function WeaponsTab() {
         name="WeaponsMain"
         component={WeaponsMainScreen}
       />
-      <Stack.Screen name="weaponsDetail" component={WeaponsDetailsScreen} />
+      <Stack.Screen
+        name="weaponsDetail"
+        options={({ route }) => {
+          const { params } = route;
+          const uuid = params && params["uuid"];
+          return {
+            headerTitle: "",
+            headerRight: () => <FavoriteButton context="weapons" uuid={uuid} />,
+          };
+        }}
+        component={WeaponsDetailsScreen}
+      />
     </Stack.Navigator>
   );
 }
