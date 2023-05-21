@@ -6,6 +6,7 @@ import HomeIcon from "./icons/HomeIcon";
 import { useNavigation } from '@react-navigation/native';
 
 export default function GridItem({
+  context,
   item,
   id,
   imageBg = colors.highlights,
@@ -54,7 +55,7 @@ export default function GridItem({
   function goToDetail() {
     if (id) {
       console.log("navigate to item: " + id);
-      navigation.navigate('AgentsDetails', { uuid: id, item: item });
+      navigation.navigate(context+'Detail', { uuid: id, item: item });
     }
   }
 

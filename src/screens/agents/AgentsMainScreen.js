@@ -32,7 +32,7 @@ const AgentsMainScreen = ({ navigation }) => {
     <>
       {state.getView('agents') === 'grid'
         ? <View style={styles.gridWrapper}>
-          <Grid items={agents} title="AGENTS" />
+          <Grid items={agents} context="agents" title="AGENTS" />
         </View>
         : <View style={styles.sliderWrapper}>
           <Title isHeader>AGENTS</Title>

@@ -15,7 +15,7 @@ import Title from './Title';
 *}} Props
 */
 
-const Grid = ({ items, isSingleLine = false, imageBg, imageType, size, button, buttonType, title }) => {
+const Grid = ({ context, items, isSingleLine = false, imageBg, imageType, size, button, buttonType, title }) => {
 
     let columns;
     const space = 20;
@@ -42,6 +42,7 @@ const Grid = ({ items, isSingleLine = false, imageBg, imageType, size, button, b
                     <View style={isSingleLine ? { marginRight: 20 } : { height: '100%', marginBottom: space }}>
                         <GridItem
                             key={item.uuid}
+                            context={context}
                             item={item}
                             id={item.uuid}
                             title={item.displayName}

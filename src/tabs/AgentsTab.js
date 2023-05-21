@@ -32,7 +32,7 @@ export default function AgentsTab() {
         }} />
 
       <Stack.Screen
-        name="AgentsDetails"
+        name="agentsDetail"
         component={AgentsDetailScreen}
         options={({ route }) => {
           const { params } = route;

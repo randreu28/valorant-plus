@@ -19,6 +19,7 @@ export default function MapListScreen({ navigation }) {
   return (
     <View style={styles.mapsView}>
       <Grid
+        context="maps"
         items={maps}
         title="MAPS"
         imageBg={undefined}
