@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Image, Text, TouchableHighlight, StyleSheet } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  TouchableHighlight,
+  StyleSheet,
+} from "react-native";
 import { colors } from "../lib/colors";
 import { useNavigation } from "@react-navigation/native";
 
@@ -30,7 +36,7 @@ export default function PlayerCard({
             /* @ts-ignore */
             navigate("ProfileRank");
           }}
-          style={styles.touchableView}
+          style={[styles.touchableView, { borderWidth: isEditable ? 3 : 0 }]}
         >
           <Image
             source={{
@@ -44,7 +50,7 @@ export default function PlayerCard({
             /* @ts-ignore */
             navigate("ProfilePlayerTitle");
           }}
-          style={styles.touchableView2}
+          style={[styles.touchableView2, { borderWidth: isEditable ? 3 : 0 }]}
         >
           <Text style={styles.touchableText}>{playerTitle}</Text>
         </TouchableHighlight>
@@ -56,7 +62,7 @@ export default function PlayerCard({
           /* @ts-ignore */
           navigate("ProfilePlayerCard");
         }}
-        style={styles.touchableView3}
+        style={[styles.touchableView3, { borderWidth: isEditable ? 3 : 0 }]}
       >
         <Image source={{ uri: playerCard }} style={styles.touchableImg2} />
       </TouchableHighlight>
@@ -81,7 +87,6 @@ const styles = StyleSheet.create({
   },
   touchableView: {
     borderColor: colors.highlights,
-    borderWidth: isEditable ? 3 : 0,
     borderStyle: "dashed",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     margin: 20,
@@ -94,7 +99,6 @@ const styles = StyleSheet.create({
   touchableView2: {
     backgroundColor: "rgba(0 ,0 ,0 ,0.5)",
     borderColor: colors.highlights,
-    borderWidth: isEditable ? 3 : 0,
     borderStyle: "dashed",
   },
   touchableText: {
@@ -109,7 +113,6 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 20,
     borderColor: colors.highlights,
-    borderWidth: isEditable ? 3 : 0,
     borderStyle: "dashed",
   },
   touchableImg2: {
