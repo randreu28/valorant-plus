@@ -3,8 +3,9 @@ import React from "react";
 import { ScrollView, Text, View } from "react-native";
 import Slider from "../../components/Slider";
 import Title from "../../components/Title";
-import WeaponStats from "../../components/WeaponStats";
+import ManequinInfo from "../../components/ManequinInfo";
 import { colors } from "../../lib/colors";
+import WeaponStats from "../../components/WeaponStats";
 
 export default function WeaponsDetailsScreen() {
   /**
@@ -20,33 +21,43 @@ export default function WeaponsDetailsScreen() {
         <Slider items={params.item.skins} mode="skins" />
       </View>
 
-      <Text
-        style={{
-          color: colors.highlights,
-          textAlign: "center",
-          fontSize: 25,
-          fontFamily: "tungsten",
-          marginVertical: 10,
-        }}
-      >
-        Statistics
-      </Text>
-
-      {params.item.weaponStats.damageRanges.map((damageRange, key) => {
-        return (
-          <WeaponStats
-            key={key}
-            rangeStartMeters={damageRange.rangeStartMeters}
-            rangeEndMeters={damageRange.rangeEndMeters}
-            fireRate={params.item.weaponStats.fireRate}
-            magCapacity={params.item.weaponStats.magazineSize}
-            reloadTime={params.item.weaponStats.reloadTimeSeconds}
-            head={damageRange.headDamage}
-            body={damageRange.bodyDamage}
-            legs={damageRange.legDamage}
-          />
-        );
-      })}
+      {params.item.weaponStats && (
+        <>
+          <Text
+            style={{
+              color: colors.highlights,
+              textAlign: "center",
+              fontSize: 25,
+              fontFamily: "tungsten",
+              marginVertical: 10,
+            }}
+          >
+            Statistics
+          </Text>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "column",
+              gap: 50,
+              alignItems: "center",
+            }}
+          >
+            {params.item.weaponStats.damageRanges.map((damageRange, key) => {
+              return (
+                <ManequinInfo
+                  key={key}
+                  rangeStartMeters={damageRange.rangeStartMeters}
+                  rangeEndMeters={damageRange.rangeEndMeters}
+                  bodyDamage={damageRange.bodyDamage}
+                  headDamage={damageRange.headDamage}
+                  legDamage={damageRange.legDamage}
+                />
+              );
+            })}
+          </View>
+          <WeaponStats {...params.item.weaponStats} />
+        </>
+      )}
     </ScrollView>
   );
 }
