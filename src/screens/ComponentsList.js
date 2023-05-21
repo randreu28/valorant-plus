@@ -314,9 +314,9 @@ const ComponentsList = () => {
 
             <View style={styles.componentWrapper}>
               <Text style={styles.componentTitle}>
-                Grid (isSingleLine = true)
+                Grid (horizontalScroll = true)
               </Text>
-              <Grid items={agents} isSingleLine={true} />
+              <Grid items={agents} horizontalScroll={true} />
             </View>
           </View>
         ) : (

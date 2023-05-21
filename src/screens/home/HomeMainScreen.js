@@ -19,9 +19,9 @@ export default function HomeMainScreen() {
   return (
     <View>
       <Title isHeader>FAVORITES</Title>
-      <Grid items={agents} isSingleLine={true} />
+      <Grid items={agents} horizontalScroll={true} />
       <Title isHeader>DAILY</Title>
-      <Grid items={agents} isSingleLine={true} />
+      <Grid items={agents} horizontalScroll={true} />
     </View>
   );
 }

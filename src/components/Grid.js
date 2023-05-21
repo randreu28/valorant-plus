@@ -10,16 +10,16 @@ import Title from './Title';
 *
 *@param {{
 *  items: Array,
-*  isSingleLine?: [boolean],
+*  horizontalScroll?: [boolean],
 *  imageBg?: ,
 *}} Props
 */
 
-const Grid = ({ context, items, isSingleLine = false, imageBg, imageType, size, button, buttonType, title }) => {
+const Grid = ({ context, items, horizontalScroll = false, imageBg, imageType, size, button, buttonType, title }) => {
 
     let columns;
     const space = 20;
-    if (!isSingleLine) {
+    if (!horizontalScroll) {
         const windowWidth = Dimensions.get('window').width;
         columns = Math.floor(windowWidth / 180);
     }
@@ -35,11 +35,11 @@ const Grid = ({ context, items, isSingleLine = false, imageBg, imageType, size, 
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                horizontal={isSingleLine}
-                numColumns={!isSingleLine ? columns : 1}
+                horizontal={horizontalScroll}
+                numColumns={!horizontalScroll ? columns : 1}
                 data={items}
                 renderItem={({ item }) =>
-                    <View style={isSingleLine ? { marginRight: 20 } : { height: '100%', marginBottom: space }}>
+                    <View style={horizontalScroll ? { marginRight: 20 } : { height: '100%', marginBottom: space }}>
                         <GridItem
                             key={item.uuid}
                             context={context}
@@ -55,7 +55,7 @@ const Grid = ({ context, items, isSingleLine = false, imageBg, imageType, size, 
                         />
                     </View>}
                 keyExtractor={item => item.uuid}
-                columnWrapperStyle={!isSingleLine ? { justifyContent: 'space-around' } : null}
+                columnWrapperStyle={!horizontalScroll ? { justifyContent: 'space-around' } : null}
                 ListHeaderComponent={title ? <View style={styles.titleWrapper}><Title isHeader>{title}</Title></View> : null}
 
             >
