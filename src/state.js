@@ -1,12 +1,13 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 
 class State {
   view = {
-    "agents": "slide",
-    "weapons": "slide",
+    agents: "slide",
+    weapons: "slide",
   };
   favorites = {};
+  editable = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -15,12 +16,17 @@ class State {
   async load() {
     const viewData = await AsyncStorage.getItem("view");
     const favoritesData = await AsyncStorage.getItem("favorites");
+    const isEditableData = await AsyncStorage.getItem("editable");
 
     if (viewData !== null) {
       this.view = JSON.parse(viewData);
     }
     if (favoritesData !== null) {
       this.favorites = JSON.parse(favoritesData);
+    }
+
+    if (isEditableData !== null) {
+      this.editable = JSON.parse(isEditableData);
     }
   }
 
@@ -41,6 +47,17 @@ class State {
 
   isFavorite(context, uuid) {
     return this.favorites[context] === uuid;
+  }
+
+  toggleEditable() {
+    runInAction(() => {
+      this.editable = !this.editable;
+    });
+
+    AsyncStorage.setItem("editable", JSON.stringify(this.editable));
+  }
+  isEditable() {
+    return this.editable;
   }
 }
 

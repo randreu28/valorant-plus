@@ -1,14 +1,16 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React from "react";
 import { Text, TouchableHighlight, View } from "react-native";
 import { colors } from "../lib/colors";
+import { state } from "../state";
+import { observer } from "mobx-react-lite";
 
-export default function EditButton() {
-  const [isEditing, setIsEditing] = useState(false);
+function EditButton() {
+  const isEditing = state.editable;
 
   return (
     <TouchableHighlight
-      onPress={() => setIsEditing(!isEditing)}
+      onPress={() => state.toggleEditable()}
       style={{
         borderRadius: 20,
         paddingHorizontal: 10,
@@ -44,3 +46,5 @@ export default function EditButton() {
     </TouchableHighlight>
   );
 }
+
+export default observer(EditButton);

@@ -14,7 +14,7 @@ export default function ProfileTab() {
     <Stack.Navigator
       screenOptions={{
         headerTitle: "",
-        headerRight: EditButton,
+        headerRight: () => <EditButton />,
         statusBarColor: colors.base,
         navigationBarColor: colors.base,
         animation: "slide_from_right",
