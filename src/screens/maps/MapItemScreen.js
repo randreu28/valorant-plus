@@ -5,14 +5,15 @@ import Title from "../../components/Title";
 import { colors } from "../../lib/colors";
 
 export default function MapItemScreen() {
-  const { params } = useRoute();
+  const route = useRoute();
+  const { item } = route.params;
 
   return (
     <View style={{ position: "relative", flex: 1 }}>
       <Image
         source={{
           // @ts-ignore
-          uri: params["splashImage"],
+          uri: item.splash, 
         }}
         style={styles.splashImg}
       />
@@ -20,11 +21,11 @@ export default function MapItemScreen() {
       <View style={styles.mapsGeneralView} />
 
       <View style={styles.mapsView}>
-        <Title subtitle="MAPS">ASCENT</Title>
+        <Title subtitle="MAPS"> {item.displayName} </Title>
         <Image
           source={{
             // @ts-ignore
-            uri: params["displayIcon"],
+            uri: item.displayIcon,
           }}
           style={styles.mapsImg}
         />

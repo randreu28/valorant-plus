@@ -17,14 +17,12 @@ export default function MapsTab() {
         animation: "slide_from_right",
       }}
     >
-      <Stack.Screen name="MapList" component={MapListScreen} />
+      <Stack.Screen 
+        name="MapList" 
+        component={MapListScreen} 
+      />
+
       <Stack.Screen
-        initialParams={{
-          splashImage:
-            "https://media.valorant-api.com/maps/d960549e-485c-e861-8d71-aa9d1aed12a2/splash.png",
-          displayIcon:
-            "https://media.valorant-api.com/maps/d960549e-485c-e861-8d71-aa9d1aed12a2/displayicon.png",
-        }}
         name="mapsDetail"
         component={MapItemScreen}
         options={({ route }) => {
