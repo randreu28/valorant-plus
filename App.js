@@ -1,42 +1,29 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import * as React from "react";
+import IntroScreen from "./src/screens/IntroScreen";
 import HomeIcon from "./src/components/icons//HomeIcon";
 import AgentsIcon from "./src/components/icons/AgentsIcon";
 import MapsIcon from "./src/components/icons/MapsIcon";
 import ProfileIcon from "./src/components/icons/ProfileIcon";
 import WeaponsIcon from "./src/components/icons/WeaponsIcon";
-import { colors } from "./src/lib/colors";
 import AgentsTab from "./src/tabs/AgentsTab";
 import HomeTab from "./src/tabs/HomeTab";
 import MapsTab from "./src/tabs/MapsTab";
 import ProfileTab from "./src/tabs/ProfileTab";
 import WeaponsTab from "./src/tabs/WeaponsTab";
 import { state } from "./src/state";
-import { useEffect } from "react";
-import Slider from "./src/components/Slider";
-import { useIntroSlides } from "./src/lib/hooks";
-import { View } from "react-native";
-import Loading from "./src/components/Loading";
+import { colors } from "./src/lib/colors";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
-export default function App() {
-  state.load();
+state.load();
 
-  if (false) {
-    const { data, error: introError, isLoading } = useIntroSlides();
-
-    if (isLoading) {
-      return <Loading />;
-    }
-    return (
-      <NavigationContainer>
-        <Slider mode="intro" items={data} />
-      </NavigationContainer>
-    );
-  }
+const App = () => {
+  const isIntroDone = state.getIsIntroDone();
 
   // GENIAL: El uso de fuentes sin que lo haya explicado en clase
   const [fontsHaveLoaded, error] = useFonts({
@@ -61,7 +48,17 @@ export default function App() {
           },
         }}
       >
-        <Tab.Navigator
+        <Stack.Navigator initialRouteName={!isIntroDone ? "Intro" : "Main"} screenOptions={{headerShown: false}} >
+          <Stack.Screen name="Intro" component={IntroScreen} />
+          <Stack.Screen name="Main" component={MainStackScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+};
+
+const MainStackScreen = () => {
+  return (
+    <Tab.Navigator
           initialRouteName="Home"
           screenOptions={({ route }) => ({
             tabBarInactiveTintColor: "white",
@@ -92,6 +89,7 @@ export default function App() {
           <Tab.Screen name="Weapons" component={WeaponsTab} />
           <Tab.Screen name="Maps" component={MapsTab} />
         </Tab.Navigator>
-      </NavigationContainer>
-    );
+  );
 }
+
+export default App;

@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { makeAutoObservable, runInAction } from "mobx";
 
 class State {
+  isIntroDone;
   view = {
     agents: "slide",
     weapons: "slide",
@@ -14,10 +15,14 @@ class State {
   }
 
   async load() {
+    const introData = await AsyncStorage.getItem("isIntroDone");
     const viewData = await AsyncStorage.getItem("view");
     const favoritesData = await AsyncStorage.getItem("favorites");
     const isProfileEditableData = false;
-
+    
+    if (introData !== null) {
+      this.isIntroDone = JSON.parse(introData);
+    }
     if (viewData !== null) {
       this.view = JSON.parse(viewData);
     }
@@ -26,6 +31,19 @@ class State {
     }
     this.profileEditable = JSON.parse(isProfileEditableData);
     AsyncStorage.setItem("profileEditable", JSON.stringify(this.profileEditable));
+  }
+
+  getIsIntroDone() {
+    if (this.isIntroDone === true) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  setIntroDone(value) {
+    this.isIntroDone = value;
+    AsyncStorage.setItem("isIntroDone", JSON.stringify(this.isIntroDone));
   }
 
   toggleView(view) {
