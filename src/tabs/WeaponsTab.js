@@ -18,11 +18,11 @@ export default function WeaponsTab() {
       }}
     >
       <Stack.Screen
-        /*  options={{ headerRight: () => <GridButton context="weapons" /> }} */
+        options={{ headerRight: () => <GridButton context="weapons" /> }}
         name="WeaponsMain"
         component={WeaponsMainScreen}
       />
-      <Stack.Screen name="WeaponsDetails" component={WeaponsDetailsScreen} />
+      <Stack.Screen name="weaponsDetail" component={WeaponsDetailsScreen} />
     </Stack.Navigator>
   );
 }
