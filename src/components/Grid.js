@@ -65,7 +65,7 @@ const Grid = ({
             style={
               horizontalScroll
                 ? { marginRight: 20 }
-                : { height: "100%", marginBottom: space }
+                : { marginBottom: space }
             }
           >
             <GridItem
