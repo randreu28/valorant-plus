@@ -62,6 +62,7 @@ export default function App() {
         }}
       >
         <Tab.Navigator
+          initialRouteName="Home"
           screenOptions={({ route }) => ({
             tabBarInactiveTintColor: "white",
             tabBarIcon: ({ color, size }) => {
