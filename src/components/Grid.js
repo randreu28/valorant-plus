@@ -84,7 +84,7 @@ const Grid = ({
         )}
         keyExtractor={(item) => item.uuid}
         columnWrapperStyle={
-          !horizontalScroll && columns !== 1 ? { justifyContent: "space-around" } : null
+          !horizontalScroll && columns !==  1 ? { justifyContent: "space-around" } : null
         }
         ListHeaderComponent={
           title ? (
