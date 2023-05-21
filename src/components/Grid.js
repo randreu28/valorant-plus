@@ -26,6 +26,7 @@ const Grid = ({
   items,
   horizontalScroll = false,
   columns,
+  listViewIcon,
   imageBg,
   imageType,
   size,
@@ -73,7 +74,7 @@ const Grid = ({
               item={item}
               id={item.uuid}
               title={item.displayName}
-              imageUrl={item.displayIcon}
+              imageUrl={ listViewIcon ? item.listViewIcon : item.displayIcon}
               imageBg={imageBg}
               imageType={imageType}
               size={size}

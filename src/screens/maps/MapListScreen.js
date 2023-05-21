@@ -22,6 +22,7 @@ export default function MapListScreen({ navigation }) {
         context="maps"
         items={maps}
         title="MAPS"
+        listViewIcon ={true}
         imageBg={undefined}
         imageType={undefined}
         size="full-width"
