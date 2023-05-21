@@ -10,6 +10,8 @@ import Mannequin from "./icons/Mannequin";
  * reloadTime: number,
  * fireRate: number,
  * magCapacity: number,
+ * rangeStartMeters: number,
+  rangeEndMeters: number,
  * }} Props
  */
 export default function WeaponStats({
@@ -19,12 +21,14 @@ export default function WeaponStats({
   fireRate,
   magCapacity,
   reloadTime,
+  rangeStartMeters,
+  rangeEndMeters,
 }) {
   return (
     <>
       <View style={{ flex: 1, alignItems: "center" }}>
         <Text style={{ color: "white", fontFamily: "tungsten", fontSize: 20 }}>
-          0 - 30M
+          {rangeStartMeters} - {rangeEndMeters}M
         </Text>
         <View
           style={{

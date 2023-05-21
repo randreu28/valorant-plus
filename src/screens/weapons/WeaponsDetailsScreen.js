@@ -1,47 +1,24 @@
+import { useRoute } from "@react-navigation/native";
 import React from "react";
+import { ScrollView, Text, View } from "react-native";
+import Slider from "../../components/Slider";
 import Title from "../../components/Title";
 import WeaponStats from "../../components/WeaponStats";
-import Slider from "../../components/Slider";
-import { Text, View } from "react-native";
 import { colors } from "../../lib/colors";
-import { useValorantApi } from "../../lib/hooks";
 
 export default function WeaponsDetailsScreen() {
-  const { data, error, isLoading } = useValorantApi("/weapons/skins");
-  if (isLoading) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          gap: 10,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ color: "white" }}>Loading...</Text>
-      </View>
-    );
-  }
+  /**
+   * @type any
+   */
+  const { params } = useRoute();
 
-  if (error) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          gap: 10,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ color: "red" }}>{error}</Text>
-      </View>
-    );
-  }
   return (
-    <>
-      <Title subtitle="WEAPONS">SHERIFF</Title>
+    <ScrollView>
+      <Title subtitle="WEAPONS">{params.item.displayName}</Title>
 
-      <Slider items={data} mode="skins" />
+      <View style={{ height: 300 }}>
+        <Slider items={params.item.skins} mode="skins" />
+      </View>
 
       <Text
         style={{
@@ -54,14 +31,22 @@ export default function WeaponsDetailsScreen() {
       >
         Statistics
       </Text>
-      <WeaponStats
-        fireRate={4}
-        magCapacity={30}
-        reloadTime={4}
-        head={182}
-        body={95}
-        legs={55}
-      />
-    </>
+
+      {params.item.weaponStats.damageRanges.map((damageRange, key) => {
+        return (
+          <WeaponStats
+            key={key}
+            rangeStartMeters={damageRange.rangeStartMeters}
+            rangeEndMeters={damageRange.rangeEndMeters}
+            fireRate={params.item.weaponStats.fireRate}
+            magCapacity={params.item.weaponStats.magazineSize}
+            reloadTime={params.item.weaponStats.reloadTimeSeconds}
+            head={damageRange.headDamage}
+            body={damageRange.bodyDamage}
+            legs={damageRange.legDamage}
+          />
+        );
+      })}
+    </ScrollView>
   );
 }
