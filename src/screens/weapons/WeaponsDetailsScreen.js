@@ -39,7 +39,7 @@ export default function WeaponsDetailsScreen() {
               flex: 1,
               flexDirection: "column",
               gap: 50,
-              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             {params.item.weaponStats.damageRanges.map((damageRange, key) => {

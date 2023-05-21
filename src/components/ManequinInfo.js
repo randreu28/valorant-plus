@@ -35,6 +35,7 @@ export default function ManequinInfo({
           style={{
             flexDirection: "row",
             flex: 1,
+            justifyContent: "center",
             paddingRight: "auto",
             paddingTop: 20,
           }}
@@ -82,21 +83,15 @@ export default function ManequinInfo({
  * @param value: number
  **/
 function computeColor(value) {
-  if (value > 255 || value < 0) {
-    throw Error("Value must be between 0 and 255");
-  }
-
   let color;
   if (value === 0) {
     color = "#ffffff";
   } else if (value >= 1 && value < 85) {
-    color = "#ffffff";
+    color = "#c1f7e9";
   } else if (value >= 85 && value < 170) {
     color = "#80ffde";
-  } else if (value >= 170 && value < 255) {
-    color = "#00ffbc";
   } else {
-    throw Error("Value must be between 0 and 255");
+    color = "#00ffbc";
   }
 
   return color;
