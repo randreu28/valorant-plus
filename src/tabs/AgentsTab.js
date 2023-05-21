@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useRoute } from '@react-navigation/native';
+import { useRoute } from "@react-navigation/native";
 import React from "react";
 import { colors } from "../lib/colors";
 import AgentsDetailScreen from "../screens/agents/AgentsDetailScreen";
@@ -21,15 +21,16 @@ export default function AgentsTab() {
         statusBarColor: colors.base,
         navigationBarColor: colors.base,
         animation: "slide_from_right",
-      }}>
-
+      }}
+    >
       <Stack.Screen
         name="AgentsMain"
         component={AgentsMainScreen}
         options={{
           headerTitle: "",
           headerRight: () => <GridButton context="agents" />,
-        }} />
+        }}
+      />
 
       <Stack.Screen
         name="agentsDetail"
@@ -41,8 +42,8 @@ export default function AgentsTab() {
             headerTitle: "",
             headerRight: () => <FavoriteButton context="agents" uuid={uuid} />,
           };
-        }} />
-
+        }}
+      />
     </Stack.Navigator>
   );
 }

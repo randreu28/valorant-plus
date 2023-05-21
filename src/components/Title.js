@@ -2,7 +2,6 @@ import React from "react";
 import { Text, View } from "react-native";
 import { colors } from "../lib/colors";
 
-
 // GENIAL: El uso de tipos para "developer experience"!
 /**
  *
@@ -54,7 +53,7 @@ const fontSize = 50;
 
 function Header({ children }) {
   return (
-    <View style={{width: '100%'}}>
+    <View style={{ width: "100%", marginBottom: 30 }}>
       <Text
         style={{
           color: colors.darkBase,

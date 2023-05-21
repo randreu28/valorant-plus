@@ -7,8 +7,7 @@ import Grid from "../../components/Grid";
 import { getAgents } from "../../api";
 
 export default function HomeMainScreen() {
-
-  const [agents, setAgents] = useState(null)
+  const [agents, setAgents] = useState(null);
 
   useEffect(() => {
     getAgents()
@@ -17,11 +16,13 @@ export default function HomeMainScreen() {
   }, []);
 
   return (
-    <View>
-      <Title isHeader>FAVORITES</Title>
-      <Grid items={agents} horizontalScroll={true} />
+    <View style={{ height: "100%" }}>
+      <View>
+        <Title isHeader>FAVORITES</Title>
+      </View>
+      <Grid items={agents} horizontalScroll context="agents" />
       <Title isHeader>DAILY</Title>
-      <Grid items={agents} horizontalScroll={true} />
+      <Grid items={agents} horizontalScroll context="agents" />
     </View>
   );
 }

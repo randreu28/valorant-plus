@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     padding: 20,
+    paddingTop: 0,
   },
   view: {
     position: "absolute",
