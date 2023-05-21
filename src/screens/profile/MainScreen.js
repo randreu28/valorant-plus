@@ -4,8 +4,9 @@ import Title from "../../components/Title";
 import { ScrollView, View } from "react-native";
 import PlayerCard from "../../components/PlayerCard";
 import { state } from "../../state";
+import { observer } from "mobx-react-lite";
 
-export default function MainScreen() {
+const MainScreen = () => {
   return (
     <ScrollView style={{ flex: 1 }}>
       <Title isHeader>PROFILE</Title>
@@ -20,3 +21,5 @@ export default function MainScreen() {
     </ScrollView>
   );
 }
+
+export default observer(MainScreen);

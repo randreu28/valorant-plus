@@ -36,7 +36,7 @@ export default function PlayerCard({
             /* @ts-ignore */
             navigate("ProfileRank");
           }}
-          style={[styles.touchableView, { borderWidth: isEditable ? 3 : 0 }]}
+          style={[styles.touchableView, { borderColor: isEditable ? colors.highlights: colors.darkBaseTransparent }]}
         >
           <Image
             source={{
@@ -50,7 +50,7 @@ export default function PlayerCard({
             /* @ts-ignore */
             navigate("ProfilePlayerTitle");
           }}
-          style={[styles.touchableView2, { borderWidth: isEditable ? 3 : 0 }]}
+          style={[styles.touchableView2, { borderColor: isEditable ? colors.highlights: colors.darkBaseTransparent }]}
         >
           <Text style={styles.touchableText}>{playerTitle}</Text>
         </TouchableHighlight>
@@ -62,7 +62,7 @@ export default function PlayerCard({
           /* @ts-ignore */
           navigate("ProfilePlayerCard");
         }}
-        style={[styles.touchableView3, { borderWidth: isEditable ? 3 : 0 }]}
+        style={[styles.touchableView3, { borderColor: isEditable ? colors.highlights: colors.darkBaseTransparent }]}
       >
         <Image source={{ uri: playerCard }} style={styles.touchableImg2} />
       </TouchableHighlight>
@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   touchableView: {
-    borderColor: colors.highlights,
     borderStyle: "dashed",
+    borderWidth: 3,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     margin: 20,
   },
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
   },
   touchableView2: {
     backgroundColor: "rgba(0 ,0 ,0 ,0.5)",
-    borderColor: colors.highlights,
     borderStyle: "dashed",
+    borderWidth: 3,
   },
   touchableText: {
     color: "white",
@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     borderRadius: 20,
-    borderColor: colors.highlights,
     borderStyle: "dashed",
+    borderWidth: 3,
   },
   touchableImg2: {
     flex: 1,

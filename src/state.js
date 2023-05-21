@@ -7,7 +7,7 @@ class State {
     weapons: "slide",
   };
   favorites = {};
-  editable = false;
+  profileEditable = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -16,7 +16,7 @@ class State {
   async load() {
     const viewData = await AsyncStorage.getItem("view");
     const favoritesData = await AsyncStorage.getItem("favorites");
-    const isEditableData = await AsyncStorage.getItem("editable");
+    const isProfileEditableData = false;
 
     if (viewData !== null) {
       this.view = JSON.parse(viewData);
@@ -24,10 +24,8 @@ class State {
     if (favoritesData !== null) {
       this.favorites = JSON.parse(favoritesData);
     }
-
-    if (isEditableData !== null) {
-      this.editable = JSON.parse(isEditableData);
-    }
+    this.profileEditable = JSON.parse(isProfileEditableData);
+    AsyncStorage.setItem("profileEditable", JSON.stringify(this.profileEditable));
   }
 
   toggleView(view) {
@@ -51,13 +49,13 @@ class State {
 
   toggleEditable() {
     runInAction(() => {
-      this.editable = !this.editable;
+      this.profileEditable = !this.profileEditable;
     });
 
-    AsyncStorage.setItem("editable", JSON.stringify(this.editable));
+    AsyncStorage.setItem("profileEditable", JSON.stringify(this.profileEditable));
   }
   isEditable() {
-    return this.editable;
+    return this.profileEditable;
   }
 }
 

@@ -6,7 +6,7 @@ import { state } from "../state";
 import { observer } from "mobx-react-lite";
 
 function EditButton() {
-  const isEditing = state.editable;
+  const isEditing = state.profileEditable;
 
   return (
     <TouchableHighlight
