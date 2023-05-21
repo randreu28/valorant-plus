@@ -27,6 +27,7 @@ export default function MapListScreen({ navigation }) {
         size="full-width"
         button={undefined}
         buttonType={undefined}
+        columns={1}
       />
     </View>
   );

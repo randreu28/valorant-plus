@@ -25,6 +25,7 @@ const Grid = ({
   context,
   items,
   horizontalScroll = false,
+  columns,
   imageBg,
   imageType,
   size,
@@ -32,11 +33,13 @@ const Grid = ({
   buttonType,
   title,
 }) => {
-  let columns;
   const space = 20;
+
   if (!horizontalScroll) {
-    const windowWidth = Dimensions.get("window").width;
-    columns = Math.floor(windowWidth / 180);
+    if (columns === undefined) {
+        const windowWidth = Dimensions.get("window").width;
+        columns = Math.floor(windowWidth / 180);
+    }
   }
 
   if (!items) {
@@ -81,7 +84,7 @@ const Grid = ({
         )}
         keyExtractor={(item) => item.uuid}
         columnWrapperStyle={
-          !horizontalScroll ? { justifyContent: "space-around" } : null
+          !horizontalScroll && columns !== 1 ? { justifyContent: "space-around" } : null
         }
         ListHeaderComponent={
           title ? (
