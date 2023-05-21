@@ -6,6 +6,7 @@ import MainScreen from "../screens/profile/MainScreen";
 import PlayerCardScreen from "../screens/profile/PlayerCardScreen";
 import PlayerTitleScreen from "../screens/profile/PlayerTitleScreen";
 import RankScreen from "../screens/profile/RankScreen";
+import GridButton from "../components/GridButton";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,19 +27,22 @@ export default function ProfileTab() {
         component={MainScreen}
       />
       <Stack.Screen
-        options={{ headerTitle: "" }}
+        options={{
+          headerTitle: "",
+          headerRight: () => <GridButton context="playerRank" />,
+        }}
         name="ProfileRank"
         component={RankScreen}
       />
 
       <Stack.Screen
-        options={{ headerTitle: "" }}
+        options={{ headerTitle: "", headerRight: () => null }}
         name="ProfilePlayerCard"
         component={PlayerCardScreen}
       />
 
       <Stack.Screen
-        options={{ headerTitle: "" }}
+        options={{ headerTitle: "", headerRight: () => null }}
         name="ProfilePlayerTitle"
         component={PlayerTitleScreen}
       />
