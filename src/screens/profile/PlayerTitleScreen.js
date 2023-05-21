@@ -1,23 +1,15 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
-import { ActivityIndicator, View, Text, FlatList } from "react-native";
+import React, { useState } from "react";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import {} from "react-native-web";
 import PlayerTitle from "../../components/PlayerTitle";
 import SearchBar from "../../components/SearchBar";
 import Title from "../../components/Title";
-import { useValorantApi } from "../../lib/hooks";
 import { colors } from "../../lib/colors";
+import { useValorantApi } from "../../lib/hooks";
 
 export default function PlayerTitleScreen() {
   const [text, onChangeText] = useState("");
   const { data, error, isLoading } = useValorantApi("/playertitles");
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: null,
-    });
-  }, [navigation]);
 
   if (isLoading) {
     return (
