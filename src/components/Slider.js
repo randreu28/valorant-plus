@@ -20,6 +20,15 @@ import Bullets from "./Bullets";
 import GestureRecognizer from 'react-native-swipe-gestures';
 import { useNavigation } from "@react-navigation/native";
 
+/**
+*
+*@param {{
+*  items: Array,
+*  mode: "intro" | "agents" | "weapons" | "skins"
+*}} Props
+*
+*/
+
 const Slider = ({ items, mode = "agents" }) => {
 
   const navigation = useNavigation();
