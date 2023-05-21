@@ -88,7 +88,7 @@ const Slider = ({ items, mode = "agents" }) => {
   const goToItem = () => {
     return () => {
       if (mode === "agents" || mode === "weapons") {
-        navigation.navigate('AgentsDetails', { uuid: items[currentItem].uuid, item: items[currentItem] });
+        navigation.navigate(mode+'Detail', { uuid: items[currentItem].uuid, item: items[currentItem] });
         console.log("Go to item " + items[currentItem].uuid);
       }
     };
