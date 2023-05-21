@@ -133,34 +133,38 @@ export function useMaps(uuid) {
 export function useIntroSlides() {
   const { data: agents, error, isLoading } = useAgents();
 
-  const data = [
-    {
-      displayName: "Welcome to Valorant+",
-      displayIcon: agents[2].fullPortrait,
-      background: agents[2].background,
-    },
-    {
-      displayName:
-        "In this app, you can find information about your favorite agents.",
-      displayIcon: agents[3].fullPortrait,
-      background: agents[3].background,
-    },
-    {
-      displayName: "You can customize your profile in many ways.",
-      displayIcon: agents[5].fullPortrait,
-      background: agents[5].background,
-    },
-    {
-      displayName: "You can see all the weapons and their skins.",
-      displayIcon: agents[7].fullPortrait,
-      background: agents[7].background,
-    },
-    {
-      displayName: "And you can even see all the game maps.",
-      displayIcon: agents[15].fullPortrait,
-      background: agents[15].background,
-    },
-  ];
+  let data = null;
+
+  if (!isLoading) {
+    data = [
+      {
+        displayName: "Welcome to Valorant+",
+        displayIcon: agents[2].fullPortrait,
+        background: agents[2].background,
+      },
+      {
+        displayName:
+          "In this app, you can find information about your favorite agents.",
+        displayIcon: agents[3].fullPortrait,
+        background: agents[3].background,
+      },
+      {
+        displayName: "You can customize your profile in many ways.",
+        displayIcon: agents[5].fullPortrait,
+        background: agents[5].background,
+      },
+      {
+        displayName: "You can see all the weapons and their skins.",
+        displayIcon: agents[7].fullPortrait,
+        background: agents[7].background,
+      },
+      {
+        displayName: "And you can even see all the game maps.",
+        displayIcon: agents[15].fullPortrait,
+        background: agents[15].background,
+      },
+    ];
+  }
 
   return { data, isLoading, error };
 }

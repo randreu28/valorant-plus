@@ -15,13 +15,29 @@ import ProfileTab from "./src/tabs/ProfileTab";
 import WeaponsTab from "./src/tabs/WeaponsTab";
 import { state } from "./src/state";
 import { useEffect } from "react";
+import Slider from "./src/components/Slider";
+import { useIntroSlides } from "./src/lib/hooks";
+import { View } from "react-native";
+import Loading from "./src/components/Loading";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  
   state.load();
-  
+
+  if (false) {
+    const { data, error: introError, isLoading } = useIntroSlides();
+
+    if (isLoading) {
+      return <Loading />;
+    }
+    return (
+      <NavigationContainer>
+        <Slider mode="intro" items={data} />
+      </NavigationContainer>
+    );
+  }
+
   // GENIAL: El uso de fuentes sin que lo haya explicado en clase
   const [fontsHaveLoaded, error] = useFonts({
     // @ts-ignore
