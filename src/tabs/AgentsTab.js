@@ -20,7 +20,7 @@ export default function AgentsTab() {
       screenOptions={{
         statusBarColor: colors.base,
         navigationBarColor: colors.base,
-        animation: "slide_from_right",
+        animation: "slide_from_bottom",
       }}
     >
       <Stack.Screen

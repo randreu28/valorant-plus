@@ -15,7 +15,7 @@ export default function WeaponsTab() {
         headerTitle: "",
         statusBarColor: colors.base,
         navigationBarColor: colors.base,
-        animation: "slide_from_right",
+        animation: "slide_from_bottom",
       }}
     >
       <Stack.Screen
