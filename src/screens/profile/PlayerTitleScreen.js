@@ -46,7 +46,8 @@ export default function PlayerTitleScreen() {
             return true;
           } else {
             const titleText = String(item.titleText);
-            return titleText.includes(text);
+
+            return titleText.toLowerCase().includes(text.toLowerCase());
           }
         })}
         renderItem={({ item }) => (
