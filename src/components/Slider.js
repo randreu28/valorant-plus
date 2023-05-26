@@ -157,9 +157,9 @@ const Slider = ({ items, mode = "agents" }) => {
         onSwipeRight={() => { mode !== 'intro' ? viewItem(-1) : null }}
       >
         {mode === 'intro' && 
-          <div style={styles.appTitleWrapper}>
+          <View style={styles.appTitleWrapper}>
             <Title>VALORANT+</Title>
-          </div>
+          </View>
         }
         {showButtons ? (
           <>
@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.highlights,
   },
   appTitleWrapper: {
-    marginTop: 20,
+    marginTop: 60,
   },
   swipeButton: {
     position: "absolute",
