@@ -154,7 +154,7 @@ const Slider = ({ items, mode = "agents" }) => {
     <>
       <GestureRecognizer style={[styles.container, mode === 'intro' ? styles.containerIntro : null]}
         onSwipeLeft={() => { mode !== 'intro' ? viewItem(1) : currentItem < items.length - 1 ? viewItem(1) : null }}
-        onSwipeRight={() => { mode !== 'intro' ? viewItem(-1) : null }}
+        onSwipeRight={() => { mode !== 'intro' ? viewItem(-1) : currentItem > 0 ? viewItem(-1) : null }}
       >
         {mode === 'intro' && 
           <View style={styles.appTitleWrapper}>
@@ -270,6 +270,7 @@ const styles = StyleSheet.create({
   },
   appTitleWrapper: {
     marginTop: 60,
+    marginBottom: 20,
   },
   swipeButton: {
     position: "absolute",
