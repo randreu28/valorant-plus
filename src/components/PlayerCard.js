@@ -5,6 +5,7 @@ import {
   Text,
   TouchableHighlight,
   StyleSheet,
+  Pressable,
 } from "react-native";
 import { colors } from "../lib/colors";
 import { useNavigation } from "@react-navigation/native";
@@ -31,12 +32,19 @@ export default function PlayerCard({
   return (
     <View style={styles.generalView}>
       <View style={styles.view}>
-        <TouchableHighlight
+        <Pressable
           onPress={() => {
             /* @ts-ignore */
-            navigate("ProfileRank");
+            if (isEditable) navigate("ProfileRank");
           }}
-          style={[styles.touchableView, { borderColor: isEditable ? colors.highlights: colors.darkBaseTransparent }]}
+          style={[
+            styles.touchableView,
+            {
+              borderColor: isEditable
+                ? colors.highlights
+                : colors.darkBaseTransparent,
+            },
+          ]}
         >
           <Image
             source={{
@@ -44,28 +52,41 @@ export default function PlayerCard({
             }}
             style={styles.touchableImg}
           />
-        </TouchableHighlight>
-        <TouchableHighlight
+        </Pressable>
+        <Pressable
           onPress={() => {
             /* @ts-ignore */
-            navigate("ProfilePlayerTitle");
+            if (isEditable) navigate("ProfilePlayerTitle");
           }}
-          style={[styles.touchableView2, { borderColor: isEditable ? colors.highlights: colors.darkBaseTransparent }]}
+          style={[
+            styles.touchableView2,
+            {
+              borderColor: isEditable
+                ? colors.highlights
+                : colors.darkBaseTransparent,
+            },
+          ]}
         >
           <Text style={styles.touchableText}>{playerTitle}</Text>
-        </TouchableHighlight>
+        </Pressable>
       </View>
 
-      {/* SUGERENCIA: Yo haría un Pressable en vez de TouchableHighlight, aunque es algo más de trabajo... */}
-      <TouchableHighlight
+      <Pressable
         onPress={() => {
           /* @ts-ignore */
-          navigate("ProfilePlayerCard");
+          if (isEditable) navigate("ProfilePlayerCard");
         }}
-        style={[styles.touchableView3, { borderColor: isEditable ? colors.highlights: colors.darkBaseTransparent }]}
+        style={[
+          styles.touchableView3,
+          {
+            borderColor: isEditable
+              ? colors.highlights
+              : colors.darkBaseTransparent,
+          },
+        ]}
       >
         <Image source={{ uri: playerCard }} style={styles.touchableImg2} />
-      </TouchableHighlight>
+      </Pressable>
     </View>
   );
 }
