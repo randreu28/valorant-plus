@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Error from "../../components/Error";
 import Grid from "../../components/Grid";
 import Loading from "../../components/Loading";
@@ -19,22 +19,11 @@ export default function RankScreen() {
     return <Error />;
   }
 
-  return (
-    <View>
-      <FlatList
-        data={ranks[4].tiers}
-        renderItem={({ item }) => (
-          <Text style={{ color: "white", fontSize: 30 }}>{item.tierName}</Text>
-        )}
-      />
-    </View>
-  );
-
-  /*  if (state.getView("playerRank") === "grid") {
+  if (state.getView("playerRank") === "grid") {
     return (
       <View style={styles.gridWrapper}>
         <Grid
-          items={ranks[3]}
+          items={ranks[4]}
           context="playerRank"
           title="RANKS"
           imageType="center"
@@ -45,10 +34,10 @@ export default function RankScreen() {
     return (
       <View style={styles.sliderWrapper}>
         <Title subtitle="PROFILE">RANKS</Title>
-        <Slider items={ranks[3]} mode="weapons" />
+        <Slider items={ranks[4]} mode="agents" />
       </View>
     );
-  } */
+  }
 }
 
 const styles = StyleSheet.create({
