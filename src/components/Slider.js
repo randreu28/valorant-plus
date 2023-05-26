@@ -21,6 +21,7 @@ import GestureRecognizer from 'react-native-swipe-gestures';
 import { useNavigation } from "@react-navigation/native";
 import { state } from "../state";
 import { observer } from "mobx-react-lite";
+import Title from "./Title";
 
 /**
 *
@@ -155,6 +156,7 @@ const Slider = ({ items, mode = "agents" }) => {
         onSwipeLeft={() => { mode !== 'intro' ? viewItem(1) : currentItem < items.length - 1 ? viewItem(1) : null }}
         onSwipeRight={() => { mode !== 'intro' ? viewItem(-1) : null }}
       >
+        <Title>VALORANT+</Title>
 
         {showButtons ? (
           <>
@@ -356,7 +358,7 @@ const styles = StyleSheet.create({
   },
   bulletsWrapper: {
     position: "absolute",
-    bottom: 40,
+    bottom: 10,
     left: 0,
     width: "100%",
     height: 50,

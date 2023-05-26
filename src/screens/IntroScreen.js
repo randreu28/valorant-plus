@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { getIntroSlides } from '../api'
 import Loading from '../components/Loading'
 import Slider from '../components/Slider'
+import Title from '../components/Title'
 
 const IntroScreen = () => {
     const [introSlides, setIntroSlides] = useState(false);
