@@ -156,8 +156,11 @@ const Slider = ({ items, mode = "agents" }) => {
         onSwipeLeft={() => { mode !== 'intro' ? viewItem(1) : currentItem < items.length - 1 ? viewItem(1) : null }}
         onSwipeRight={() => { mode !== 'intro' ? viewItem(-1) : null }}
       >
-        <Title>VALORANT+</Title>
-
+        {mode === 'intro' && 
+          <div style={styles.appTitleWrapper}>
+            <Title>VALORANT+</Title>
+          </div>
+        }
         {showButtons ? (
           <>
             <Pressable
@@ -264,6 +267,9 @@ const styles = StyleSheet.create({
   },
   containerIntro: {
     backgroundColor: colors.highlights,
+  },
+  appTitleWrapper: {
+    marginTop: 20,
   },
   swipeButton: {
     position: "absolute",
