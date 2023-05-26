@@ -49,7 +49,19 @@ const App = () => {
         }}
       >
         <Stack.Navigator initialRouteName={!isIntroDone ? "Intro" : "Main"} screenOptions={{headerShown: false}} >
-          <Stack.Screen name="Intro" component={IntroScreen} />
+          <Stack.Screen name="Intro" component={IntroScreen} 
+            theme={{
+              dark: true,
+              colors: {
+                primary: colors.highlights,
+                background: colors.highlights,
+                card: colors.highlights,
+                text: colors.highlights,
+                border: colors.highlights,
+                notification: colors.highlights,
+              },
+            }}
+          />
           <Stack.Screen name="Main" component={MainStackScreen} />
         </Stack.Navigator>
       </NavigationContainer>

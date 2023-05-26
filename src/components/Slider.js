@@ -269,8 +269,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.highlights,
   },
   appTitleWrapper: {
-    marginTop: 60,
-    marginBottom: 20,
+    marginTop: 50,
+    marginBottom: 10,
   },
   swipeButton: {
     position: "absolute",
