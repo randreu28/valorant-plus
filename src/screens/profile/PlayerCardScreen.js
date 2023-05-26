@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, View } from "react-native";
+import Title from "../../components/Title";
 import { colors } from "../../lib/colors";
 
 export default function PlayerCardScreen() {
@@ -11,18 +12,11 @@ export default function PlayerCardScreen() {
           height: "100%",
           padding: 20,
           backgroundColor: colors.base,
+          gap: 20,
         }}
       >
-        <Text
-          style={{
-            color: "white",
-            textAlign: "center",
-            fontSize: 50,
-            marginVertical: 10,
-          }}
-        >
-          Bird card
-        </Text>
+        <Title subtitle="PROFILE">BIRD CARD</Title>
+
         <Image
           source={{
             uri: "https://media.valorant-api.com/playercards/fc209787-414b-10d0-dcac-04832fc2c654/largeart.png",
