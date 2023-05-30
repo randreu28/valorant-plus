@@ -60,7 +60,7 @@ const Grid = ({
         horizontal={horizontalScroll}
         numColumns={!horizontalScroll ? columns : 1}
         data={items}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <View
             style={
               horizontalScroll
@@ -74,9 +74,9 @@ const Grid = ({
               item={item}
               id={item.uuid}
               title={item.displayName}
-              imageUrl={ listViewIcon ? item.listViewIcon : item.displayIcon}
+              imageUrl={ listViewIcon || ((context === 'daily' || context === 'favorites') && index === 2) ? item.listViewIcon : item.displayIcon}
               imageBg={imageBg}
-              imageType={imageType}
+              imageType={(context === "daily" || context === 'favorites' ) && index !== 0 && index !== 2 ? 'center' : imageType}
               size={size}
               button={button}
               buttonType={buttonType}

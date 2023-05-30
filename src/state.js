@@ -18,8 +18,9 @@ class State {
     const introData = await AsyncStorage.getItem("isIntroDone");
     const viewData = await AsyncStorage.getItem("view");
     const favoritesData = await AsyncStorage.getItem("favorites");
+    const dailyItems = await AsyncStorage.getItem("dailyItems");
     const isProfileEditableData = false;
-    
+
     if (introData !== null) {
       this.isIntroDone = JSON.parse(introData);
     }
@@ -29,6 +30,10 @@ class State {
     if (favoritesData !== null) {
       this.favorites = JSON.parse(favoritesData);
     }
+    if (dailyItems !== null) {
+      this.dailyItems = JSON.parse(dailyItems);
+    }
+
     this.profileEditable = JSON.parse(isProfileEditableData);
     AsyncStorage.setItem("profileEditable", JSON.stringify(this.profileEditable));
   }
@@ -63,6 +68,19 @@ class State {
 
   isFavorite(context, uuid) {
     return this.favorites[context] === uuid;
+  }
+
+  getFavorite(context) {
+    return this.favorites[context];
+  }
+
+  setDaily(dailyItems, timestamp) {
+    this.dailyItems = dailyItems.map(item => item.uuid);
+    AsyncStorage.setItem("dailyItems", JSON.stringify({ "timestamp": timestamp, "ids": this.dailyItems }));
+  }
+
+  getDaily() {
+    return this.dailyItems;
   }
 
   toggleEditable() {

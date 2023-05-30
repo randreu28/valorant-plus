@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
-import { getAgents } from "../../api";
+import { getFavorites } from "../../api";
+import { getDaily } from "../../api";
 import Grid from "../../components/Grid";
 import Title from "../../components/Title";
 import { ScrollView } from "react-native";
+import { observer } from "mobx-react-lite";
+import { state } from "../../state";
 
-export default function HomeMainScreen() {
-  const [agents, setAgents] = useState(null);
+const HomeMainScreen = () =>{
+  const [favorites, setFavorites] = useState(null);
+  const [daily, setDaily] = useState(null);
 
   useEffect(() => {
-    getAgents()
-      .then(setAgents)
+    getFavorites()
+      .then(setFavorites)
+      .catch((error) => console.error(error));
+  }, [state.getFavorite('agents'), state.getFavorite('maps'), state.getFavorite('weapons')]);
+
+  useEffect(() => {
+    getDaily()
+      .then(setDaily)
       .catch((error) => console.error(error));
   }, []);
 
@@ -20,10 +30,12 @@ export default function HomeMainScreen() {
         <View>
           <Title isHeader>FAVORITES</Title>
         </View>
-        <Grid items={agents} horizontalScroll context="agents" />
+        <Grid items={favorites} horizontalScroll context="favorites" />
         <Title isHeader>DAILY</Title>
-        <Grid items={agents} horizontalScroll context="agents" />
+        <Grid items={daily} horizontalScroll context="daily" />
       </View>
     </ScrollView>
   );
 }
+
+export default observer(HomeMainScreen);
