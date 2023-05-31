@@ -25,9 +25,9 @@ export default function AgentsDetailScreen() {
           agent={item.fullPortrait}
           soundUrl={item.voiceLine.mediaList[0]?.wave}
         />
-        <View style={styles.abilitiesWrapper}>
-          Abilities 
-        </View>
+       
+       <h2 style={styles.abilitiesWrapper}>Abilities</h2>
+       
 
         {/* ability component */}
         <View style={styles.abilityWrapper}>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   abilitiesWrapper: {
-    color: colors.highlights,
+    color: "#FF4654",
     textAlign: 'left',
     fontSize: 40,
     fontFamily: "tungsten",
