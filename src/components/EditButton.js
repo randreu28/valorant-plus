@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
-import { Text, TouchableHighlight, View } from "react-native";
+import { Text, TouchableHighlight, View, StyleSheet } from "react-native";
 import { colors } from "../lib/colors";
 import { state } from "../state";
 import { observer } from "mobx-react-lite";
@@ -21,13 +21,7 @@ function EditButton() {
       }}
     >
       <View
-        style={{
-          flex: 1,
-          flexDirection: "row",
-          gap: 10,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+        style={styles.align}
       >
         <MaterialCommunityIcons
           name="pencil"
@@ -46,5 +40,23 @@ function EditButton() {
     </TouchableHighlight>
   );
 }
+
+const styles = StyleSheet.create({
+  /* border: {
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderColor: colors.highlights,
+    borderWidth: 2,
+    backgroundColor: isEditing ? colors.highlights : colors.base,
+  }, */
+  align: {
+    flex: 1,
+    flexDirection: "row",
+    gap: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default observer(EditButton);

@@ -1,6 +1,6 @@
 import { useRoute } from "@react-navigation/native";
 import React from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View, StyleSheet } from "react-native";
 import Slider from "../../components/Slider";
 import Title from "../../components/Title";
 import ManequinInfo from "../../components/ManequinInfo";
@@ -23,17 +23,7 @@ export default function WeaponsDetailsScreen() {
 
       {params.item.weaponStats && (
         <>
-          <Text
-            style={{
-              color: colors.highlights,
-              textAlign: "center",
-              fontSize: 25,
-              fontFamily: "tungsten",
-              marginVertical: 10,
-            }}
-          >
-            Statistics
-          </Text>
+          <Text style={styles.text}>Statistics</Text>
           <View
             style={{
               flex: 1,
@@ -61,3 +51,13 @@ export default function WeaponsDetailsScreen() {
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  text: {
+    color: colors.highlights,
+    textAlign: "center",
+    fontSize: 25,
+    fontFamily: "tungsten",
+    marginVertical: 10,
+  },
+});

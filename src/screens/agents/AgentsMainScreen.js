@@ -36,6 +36,7 @@ const AgentsMainScreen = ({ navigation }) => {
         </View>
         : <View style={styles.sliderWrapper}>
           <Title isHeader>AGENTS</Title>
+          
           <Slider items={agents} mode="agents" />
         </View>}
     </>

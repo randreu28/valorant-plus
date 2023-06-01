@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import Mannequin from "./icons/Mannequin";
 
 /**
@@ -21,25 +21,10 @@ export default function ManequinInfo({
   return (
     <>
       <View>
-        <Text
-          style={{
-            color: "white",
-            fontFamily: "tungsten",
-            fontSize: 20,
-            textAlign: "center",
-          }}
-        >
+        <Text style={styles.text}>
           {rangeStartMeters} - {rangeEndMeters}M
         </Text>
-        <View
-          style={{
-            flexDirection: "row",
-            flex: 1,
-            justifyContent: "center",
-            paddingRight: "auto",
-            paddingTop: 20,
-          }}
-        >
+        <View style={styles.view}>
           <Mannequin
             head={computeColor(headDamage)}
             body={computeColor(bodyDamage)}
@@ -78,6 +63,21 @@ export default function ManequinInfo({
     </>
   );
 }
+const styles = StyleSheet.create({
+  text: {
+    color: "white",
+    fontFamily: "tungsten",
+    fontSize: 20,
+    textAlign: "center",
+  },
+  view: {
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "center",
+    paddingRight: "auto",
+    paddingTop: 20,
+  },
+});
 
 /**
  * @param value: number
