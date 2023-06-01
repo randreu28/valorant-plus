@@ -17,7 +17,7 @@ export default function Title({ children, subtitle, isHeader = false }) {
 
   // FIXME: Usar un StyleSheet en estos estilos!
   return (
-    <View style={{ marginTop: 20 }}>
+    <View style={{/*  marginTop: 20  */}}>
       {subtitle && (
         <Text
           style={{
@@ -53,11 +53,11 @@ const fontSize = 50;
 
 function Header({ children }) {
   return (
-    <View style={{ width: "100%", marginBottom: 30 }}>
+    <View style={{ width: "100%", /* marginBottom: 30 */ }}>
       <Text
         style={{
           color: colors.darkBase,
-          marginTop: 20,
+          /* marginTop: 20, */
           width: "100%",
           fontFamily: "tungsten",
           textAlign: "center",
@@ -70,16 +70,6 @@ function Header({ children }) {
             width: 0,
           },
           textShadowRadius: 5,
-
-          /* position: "absolute",
-          width: "100%",
-          fontFamily: "tungsten",
-          color: "white",
-          marginTop: 20,
-          textAlign: "center",
-          opacity: 0.2,
-          fontSize: fontSize * 1.5,
-          transform: [{ translateY: -(fontSize * 1.5) / 5 }], */
         }}
       >
         {children}
@@ -89,7 +79,7 @@ function Header({ children }) {
         style={{
           fontFamily: "tungsten",
           color: colors.highlights,
-          marginTop: 20,
+          /* marginTop: 20, */
           textAlign: "center",
           fontSize: fontSize,
           zIndex: 1,
