@@ -30,14 +30,10 @@ const HomeMainScreen = () => {
 
   return (
     <ScrollView>
-      <View style={{ height: "100%", marginLeft: 15}}>
-      <View style={{ marginTop:25, marginBottom:20 }}>
-          <Title isHeader>FAVORITES</Title>
-        </View>
+      <View style={{ height: "100%", marginLeft: 15 }}>
+        <Title isHeader>FAVORITES</Title>
         <Grid items={favorites} horizontalScroll context="favorites" />
-        <View style={{ marginTop:25, marginBottom:20 }}>
-          <Title isHeader>DAILY</Title>
-        </View>
+        <Title isHeader>DAILY</Title>
         <Grid items={daily} horizontalScroll context="daily" />
       </View>
     </ScrollView>

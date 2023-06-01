@@ -35,7 +35,7 @@ const WeaponsMainScreen = () => {
   } else {
     return (
       <View style={styles.sliderWrapper}>
-        <Title isHeader>WEAPONS</Title>
+          <Title isHeader>WEAPONS</Title>
         <Slider items={weapons} mode="weapons" />
       </View>
     );
