@@ -8,7 +8,7 @@ import { ScrollView } from "react-native";
 import { observer } from "mobx-react-lite";
 import { state } from "../../state";
 
-const HomeMainScreen = () =>{
+const HomeMainScreen = () => {
   const [favorites, setFavorites] = useState(null);
   const [daily, setDaily] = useState(null);
 
@@ -16,7 +16,11 @@ const HomeMainScreen = () =>{
     getFavorites()
       .then(setFavorites)
       .catch((error) => console.error(error));
-  }, [state.getFavorite('agents'), state.getFavorite('maps'), state.getFavorite('weapons')]);
+  }, [
+    state.getFavorite("agents"),
+    state.getFavorite("maps"),
+    state.getFavorite("weapons"),
+  ]);
 
   useEffect(() => {
     getDaily()
@@ -26,16 +30,18 @@ const HomeMainScreen = () =>{
 
   return (
     <ScrollView>
-      <View style={{ height: "100%" }}>
-        <View>
+      <View style={{ height: "100%", marginLeft: 15}}>
+      <View style={{ marginTop:25, marginBottom:20 }}>
           <Title isHeader>FAVORITES</Title>
         </View>
         <Grid items={favorites} horizontalScroll context="favorites" />
-        <Title isHeader>DAILY</Title>
+        <View style={{ marginTop:25, marginBottom:20 }}>
+          <Title isHeader>DAILY</Title>
+        </View>
         <Grid items={daily} horizontalScroll context="daily" />
       </View>
     </ScrollView>
   );
-}
+};
 
 export default observer(HomeMainScreen);
