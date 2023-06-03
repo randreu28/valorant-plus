@@ -1,10 +1,9 @@
-import { View, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
+import { View, ActivityIndicator, ScrollView, StyleSheet,Text } from "react-native";
 import React from "react";
 import Title from "../../components/Title";
 import Ability from "../../components/Ability";
 import AgentDetail from "../../components/AgentDetail";
 import { useRoute } from '@react-navigation/native';
-import { colors } from "../../lib/colors";
 
 export default function AgentsDetailScreen() {
 
@@ -26,8 +25,8 @@ export default function AgentsDetailScreen() {
           soundUrl={item.voiceLine.mediaList[0]?.wave}
         />
        
-       <h2 style={styles.abilitiesWrapper}>Abilities</h2>
-       
+       <Text style={styles.abilitiesWrapper}>Abilities</Text>
+
 
         {/* ability component */}
         <View style={styles.abilityWrapper}>
