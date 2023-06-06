@@ -30,7 +30,9 @@ const AgentsMainScreen = () => {
         <View style={styles.sliderWrapper}>
           <Title isHeader>AGENTS</Title>
 
-          <Slider items={agents} mode="agents" />
+          <View style={styles.internalSliderWrapper}>
+            <Slider items={agents} mode="agents" />
+          </View>
         </View>
       )}
     </>
@@ -47,13 +49,18 @@ const styles = StyleSheet.create({
   sliderWrapper: {
     height: "100%",
   },
+  internalSliderWrapper: {
+    height: "100%",
+    width: "100%",
+    flex: 1,
+    transform: [{ translateY: -50 }],
+  },
   titleWrapper: {
     position: "absolute",
     top: 0,
     left: 0,
     width: "100%",
     zIndex: 99999,
-    paddingBottom: 20,
   },
 });
 
