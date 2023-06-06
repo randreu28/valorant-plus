@@ -31,27 +31,9 @@ export default function ManequinInfo({
             legs={computeColor(legDamage)}
           />
           <View style={styles.wrapper}>
-            <Text
-              style={{
-                color: computeColor(headDamage),
-                ...styles.fontFamily,
-              }}
-            >
-              {headDamage.toFixed(0)}
-            </Text>
-            <Text
-              style={{
-                color: computeColor(bodyDamage),
-                ...styles.fontFamily,
-              }}
-            >
-              {bodyDamage.toFixed(0)}
-            </Text>
-            <Text
-              style={{ ...styles.fontFamily, color: computeColor(legDamage) }}
-            >
-              {legDamage.toFixed(0)}
-            </Text>
+            <Text style={styles.numbers}>{headDamage.toFixed(0)}</Text>
+            <Text style={styles.numbers}>{bodyDamage.toFixed(0)}</Text>
+            <Text style={styles.numbers}>{legDamage.toFixed(0)}</Text>
           </View>
         </View>
       </View>
@@ -63,8 +45,9 @@ const styles = StyleSheet.create({
     gap: 30,
     marginVertical: 20,
   },
-  fontFamily: {
+  numbers: {
     fontFamily: "tungsten",
+    color: "white",
   },
   text: {
     color: "white",
@@ -86,16 +69,5 @@ const styles = StyleSheet.create({
  * @param value: number
  **/
 function computeColor(value) {
-  let color;
-  if (value === 0) {
-    color = "#ffffff";
-  } else if (value >= 1 && value < 85) {
-    color = "#c1f7e9";
-  } else if (value >= 85 && value < 170) {
-    color = "#80ffde";
-  } else {
-    color = "#00ffbc";
-  }
-
-  return color;
+  return `rgba(0, 255, 188, ${(value / 255) * 1.5})`;
 }
