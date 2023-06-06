@@ -34,15 +34,20 @@ const WeaponsMainScreen = () => {
     );
   } else {
     return (
-      <View style={styles.sliderWrapper}>
-          <Title isHeader>WEAPONS</Title>
-        <Slider items={weapons} mode="weapons" />
+      <View style={styles.notGirdWrapper}>
+        <Title isHeader>WEAPONS</Title>
+        <View style={styles.sliderWrapper}>
+          <Slider items={weapons} mode="weapons" />
+        </View>
       </View>
     );
   }
 };
 
 const styles = StyleSheet.create({
+  notGirdWrapper: {
+    height: "100%",
+  },
   gridWrapper: {
     flex: 1,
     gap: 10,
@@ -51,6 +56,9 @@ const styles = StyleSheet.create({
   },
   sliderWrapper: {
     height: "100%",
+    width: "100%",
+    flex: 1,
+    transform: [{ translateY: -20 }],
   },
   titleWrapper: {
     position: "absolute",
