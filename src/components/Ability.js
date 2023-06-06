@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-start",
     width: "90%",
+    marginVertical: 10,
   },
   abilityViewRow: {
     flex: 1,
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     color: colors.highlights,
     fontFamily: "tungsten",
     textAlign: "left",
-    marginBottom: 3
+    marginBottom: 3,
   },
   abilityDescription: {
     fontSize: 14,

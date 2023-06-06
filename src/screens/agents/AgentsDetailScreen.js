@@ -54,6 +54,8 @@ const styles = StyleSheet.create({
   abilitiesWrapper: {
     color: "#FF4654",
     textAlign: "left",
+    width: "100%",
+    paddingHorizontal: 30,
     fontSize: 40,
     fontFamily: "tungsten",
   },
