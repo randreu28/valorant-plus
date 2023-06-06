@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   errortext: {
-    color: "red",
+    fontSize: 35,
+    fontFamily: "valorant",
+    color: colors.highlights,
   },
 });
