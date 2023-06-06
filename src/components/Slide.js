@@ -3,8 +3,12 @@ import React from 'react'
 
 const Slide = ({ item, mode }) => {
     return (
-        <ImageBackground source={{ uri: item.background, }} resizeMode={mode === 'intro' ? 'contain' : 'cover'} style={[styles.backgroundImage, mode === 'intro' ? styles.backgroundImageIntro : null ]} imageStyle={[styles.backgroundImageStyle, mode === 'intro' ? styles.backgroundImageStyleIntro : null]} >
-            <Image style={[ styles.image, mode === 'intro' ? styles.imageIntro : null ]} source={{ uri: item.displayIcon, }} />
+        <ImageBackground source={{ uri: item.background, }}
+            resizeMode={mode === 'intro' ? 'contain' : 'cover'}
+            style={[styles.backgroundImage, mode === 'intro' ? styles.backgroundImageIntro : null]}
+            imageStyle={[styles.backgroundImageStyle, mode === 'intro' ? styles.backgroundImageStyleIntro : null]}
+        >
+            <Image style={[styles.image, mode === 'intro' ? styles.imageIntro : null]} source={{ uri: item.displayIcon, }} />
         </ImageBackground>
     )
 }

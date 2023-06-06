@@ -4,7 +4,7 @@ import { getFavorites } from "../../api";
 import { getDaily } from "../../api";
 import Grid from "../../components/Grid";
 import Title from "../../components/Title";
-import { ScrollView } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { observer } from "mobx-react-lite";
 import { state } from "../../state";
 
@@ -30,7 +30,7 @@ const HomeMainScreen = () => {
 
   return (
     <ScrollView>
-      <View style={{ height: "100%", marginLeft: 15 }}>
+      <View style={styles.screenWrapper}>
         <Title isHeader>FAVORITES</Title>
         <Grid items={favorites} horizontalScroll context="favorites" />
         <Title isHeader>DAILY</Title>
@@ -39,5 +39,12 @@ const HomeMainScreen = () => {
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  screenWrapper: {
+    height: "100%",
+    marginLeft: 15,
+  },
+});
 
 export default observer(HomeMainScreen);

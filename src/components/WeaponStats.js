@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 /**
  * @param {{
  * reloadTime: number,
@@ -11,11 +11,7 @@ import { View, Text } from "react-native";
 export default function WeaponStats({ reloadTime, fireRate, magCapacity }) {
   return (
     <View
-      style={{
-        flexDirection: "row",
-        justifyContent: "space-between",
-        paddingHorizontal: 20,
-      }}
+      style={styles.weaponWrapper}
     >
       <View>
         <WeaponInfo isLeft>Reload time</WeaponInfo>
@@ -41,10 +37,8 @@ export default function WeaponStats({ reloadTime, fireRate, magCapacity }) {
     return (
       <Text
         style={{
-          color: "white",
-          fontSize: 15,
+          ...styles.infoWrapper,
           textAlign: isLeft ? "left" : "right",
-          paddingVertical: 10,
         }}
       >
         {children}
@@ -52,3 +46,17 @@ export default function WeaponStats({ reloadTime, fireRate, magCapacity }) {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  weaponWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+  },
+  infoWrapper: {
+    color: "white",
+    fontSize: 15,
+    paddingVertical: 10,
+  }
+});
+

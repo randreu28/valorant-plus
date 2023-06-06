@@ -1,37 +1,23 @@
 import React, { useState } from "react";
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import {} from "react-native-web";
+import Loading from "../../components/Loading";
 import PlayerTitle from "../../components/PlayerTitle";
 import SearchBar from "../../components/SearchBar";
 import Title from "../../components/Title";
-import { colors } from "../../lib/colors";
 import { useValorantApi } from "../../lib/hooks";
+import Error from "../../components/Error";
 
 export default function PlayerTitleScreen() {
   const [text, onChangeText] = useState("");
   const { data, error, isLoading } = useValorantApi("/playertitles");
 
   if (isLoading) {
-    return (
-      <View>
-        <ActivityIndicator color={colors.neutral} size="large" />
-      </View>
-    );
+    return <Loading />;
   }
 
   if (error) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          gap: 10,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ color: "white" }}>{error}</Text>
-      </View>
-    );
+    return <Error />;
   }
 
   return (

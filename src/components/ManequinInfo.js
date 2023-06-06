@@ -31,15 +31,12 @@ export default function ManequinInfo({
             legs={computeColor(legDamage)}
           />
           <View
-            style={{
-              gap: 30,
-              marginVertical: 20,
-            }}
+            style={styles.wrapper}
           >
             <Text
               style={{
                 color: computeColor(headDamage),
-                fontFamily: "tungsten",
+                ...styles.fontFamily,
               }}
             >
               {headDamage.toFixed(0)}
@@ -47,13 +44,13 @@ export default function ManequinInfo({
             <Text
               style={{
                 color: computeColor(bodyDamage),
-                fontFamily: "tungsten",
+                ...styles.fontFamily,
               }}
             >
               {bodyDamage.toFixed(0)}
             </Text>
             <Text
-              style={{ color: computeColor(legDamage), fontFamily: "tungsten" }}
+              style={{ ...styles.fontFamily, color: computeColor(legDamage), }}
             >
               {legDamage.toFixed(0)}
             </Text>
@@ -64,6 +61,13 @@ export default function ManequinInfo({
   );
 }
 const styles = StyleSheet.create({
+  wrapper: {
+    gap: 30,
+    marginVertical: 20,
+  },
+  fontFamily: {
+    fontFamily: "tungsten"
+  },
   text: {
     color: "white",
     fontFamily: "tungsten",

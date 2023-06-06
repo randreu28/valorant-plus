@@ -1,23 +1,11 @@
-import { View, Text, StyleSheet } from "react-native";
 import React from "react";
+import { ActivityIndicator, View } from "react-native";
 import { colors } from "../lib/colors";
 
-export default function Loading({}) {
+export default function Loading() {
   return (
-    <View style={styles.loading}>
-      <Text style={styles.loadingtext}>Loading...</Text>
+    <View>
+      <ActivityIndicator color={colors.highlights} size="large" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  loading: {
-    flex: 1,
-    gap: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  loadingtext: {
-    color: "white",
-  },
-});

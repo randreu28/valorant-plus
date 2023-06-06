@@ -1,11 +1,11 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
-import { Pressable, Text, View, StyleSheet } from "react-native";
-import { colors } from "../lib/colors";
 import { observer } from "mobx-react-lite";
+import React from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { colors } from "../lib/colors";
 import { state } from "../state";
 
-const GridButton = ({context}) => {
+const GridButton = ({ context }) => {
 
   return (
     <Pressable
@@ -13,13 +13,7 @@ const GridButton = ({context}) => {
       style={[styles.gridButton, state.getView(context) === 'grid' ? styles.GridButtonActive : null]}
     >
       <View
-        style={{
-          flex: 1,
-          flexDirection: "row",
-          gap: 10,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+        style={styles.gridView}
       >
         <MaterialCommunityIcons
           name="dots-grid"
@@ -37,6 +31,13 @@ const GridButton = ({context}) => {
 };
 
 const styles = StyleSheet.create({
+  gridView: {
+    flex: 1,
+    flexDirection: "row",
+    gap: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   gridButton:
   {
     borderRadius: 20,

@@ -12,11 +12,7 @@ function EditButton() {
     <TouchableHighlight
       onPress={() => state.toggleEditable()}
       style={{
-        borderRadius: 20,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        borderColor: colors.highlights,
-        borderWidth: 2,
+        ...styles.border,
         backgroundColor: isEditing ? colors.highlights : colors.base,
       }}
     >
@@ -30,8 +26,8 @@ function EditButton() {
         />
         <Text
           style={{
+            ...styles.text,
             color: isEditing ? colors.darkBase : colors.highlights,
-            textAlign: "center",
           }}
         >
           Edit
@@ -42,14 +38,16 @@ function EditButton() {
 }
 
 const styles = StyleSheet.create({
-  /* border: {
+  text: {
+    textAlign: "center"
+  },
+  border: {
     borderRadius: 20,
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderColor: colors.highlights,
     borderWidth: 2,
-    backgroundColor: isEditing ? colors.highlights : colors.base,
-  }, */
+  },
   align: {
     flex: 1,
     flexDirection: "row",

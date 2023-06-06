@@ -17,21 +17,14 @@ export default function WeaponsDetailsScreen() {
     <ScrollView>
       <Title subtitle="WEAPONS">{params.item.displayName}</Title>
 
-      <View style={{ height: 300 }}>
+      <View style={styles.slidderWraper}>
         <Slider items={params.item.skins} mode="skins" />
       </View>
 
       {params.item.weaponStats && (
         <>
           <Text style={styles.text}>Statistics</Text>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "column",
-              gap: 50,
-              justifyContent: "center",
-            }}
-          >
+          <View style={styles.mannequinWraper}>
             {params.item.weaponStats.damageRanges.map((damageRange, key) => {
               return (
                 <ManequinInfo
@@ -53,6 +46,15 @@ export default function WeaponsDetailsScreen() {
 }
 
 const styles = StyleSheet.create({
+  slidderWraper: {
+    height: 300,
+  },
+  mannequinWraper: {
+    flex: 1,
+    flexDirection: "column",
+    gap: 50,
+    justifyContent: "center",
+  },
   text: {
     color: colors.highlights,
     textAlign: "center",

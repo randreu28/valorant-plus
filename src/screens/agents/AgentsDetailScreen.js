@@ -1,18 +1,17 @@
-import { View, ActivityIndicator, ScrollView, StyleSheet,Text } from "react-native";
+import { useRoute } from "@react-navigation/native";
 import React from "react";
-import Title from "../../components/Title";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Ability from "../../components/Ability";
 import AgentDetail from "../../components/AgentDetail";
-import { useRoute } from '@react-navigation/native';
+import Title from "../../components/Title";
 
 export default function AgentsDetailScreen() {
-
   const route = useRoute();
   const { item } = route.params;
 
   return (
     <ScrollView>
-      <View style={{ justifyContent: "center", flex: 1, alignItems: "center" }}>
+      <View style={styles.screenWrapper}>
         <Title subtitle="AGENTS">{item.displayName}</Title>
         {/* agent details component */}
         <AgentDetail
@@ -24,9 +23,8 @@ export default function AgentsDetailScreen() {
           agent={item.fullPortrait}
           soundUrl={item.voiceLine.mediaList[0]?.wave}
         />
-       
-       <Text style={styles.abilitiesWrapper}>Abilities</Text>
 
+        <Text style={styles.abilitiesWrapper}>Abilities</Text>
 
         {/* ability component */}
         <View style={styles.abilityWrapper}>
@@ -45,13 +43,18 @@ export default function AgentsDetailScreen() {
 }
 
 const styles = StyleSheet.create({
+  screenWrapper: {
+    justifyContent: "center",
+    flex: 1,
+    alignItems: "center",
+  },
   abilityWrapper: {
     flex: 1,
   },
   abilitiesWrapper: {
     color: "#FF4654",
-    textAlign: 'left',
+    textAlign: "left",
     fontSize: 40,
     fontFamily: "tungsten",
-  }
+  },
 });

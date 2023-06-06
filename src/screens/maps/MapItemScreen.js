@@ -9,11 +9,11 @@ export default function MapItemScreen() {
   const { item } = route.params;
 
   return (
-    <View style={{ position: "relative", flex: 1 }}>
+    <View style={styles.screenWraper}>
       <Image
         source={{
           // @ts-ignore
-          uri: item.splash, 
+          uri: item.splash,
         }}
         style={styles.splashImg}
       />
@@ -35,6 +35,10 @@ export default function MapItemScreen() {
 }
 
 const styles = StyleSheet.create({
+  screenWraper: {
+    position: "relative",
+    flex: 1,
+  },
   splashImg: { flex: 1, height: "100%", opacity: 0.5 },
   mapsGeneralView: {
     position: "absolute",

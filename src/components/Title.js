@@ -2,7 +2,6 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { colors } from "../lib/colors";
 
-// GENIAL: El uso de tipos para "developer experience"!
 /**
  *
  *@param {{
@@ -12,12 +11,12 @@ import { colors } from "../lib/colors";
  * }} Props
  */
 export default function Title({ children, subtitle, isHeader = false }) {
-  // SUGERENCIA: Usar llaves aquí, si no el 'if' pasa desapercibido a la vista.
-  if (isHeader) return <Header>{children}</Header>;
+  if (isHeader) {
+    return <Header>{children}</Header>;
+  }
 
-  // FIXME: Usar un StyleSheet en estos estilos!
   return (
-    <View style={{ marginTop: 25, marginBottom: 20 }}>
+    <View style={styles.titleWrapper}>
       {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
 
       <Text
@@ -25,10 +24,7 @@ export default function Title({ children, subtitle, isHeader = false }) {
           fontFamily: !subtitle && !isHeader ? "valorant" : "tungsten",
           color:
             subtitle || (!subtitle && !isHeader) ? "white" : colors.highlights,
-
-          textAlign: "center",
-          fontSize: 50,
-          textTransform: "uppercase",
+          ...styles.baseText,
         }}
       >
         {children}
@@ -37,28 +33,32 @@ export default function Title({ children, subtitle, isHeader = false }) {
   );
 }
 
-const fontSize = 50;
 
 function Header({ children }) {
   return (
-    <View style={{ width: "100%" }}>
-      <Text
-        style={styles.header_back}
-      >
-        {children}
-      </Text>
+    <View style={styles.headerWrapper}>
+      <Text style={styles.header_back}>{children}</Text>
 
-      <Text
-        style={styles.header_top}
-      >
-        {children}
-      </Text>
+      <Text style={styles.header_top}>{children}</Text>
     </View>
   );
 }
 
+const fontSize = 50;
 
 const styles = StyleSheet.create({
+  titleWrapper: {
+    marginTop: 25,
+    marginBottom: 20,
+  },
+  headerWrapper: {
+    width: "100%",
+  },
+  baseText: {
+    textAlign: "center",
+    fontSize: 50,
+    textTransform: "uppercase",
+  },
   subtitle: {
     color: colors.highlights,
     textAlign: "center",
