@@ -30,9 +30,7 @@ export default function ManequinInfo({
             body={computeColor(bodyDamage)}
             legs={computeColor(legDamage)}
           />
-          <View
-            style={styles.wrapper}
-          >
+          <View style={styles.wrapper}>
             <Text
               style={{
                 color: computeColor(headDamage),
@@ -50,7 +48,7 @@ export default function ManequinInfo({
               {bodyDamage.toFixed(0)}
             </Text>
             <Text
-              style={{ ...styles.fontFamily, color: computeColor(legDamage), }}
+              style={{ ...styles.fontFamily, color: computeColor(legDamage) }}
             >
               {legDamage.toFixed(0)}
             </Text>
@@ -66,7 +64,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   fontFamily: {
-    fontFamily: "tungsten"
+    fontFamily: "tungsten",
   },
   text: {
     color: "white",
@@ -80,6 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingRight: "auto",
     paddingTop: 20,
+    gap: 10,
   },
 });
 

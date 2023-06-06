@@ -14,7 +14,7 @@ export default function Mannequin({ head, body, legs }) {
     <Svg
       viewBox="0 0 314.62 915.08"
       fill="none"
-      style={{ width: 150, height: 150 }}
+      style={{ width: 75, height: 150 }}
     >
       <Defs></Defs>
       <G id="Capa_2" data-name="Capa 2">

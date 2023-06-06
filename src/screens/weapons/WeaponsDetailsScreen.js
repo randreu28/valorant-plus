@@ -13,6 +13,8 @@ export default function WeaponsDetailsScreen() {
    */
   const { params } = useRoute();
 
+  const weaponStats = params.item.weaponStats;
+
   return (
     <ScrollView>
       <Title subtitle="WEAPONS">{params.item.displayName}</Title>
@@ -21,23 +23,42 @@ export default function WeaponsDetailsScreen() {
         <Slider items={params.item.skins} mode="skins" />
       </View>
 
-      {params.item.weaponStats && (
+      {weaponStats && (
         <>
           <Text style={styles.text}>Statistics</Text>
           <View style={styles.mannequinWraper}>
-            {params.item.weaponStats.damageRanges.map((damageRange, key) => {
-              return (
-                <ManequinInfo
-                  key={key}
-                  rangeStartMeters={damageRange.rangeStartMeters}
-                  rangeEndMeters={damageRange.rangeEndMeters}
-                  bodyDamage={damageRange.bodyDamage}
-                  headDamage={damageRange.headDamage}
-                  legDamage={damageRange.legDamage}
-                />
-              );
-            })}
+            {weaponStats.damageRanges[0] && (
+              <ManequinInfo
+                rangeStartMeters={weaponStats.damageRanges[0].rangeStartMeters}
+                rangeEndMeters={weaponStats.damageRanges[0].rangeEndMeters}
+                bodyDamage={weaponStats.damageRanges[0].bodyDamage}
+                headDamage={weaponStats.damageRanges[0].headDamage}
+                legDamage={weaponStats.damageRanges[0].legDamage}
+              />
+            )}
+
+            {weaponStats.damageRanges[1] && (
+              <ManequinInfo
+                rangeStartMeters={weaponStats.damageRanges[1].rangeStartMeters}
+                rangeEndMeters={weaponStats.damageRanges[1].rangeEndMeters}
+                bodyDamage={weaponStats.damageRanges[1].bodyDamage}
+                headDamage={weaponStats.damageRanges[1].headDamage}
+                legDamage={weaponStats.damageRanges[1].legDamage}
+              />
+            )}
           </View>
+
+          {weaponStats.damageRanges[2] && (
+            <View style={{ paddingVertical: 10 }}>
+              <ManequinInfo
+                rangeStartMeters={weaponStats.damageRanges[2].rangeStartMeters}
+                rangeEndMeters={weaponStats.damageRanges[2].rangeEndMeters}
+                bodyDamage={weaponStats.damageRanges[2].bodyDamage}
+                headDamage={weaponStats.damageRanges[2].headDamage}
+                legDamage={weaponStats.damageRanges[2].legDamage}
+              />
+            </View>
+          )}
           <WeaponStats {...params.item.weaponStats} />
         </>
       )}
@@ -51,9 +72,11 @@ const styles = StyleSheet.create({
   },
   mannequinWraper: {
     flex: 1,
-    flexDirection: "column",
-    gap: 50,
+    width: "100%",
+    flexDirection: "row",
     justifyContent: "center",
+    paddingVertical: 10,
+    gap: 50,
   },
   text: {
     color: colors.highlights,
