@@ -4,12 +4,10 @@ import { observer } from "mobx-react-lite";
 import { View } from "react-native";
 import PlayerCard from "../../components/PlayerCard";
 import { state } from "../../state";
-import Loading from "../../components/Loading";
 
 const MainScreen = () => {
   return (
     <>
-      <Loading />
       <Title isHeader>PROFILE</Title>
       <View style={{ flex: 1 }}>
         <PlayerCard

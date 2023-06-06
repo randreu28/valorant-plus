@@ -7,15 +7,16 @@ import Title from "../../components/Title";
 import { ScrollView, StyleSheet } from "react-native";
 import { observer } from "mobx-react-lite";
 import { state } from "../../state";
+import Error from "../../components/Error";
+import Loading from "../../components/Loading";
 
 const HomeMainScreen = () => {
   const [favorites, setFavorites] = useState(null);
   const [daily, setDaily] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getFavorites()
-      .then(setFavorites)
-      .catch((error) => console.error(error));
+    getFavorites().then(setFavorites).catch(setError);
   }, [
     state.getFavorite("agents"),
     state.getFavorite("maps"),
@@ -23,10 +24,16 @@ const HomeMainScreen = () => {
   ]);
 
   useEffect(() => {
-    getDaily()
-      .then(setDaily)
-      .catch((error) => console.error(error));
+    getDaily().then(setDaily).catch(setError);
   }, []);
+
+  if (error) {
+    return <Error />;
+  }
+
+  if (!favorites || !daily) {
+    return <Loading />;
+  }
 
   return (
     <ScrollView>
