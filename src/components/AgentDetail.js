@@ -56,12 +56,14 @@ export default function AgentDetail({
           uri: bg,
         }}
       />
-      <Image
-        style={styles.detailsAgentImg}
-        source={{
-          uri: agent,
-        }}
-      />
+      <View style={{ ...styles.detailsAgentImg, overflow: "hidden" }}>
+        <Image
+          style={{ height: 600 }}
+          source={{
+            uri: agent,
+          }}
+        />
+      </View>
       <View style={styles.detailsinfoView}>
         <Pressable onPress={playSound}>
           <FontAwesome
