@@ -19,18 +19,20 @@ const ButtonPlus = ({ type = 'more' }) => {
   }, [type]);
 
   return (
-    <View>
+    <View style={styles.buttonWrapper}>
       <Text style={styles.button}>{btnText}</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  button: {
-    color: colors.highlights,
+  buttonWrapper: {
     borderWidth: 1,
     borderColor: colors.highlights,
     borderRadius: 100,
+  },
+  button: {
+    color: colors.highlights,
     backgroundColor: 'transparent',
     paddingVertical: 3,
     paddingHorizontal: 10,
