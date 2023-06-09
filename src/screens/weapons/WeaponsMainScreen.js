@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     flex: 1,
-    transform: [{ translateY: -20 }],
+    transform: [{ translateY: -50 }],
   },
   titleWrapper: {
     position: "absolute",

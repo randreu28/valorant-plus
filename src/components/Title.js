@@ -33,7 +33,6 @@ export default function Title({ children, subtitle, isHeader = false }) {
   );
 }
 
-
 function Header({ children }) {
   return (
     <View style={styles.headerWrapper}>
@@ -44,7 +43,7 @@ function Header({ children }) {
   );
 }
 
-const fontSize = 50;
+const fontSize = 70;
 
 const styles = StyleSheet.create({
   titleWrapper: {
