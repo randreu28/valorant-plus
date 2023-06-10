@@ -111,12 +111,7 @@ const Grid = ({
 
           itemImageType = itemContext === 'playerTitle' ? "center" : itemImageType;
 
-          let itemButton;
-          if (itemContext === 'playerTitle') {
-            itemButton = false;
-          } else {
-            itemButton = button ? button : true;
-          }
+          
 
           return (
 
@@ -138,7 +133,7 @@ const Grid = ({
                   imageBg={imageBg}
                   imageType={itemImageType}
                   size={size}
-                  button={itemButton}
+                  button={button}
                   buttonType={buttonType}
                 />
               </>
