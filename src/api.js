@@ -29,18 +29,23 @@ export const getFavorites = async () => {
 
   if (favoriteAgentId) {
     favoriteAgent = await getAgents(favoriteAgentId);
+    favoriteAgent.context = "agents";
   } else {
     favoriteAgent = { key: 'favoriteAgent', context: 'agent', uuid: 'favoriteAgent', displayName: 'Agent', displayIcon: '', background: '' }
   }
 
   if (favoriteWeaponId) {
     favoriteWeapon = await getWeapons(favoriteWeaponId);
+    favoriteWeapon.context = "weapons";
+    favoriteWeapon.imageType = "center";
   } else {
     favoriteWeapon = { key: 'favoriteWeapon', context: 'weapon', uuid: 'favoriteWeapon', displayName: 'Weapon', displayIcon: '', background: '' }
   }
 
   if (favoriteMapId) {
     favoriteMap = await getMaps(favoriteMapId);
+    favoriteMap.context = "maps";
+    favoriteMap.imageType = "center";
   } else {
     favoriteMap = { key: 'favoriteMap', context: 'map', uuid: 'favoriteMap', displayName: 'Map', displayIcon: '', background: '' }
   }
@@ -57,6 +62,9 @@ export const getDaily = async () => {
     const agents = await getAgents(state.dailyItems.ids[0]);
     const weapons = await getWeapons(state.dailyItems.ids[1]);
     const maps = await getMaps(state.dailyItems.ids[2]);
+    agents.context = "agents";
+    weapons.context = "weapons";
+    maps.context = "maps";
     return [agents, weapons, maps];
   } else {
     const agents = await getAgents();
@@ -72,6 +80,10 @@ export const getDaily = async () => {
       weapons[Math.floor(Math.random() * weaponsCount)],
       maps[Math.floor(Math.random() * mapsCount)],
     ];
+
+    dailyItems[0].context = "agents";
+    dailyItems[1].context = "weapons";
+    dailyItems[2].context = "maps";
 
     state.setDaily(dailyItems, getTodayTimestamp());
 

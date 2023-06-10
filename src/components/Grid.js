@@ -63,26 +63,45 @@ const Grid = ({
         numColumns={!horizontalScroll ? columns : 1}
         data={items}
         renderItem={({ item, index }) => {
-          
+
+          let itemContext;
+          switch (context) {
+            case "favorites":
+            case "daily":
+              itemContext = item.context;
+              console.log("itemContext: " + itemContext);
+              break;
+            default:
+              itemContext = context;
+              break;
+          }
+
           let image;
           let text;
-          if (listViewIcon || ((context === 'daily' || context === 'favorites') && index === 2)) {
-            image = "listViewIcon";
-            text = "displayName";
-          } else {
-            switch (context) {
-              case "playerCard":
-                image = "largeArt";
-                break;
-              case "rank":
-                text = "tierName"
-                image = "largeIcon"
-                break;
-              default:
-                image = "displayIcon"
-                text = "displayName"
-                break;
-            }
+          let itemImageType;
+          switch (itemContext) {
+            case "maps":
+              image = "listViewIcon";
+              text = "displayName";
+              itemImageType = "map";
+              break;
+            case "weapons":
+              image = "displayIcon"
+              text = "displayName"
+              itemImageType = "center";
+              break;
+            case "playerCard":
+              image = "largeArt";
+              text = "displayName"
+              break;
+            case "rank":
+              text = "tierName"
+              image = "largeIcon"
+              break;
+            default:
+              image = "displayIcon"
+              text = "displayName"
+              break;
           }
 
           return (
@@ -97,13 +116,13 @@ const Grid = ({
               <>
                 <GridItem
                   key={item.uuid}
-                  context={context}
+                  context={itemContext}
                   item={item}
                   id={item.uuid}
                   title={item[text]}
                   imageUrl={item[image]}
                   imageBg={imageBg}
-                  imageType={(context === "daily" || context === 'favorites') && index !== 0 && index !== 2 ? 'center' : imageType}
+                  imageType={itemImageType}
                   size={size}
                   button={button}
                   buttonType={buttonType}

@@ -82,6 +82,7 @@ const GridItem = ({context,
           style={[
             styles.image,
             imageType === "center" ? styles.imageCenter : null,
+            imageType === "map" ? styles.imageMap : null,
             size === "full-width" ? styles.imageFullWidth : null,
           ]}
         ></Image>
@@ -165,6 +166,9 @@ const styles = StyleSheet.create({
     height: "110%",
     position: "relative",
     left: "-20%",
+  },
+  imageMap: {
+    left: 0,
   },
   noimage: {
     color: "red",
