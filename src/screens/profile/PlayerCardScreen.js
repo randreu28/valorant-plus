@@ -22,35 +22,39 @@ const PlayerCardScreen = () => {
   if (state.getView("playerCard") === "grid") {
     return (
       <View style={styles.gridWrapper}>
-      {<Grid
-        context="playerCard"
-        items={tiers}
-        title="PLAYERCARDS"
-        imageBg={undefined}
-        imageType={undefined}
-        button={undefined}
-        buttonType={undefined}
-        columns={2}
-      />}
-    </View>
+        {
+          <Grid
+            context="playerCard"
+            items={tiers}
+            title="PLAYER CARDS"
+            imageBg={undefined}
+            imageType={undefined}
+            button={undefined}
+            buttonType={undefined}
+            columns={2}
+          />
+        }
+      </View>
     );
   } else
     return (
       <View style={styles.gridWrapper}>
-        {<Grid
-          context="playerCard"
-          items={tiers}
-          title="PLAYERCARDS"
-          imageBg={undefined}
-          imageType={undefined}
-          size="full-width"
-          button={undefined}
-          buttonType={undefined}
-          columns={1}
-        />}
+        {
+          <Grid
+            context="playerCard"
+            items={tiers}
+            title="PLAYERC ARDS"
+            imageBg={undefined}
+            imageType={undefined}
+            size="full-width"
+            button={undefined}
+            buttonType={undefined}
+            columns={1}
+          />
+        }
       </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
   mapsView: {
