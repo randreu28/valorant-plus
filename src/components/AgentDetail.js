@@ -199,8 +199,8 @@ const styles = StyleSheet.create({
     height: 50,
   },
   detailsAgentImgStyle: {
-    height: 800,
+    height: 700,
     position: "relative",
-    top: -70
+    top: -60,
   },
 });
