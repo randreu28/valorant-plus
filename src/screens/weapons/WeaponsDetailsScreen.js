@@ -15,12 +15,23 @@ export default function WeaponsDetailsScreen() {
 
   const weaponStats = params.item.weaponStats;
 
+  const filteredSkins = params.item.skins.filter(
+    (skin) =>
+      skin.displayName !== "Random Favorite Skin" && skin.displayIcon !== null
+  );
+
+  filteredSkins.map((skin) => {
+    if (skin.displayName.indexOf("Standard") === 0) {
+      skin.displayIcon = params.item.displayIcon;
+    }
+  });
+
   return (
     <ScrollView>
       <Title subtitle="WEAPONS">{params.item.displayName}</Title>
 
       <View style={styles.slidderWraper}>
-        <Slider items={params.item.skins} mode="skins" />
+        <Slider items={filteredSkins} mode="skins" />
       </View>
 
       {weaponStats && (
