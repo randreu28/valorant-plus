@@ -20,11 +20,15 @@ export default function WeaponsDetailsScreen() {
       skin.displayName !== "Random Favorite Skin" && skin.displayIcon !== null
   );
 
-  filteredSkins.map((skin) => {
+  let standardSkinIndex = 0;
+  filteredSkins.map((skin, index) => {
     if (skin.displayName.indexOf("Standard") === 0) {
       skin.displayIcon = params.item.displayIcon;
+      standardSkinIndex = index;
     }
   });
+
+  filteredSkins.unshift(filteredSkins.splice(standardSkinIndex, 1)[0]);
 
   return (
     <ScrollView>
