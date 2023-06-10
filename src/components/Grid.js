@@ -98,7 +98,7 @@ const Grid = ({
             case "rank":
               text = "tierName";
               image = "largeIcon";
-              itemImageType = "center";
+              itemImageType = "centerWithMargin";
               break;
             default:
               image = "displayIcon";

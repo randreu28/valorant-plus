@@ -98,6 +98,7 @@ const GridItem = ({ context,
           style={[
             styles.image,
             imageType === "center" ? styles.imageCenter : null,
+            imageType === "centerWithMargin" ? styles.imageCenterWithMargin : null,
             imageType === "cover" ? styles.imageCover : null,
             size === "full-width" ? styles.imageFullWidth : null,
           ]}
@@ -197,6 +198,13 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     left: "0%",
+  },
+  imageCenterWithMargin: {
+    resizeMode: "contain",
+    width: "90%",
+    height: "90%",
+    left: "5%",
+    top: "5%",
   },
   imageFullWidth: {
     resizeMode: "cover",
