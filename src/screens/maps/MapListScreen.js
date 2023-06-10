@@ -22,14 +22,13 @@ export default function MapListScreen({ navigation }) {
         context="maps"
         items={maps}
         title="MAPS"
-        listViewIcon ={true}
+        listViewIcon={true}
         imageBg={undefined}
         imageType={undefined}
         size="full-width"
         button={undefined}
         buttonType={undefined}
         columns={1}
-        
       />
     </View>
   );

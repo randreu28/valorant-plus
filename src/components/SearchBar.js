@@ -3,7 +3,6 @@ import React from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 import { colors } from "../lib/colors";
 
-
 export default function SearchBar({ onChangeText }) {
   return (
     <View style={styles.searchBar}>
@@ -30,6 +29,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   searchtext: {
-    color: colors.neutral
+    flex: 1,
+    color: colors.neutral,
   },
 });
