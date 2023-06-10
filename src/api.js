@@ -30,10 +30,11 @@ export const getPlayerCard = async (id = '') => {
 export const getRanks = async (id = '') => {
   const response = await fetch(`${API_ROOT}/competitivetiers/`);
   const ranks = await response.json();
+  const filteredRanks = ranks.data[4].tiers.filter(r => r.tierName.toLowerCase().indexOf('unused') === -1);
   if (id) {
-    return ranks.data[4].tiers.find(rank => rank.tier === id);
+    return filteredRanks.find(rank => rank.tier === id);
   } else {
-    return ranks.data[4];
+    return filteredRanks;
   }
 };
 
@@ -125,24 +126,24 @@ export const getDaily = async () => {
   } else {
     const agents = await getAgents();
     const weapons = await getWeapons();
-    const playercard = await getPlayerCard();
-    const playertitle = await getPlayertitles();
-    const rank = await getRanks();
+    const playercards = await getPlayerCard();
+    const playertitles = await getPlayertitles();
+    const ranks = await getRanks();
     const maps = await getMaps();
 
     const agentsCount = agents.length - 1;
     const weaponsCount = weapons.length - 1;
-    const playercardCount = playercard.length - 1;
-    const playertitleCount = playertitle.length - 1;
-    const rankCount = rank.tiers.length - 1;
+    const playercardCount = playercards.length - 1;
+    const playertitleCount = playertitles.length - 1;
+    const rankCount = ranks.length - 1;
     const mapsCount = maps.length - 1;
 
     const dailyItems = [
       agents[Math.floor(Math.random() * agentsCount)],
       weapons[Math.floor(Math.random() * weaponsCount)],
-      playercard[Math.floor(Math.random() * playercardCount)],
-      playertitle[Math.floor(Math.random() * playertitleCount)],
-      rank.tiers[Math.floor(Math.random() * rankCount)],
+      playercards[Math.floor(Math.random() * playercardCount)],
+      playertitles[Math.floor(Math.random() * playertitleCount)],
+      ranks[Math.floor(Math.random() * rankCount)],
       maps[Math.floor(Math.random() * mapsCount)],
     ];
 
