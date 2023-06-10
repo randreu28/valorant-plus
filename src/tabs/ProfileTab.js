@@ -31,7 +31,7 @@ export default function ProfileTab() {
       <Stack.Screen
         options={{
           headerTitle: "",
-          headerRight: () => <GridButton context="playerRank" />,
+          headerRight: null,
         }}
         name="ProfileRank"
         component={RankScreen}

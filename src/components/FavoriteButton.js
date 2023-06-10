@@ -39,6 +39,7 @@ const FavoriteButton = ({ context, uuid }) => {
 
 const styles = StyleSheet.create({
   favoriteButton: {
+    height: 35,
     borderRadius: 20,
     paddingHorizontal: 10,
     paddingVertical: 5,
