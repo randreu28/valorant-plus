@@ -73,6 +73,13 @@ const GridItem = ({ context,
     }
   }
 
+  const lengthLimited = (string) => {
+    if (string.length > 25) {
+      return string.substring(0, 25) + '...'
+    }
+    return string;
+  }
+
   return (
     <Pressable
       style={({ pressed }) => [
@@ -102,7 +109,7 @@ const GridItem = ({ context,
           size === "full-width" ? styles.infoWrapperFullWidth : null,
         ]}
       >
-        <Text style={styles.name}>{title}</Text>
+        <Text style={styles.name}>{ size === "full-width" ? title : lengthLimited(title)}</Text>
         {button ? (
           buttonType === "more" ? (
             <ButtonPlus type="more" />
@@ -130,8 +137,9 @@ const styles = StyleSheet.create({
     fontFamily: "tungsten",
     fontSize: 25,
     textTransform: "uppercase",
-    marginTop: 5,
-    marginBottom: 5,
+    marginTop: 10,
+    marginBottom: 10,
+    lineHeight: 20,
   },
   decorationTopLeft: {
     position: "absolute",
