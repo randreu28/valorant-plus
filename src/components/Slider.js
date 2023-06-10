@@ -97,15 +97,6 @@ const Slider = ({ items, mode = "agents" }) => {
     fadeTo(newItem);
   };
 
-  const goToItem = () => {
-    return () => {
-      if (mode === "agents" || mode === "weapons") {
-        navigation.navigate(mode + 'Detail', { uuid: items[currentItem].uuid, item: items[currentItem] });
-        console.log("Go to item " + items[currentItem].uuid);
-      }
-    };
-  };
-
   const fadeTo = (newItem) => {
     Animated.parallel([
       Animated.timing(currentItemFadeAnimation, {
@@ -150,13 +141,35 @@ const Slider = ({ items, mode = "agents" }) => {
     );
   }
 
+  const onSwipe = (direction) => {
+    switch (direction) {
+      case 'left':
+        mode !== 'intro' ? viewItem(1) : currentItem < items.length - 1 ? viewItem(1) : null;
+        break;
+      case 'right':
+        mode !== 'intro' ? viewItem(-1) : currentItem > 0 ? viewItem(-1) : null;
+        break;
+      case 'up':
+        if (mode === 'intro') {
+          goToHome();
+        } else {
+          if (mode === "agents" || mode === "weapons") {
+            navigation.navigate(mode + 'Detail', { uuid: items[currentItem].uuid, item: items[currentItem] });
+            console.log("Go to item " + items[currentItem].uuid);
+          }
+        }
+        break;
+    }
+  }
+
   return (
     <>
       <GestureRecognizer style={[styles.container, mode === 'intro' ? styles.containerIntro : null]}
-        onSwipeLeft={() => { mode !== 'intro' ? viewItem(1) : currentItem < items.length - 1 ? viewItem(1) : null }}
-        onSwipeRight={() => { mode !== 'intro' ? viewItem(-1) : currentItem > 0 ? viewItem(-1) : null }}
+        onSwipeLeft={() => onSwipe('left')}
+        onSwipeRight={() => onSwipe('right')}
+        onSwipeUp={() => onSwipe('up')}
       >
-        {mode === 'intro' && 
+        {mode === 'intro' &&
           <View style={styles.appTitleWrapper}>
             <Title>VALORANT+</Title>
           </View>
@@ -180,7 +193,7 @@ const Slider = ({ items, mode = "agents" }) => {
           </>
         ) : null}
 
-        <Pressable style={[styles.slideWrapper, mode === 'intro' ? styles.slideWrapperIntro : null]} onPress={goToItem()}>
+        <Pressable style={[styles.slideWrapper, mode === 'intro' ? styles.slideWrapperIntro : null]} onPress={() => onSwipe('up')}>
           {({ pressed }) => (
             <>
 
@@ -235,8 +248,10 @@ const Slider = ({ items, mode = "agents" }) => {
                   </Text>
                 </Animated.View>
                 {mode === "agents" || mode === "weapons" || (mode === "intro" && currentItem === items.length - 1) ? (
-                  <Pressable style={[styles.buttonUp, mode === 'intro' ? styles.buttonUpIntro : null]} onPress={() => goToHome() }>
+                  <Pressable style={[styles.buttonUp, mode === 'intro' ? styles.buttonUpIntro : null]} onPress={() => onSwipe('up')}>
+                    {({ pressed }) => (
                     <ArrowUpIcon color={pressed ? mode === 'intro' ? colors.neutral : buttonsColorPressed : mode === 'intro' ? colors.details : buttonsColor} />
+                    )}
                   </Pressable>
                 ) : null}
               </View>
@@ -249,12 +264,12 @@ const Slider = ({ items, mode = "agents" }) => {
           )}
         </Pressable>
         {skipButton ? (
-        <Pressable style={styles.skipButtonWrapper} onPress={() => goToHome()}>
-          <Text style={styles.skipButton}>Skip</Text>
-        </Pressable>
-      ) : null}
+          <Pressable style={styles.skipButtonWrapper} onPress={() => goToHome()}>
+            <Text style={styles.skipButton}>Skip</Text>
+          </Pressable>
+        ) : null}
       </GestureRecognizer>
-      
+
     </>
   );
 };
@@ -372,7 +387,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   skipButtonWrapper: {
-    
+
   },
   skipButton: {
     color: colors.neutral,
