@@ -19,25 +19,25 @@ export default function RankScreen() {
     return <Error />;
   }
 
-  if (state.getView("playerRank") === "grid") {
-    return (
-      <View style={styles.gridWrapper}>
-        <Grid
-          items={ranks[4]}
-          context="playerRank"
-          title="RANKS"
-          imageType="center"
-        />
-      </View>
-    );
-  } else {
-    return (
-      <View style={styles.sliderWrapper}>
-        <Title subtitle="PROFILE">RANKS</Title>
-        <Slider items={ranks[4]} mode="agents" />
-      </View>
-    );
-  }
+  return (
+    <View style={styles.gridWrapper}>
+      <Title isHeader>RANKS</Title>
+      <Grid
+        items={ranks[4].tiers}
+        context="rank"
+        imageType="center"
+        horizontalScroll
+        buttonType="favorite"
+      />
+      <Title isHeader>RANKS</Title>
+      <Grid
+        items={ranks[4].tiers}
+        context="rank"
+        imageType="center"
+        horizontalScroll
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

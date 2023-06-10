@@ -4,9 +4,11 @@ import { colors } from "../lib/colors";
 import ButtonPlus from "./ButtonPlus";
 import HomeIcon from "./icons/HomeIcon";
 import { useNavigation } from '@react-navigation/native';
+import { state } from "../state";
+import { observer } from "mobx-react-lite";
+import FavoriteButton from "./FavoriteButton";
 
-export default function GridItem({
-  context,
+const GridItem = ({context,
   item,
   id,
   imageBg = colors.highlights,
@@ -16,8 +18,7 @@ export default function GridItem({
   imageType = "crop",
   title,
   imageUrl,
-  link,
-}) {
+  link}) => {
 
   const navigation = useNavigation();
 
@@ -52,10 +53,14 @@ export default function GridItem({
     );
   }
 
-  function goToDetail() {
+  function handleClick() {
+    if (context === "rank") {
+      state.toggleFavorite(context, item.tier)
+      return;
+    }
     if (id) {
       console.log("navigate to item: " + id);
-      navigation.navigate(context+'Detail', { uuid: id, item: item });
+      navigation.navigate(context + 'Detail', { uuid: id, item: item });
     }
   }
 
@@ -67,7 +72,7 @@ export default function GridItem({
         { backgroundColor: pressed ? "black" : colors.bg },
       ]}
       onPress={() => {
-        goToDetail();
+        handleClick();
       }}
     >
       <View style={styles.decorationTopLeft} />
@@ -92,7 +97,7 @@ export default function GridItem({
           buttonType === "more" ? (
             <ButtonPlus type="more" />
           ) : (
-            <ButtonPlus type="favorite" />
+            <FavoriteButton context={context} uuid={item.tier} />
           )
         ) : null}
       </View>
@@ -190,3 +195,5 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
 });
+
+export default observer(GridItem);

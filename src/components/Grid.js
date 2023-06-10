@@ -65,15 +65,22 @@ const Grid = ({
         renderItem={({ item, index }) => {
           
           let image;
+          let text;
           if (listViewIcon || ((context === 'daily' || context === 'favorites') && index === 2)) {
             image = "listViewIcon";
+            text = "displayName";
           } else {
             switch (context) {
               case "playerCard":
                 image = "largeArt";
                 break;
+              case "rank":
+                text = "tierName"
+                image = "largeIcon"
+                break;
               default:
                 image = "displayIcon"
+                text = "displayName"
                 break;
             }
           }
@@ -93,7 +100,7 @@ const Grid = ({
                   context={context}
                   item={item}
                   id={item.uuid}
-                  title={item.displayName}
+                  title={item[text]}
                   imageUrl={item[image]}
                   imageBg={imageBg}
                   imageType={(context === "daily" || context === 'favorites') && index !== 0 && index !== 2 ? 'center' : imageType}
