@@ -120,8 +120,22 @@ export function useMaps(uuid) {
   const [error, setError] = useState();
 
   useEffect(() => {
-    fetcher(setData, setIsLoading, setError, uuid ? `/maps/${uuid}` : "/maps");
+    fetcher(
+      setFilteredData, 
+      setIsLoading, 
+      setError, 
+      uuid ? `/maps/${uuid}` : "/maps"
+    );
   }, [uuid]);
+
+  const setFilteredData = (data) => {
+    if (Array.isArray(data)) {
+      const filteredData = data.filter(map => map.displayName !== "The Range");
+      setData(filteredData);
+    } else {
+      setData(data);
+    }
+  };
 
   return { data, isLoading, error };
 }
