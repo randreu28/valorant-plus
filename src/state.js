@@ -21,21 +21,23 @@ class State {
     const dailyItems = await AsyncStorage.getItem("dailyItems");
     const isProfileEditableData = false;
 
-    if (introData !== null) {
-      this.isIntroDone = JSON.parse(introData);
-    }
-    if (viewData !== null) {
-      this.view = JSON.parse(viewData);
-    }
-    if (favoritesData !== null) {
-      this.favorites = JSON.parse(favoritesData);
-    }
-    if (dailyItems !== null) {
-      this.dailyItems = JSON.parse(dailyItems);
-    }
+    runInAction(() => {
+      if (introData !== null) {
+        this.isIntroDone = JSON.parse(introData);
+      }
+      if (viewData !== null) {
+        this.view = JSON.parse(viewData);
+      }
+      if (favoritesData !== null) {
+        this.favorites = JSON.parse(favoritesData);
+      }
+      if (dailyItems !== null) {
+        this.dailyItems = JSON.parse(dailyItems);
+      }
 
-    this.profileEditable = JSON.parse(isProfileEditableData);
-    AsyncStorage.setItem("profileEditable", JSON.stringify(this.profileEditable));
+      this.profileEditable = JSON.parse(isProfileEditableData);
+      AsyncStorage.setItem("profileEditable", JSON.stringify(this.profileEditable));
+    });
   }
 
   getIsIntroDone() {
@@ -90,6 +92,12 @@ class State {
 
     AsyncStorage.setItem("profileEditable", JSON.stringify(this.profileEditable));
   }
+
+  setEditable(value) {
+    this.profileEditable = value;
+    AsyncStorage.setItem("profileEditable", JSON.stringify(this.profileEditable));
+  }
+
   isEditable() {
     return this.profileEditable;
   }

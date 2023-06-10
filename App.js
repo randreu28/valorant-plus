@@ -48,8 +48,8 @@ const App = () => {
           },
         }}
       >
-        <Stack.Navigator initialRouteName={!isIntroDone ? "Intro" : "Main"} screenOptions={{headerShown: false}} >
-          <Stack.Screen name="Intro" component={IntroScreen} 
+        <Stack.Navigator initialRouteName={!isIntroDone ? "Intro" : "Main"} screenOptions={{ headerShown: false }} >
+          <Stack.Screen name="Intro" component={IntroScreen}
             theme={{
               dark: true,
               colors: {
@@ -71,36 +71,102 @@ const App = () => {
 const MainStackScreen = () => {
   return (
     <Tab.Navigator
-          initialRouteName="Home"
-          screenOptions={({ route }) => ({
-            tabBarInactiveTintColor: "white",
-            tabBarIcon: ({ color, size }) => {
-              switch (route.name) {
-                case "Profile":
-                  return <ProfileIcon color={color} size={size} />;
+      initialRouteName="Home"
+      screenOptions={({ route }) => ({
+        tabBarInactiveTintColor: "white",
+        tabBarIcon: ({ color, size }) => {
+          switch (route.name) {
+            case "Profile":
+              return <ProfileIcon color={color} size={size} />;
 
-                case "Agents":
-                  return <AgentsIcon color={color} size={size} />;
+            case "Agents":
+              return <AgentsIcon color={color} size={size} />;
 
-                case "Home":
-                  return <HomeIcon color={color} size={size} />;
+            case "Home":
+              return <HomeIcon color={color} size={size} />;
 
-                case "Weapons":
-                  return <WeaponsIcon color={color} size={size} />;
+            case "Weapons":
+              return <WeaponsIcon color={color} size={size} />;
 
-                case "Maps":
-                  return <MapsIcon color={color} size={size} />;
-              }
-            },
-            headerShown: false,
-          })}
-        >
-          <Tab.Screen name="Profile" component={ProfileTab} />
-          <Tab.Screen name="Agents" component={AgentsTab} />
-          <Tab.Screen name="Home" component={HomeTab} />
-          <Tab.Screen name="Weapons" component={WeaponsTab} />
-          <Tab.Screen name="Maps" component={MapsTab} />
-        </Tab.Navigator>
+            case "Maps":
+              return <MapsIcon color={color} size={size} />;
+          }
+        },
+        headerShown: false,
+      })}
+    >
+      <Tab.Screen
+        name="Profile"
+        component={ProfileTab}
+        listeners={({ navigation }) => ({
+          tabPress: event => {
+            // prevent default action
+            event.preventDefault();
+            // navigate to the first screen of the stack
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'Profile' }],
+            });
+          },
+        })}
+      />
+      <Tab.Screen
+        name="Agents"
+        component={AgentsTab}
+        listeners={({ navigation }) => ({
+          tabPress: event => {
+            event.preventDefault();
+            state.setEditable(false);
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'Agents' }],
+            });
+          },
+        })}
+      />
+      <Tab.Screen
+        name="Home"
+        component={HomeTab}
+        listeners={({ navigation }) => ({
+          tabPress: event => {
+            event.preventDefault();
+            state.setEditable(false);
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'Home' }],
+            });
+          },
+        })}
+      />
+      <Tab.Screen
+        name="Weapons"
+        component={WeaponsTab}
+        listeners={({ navigation }) => ({
+          tabPress: event => {
+            event.preventDefault();
+            state.setEditable(false);
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'Weapons' }],
+            });
+          },
+        })}
+      />
+      <Tab.Screen
+        name="Maps"
+        component={MapsTab}
+        listeners={({ navigation }) => ({
+          tabPress: event => {
+            event.preventDefault();
+            state.setEditable(false);
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'Maps' }],
+            });
+          },
+        })}
+      />
+    </Tab.Navigator>
   );
 }
 
