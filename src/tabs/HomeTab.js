@@ -7,6 +7,7 @@ import WeaponsDetailsScreen from "../screens/weapons/WeaponsDetailsScreen";
 import MapItemScreen from "../screens/maps/MapItemScreen";
 import PlayerCardDetailScreen from "../screens/profile/PlayerCardDetailScreen";
 import RankScreen from "../screens/profile/RankScreen";
+import PlayerTitleScreen from "../screens/profile/PlayerTitleScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -77,6 +78,11 @@ export default function HomeTab() {
         }}
         name="ProfileRank"
         component={RankScreen}
+      />
+       <Stack.Screen
+        options={{ headerTitle: "", headerRight: () => null }}
+        name="ProfilePlayerTitle"
+        component={PlayerTitleScreen}
       />
     </Stack.Navigator>
   );

@@ -37,14 +37,21 @@ export const getRanks = async (id = '') => {
   }
 };
 
+export const getPlayertitles = async (id = '') => {
+  const response = await fetch(`${API_ROOT}/playertitles/${id}`);
+  const playertitles = await response.json();
+  return playertitles.data;
+};
+
 export const getFavorites = async () => {
   const favoriteAgentId = state.getFavorite('agents');
   const favoriteWeaponId = state.getFavorite('weapons');
   const favoriteMapId = state.getFavorite('maps');
   const favoritePlayerCardId = state.getFavorite('playerCard');
   const favoriteRankId = state.getFavorite('rank');
+  const favoritePlayertitlesId = state.getFavorite('playerTitle');
 
-  let favoriteAgent; let favoriteWeapon; let favoriteMap; let favoritePlayerCard; let favoriteRank;
+  let favoriteAgent; let favoriteWeapon; let favoriteMap; let favoritePlayerCard; let favoriteRank; let favoritePlayertitles;
 
   if (favoriteAgentId) {
     favoriteAgent = await getAgents(favoriteAgentId);
@@ -56,7 +63,6 @@ export const getFavorites = async () => {
   if (favoriteWeaponId) {
     favoriteWeapon = await getWeapons(favoriteWeaponId);
     favoriteWeapon.context = "weapons";
-    favoriteWeapon.imageType = "center";
   } else {
     favoriteWeapon = { key: 'favoriteWeapon', context: 'weapon', uuid: 'favoriteWeapon', displayName: 'Weapon', displayIcon: '', background: '' }
   }
@@ -64,7 +70,6 @@ export const getFavorites = async () => {
   if (favoriteMapId) {
     favoriteMap = await getMaps(favoriteMapId);
     favoriteMap.context = "maps";
-    favoriteMap.imageType = "center";
   } else {
     favoriteMap = { key: 'favoriteMap', context: 'map', uuid: 'favoriteMap', displayName: 'Map', displayIcon: '', background: '' }
   }
@@ -84,7 +89,16 @@ export const getFavorites = async () => {
     favoriteRank = { key: 'favoriteRank', context: 'emptyRank', uuid: 'favoriteRank', displayName: 'Rank', displayIcon: '', background: '' }
   }
 
-  const favorites = [favoriteAgent, favoriteWeapon, favoriteMap, favoritePlayerCard, favoriteRank];
+  if (favoritePlayertitlesId) {
+    favoritePlayertitles = await getPlayertitles(favoritePlayertitlesId);
+    favoritePlayertitles.context = "playerTitle";
+    favoritePlayertitles.button = false;
+    favoritePlayertitles.displayIcon = require('../assets/playertitle.png');
+  } else {
+    favoritePlayertitles = { key: 'favoritePlayertitles', context: 'playerTitle', uuid: 'favoritePlayertitles', displayName: 'Player Title', displayIcon: '', background: '' }
+  }
+
+  const favorites = [favoriteAgent, favoriteWeapon, favoritePlayerCard, favoritePlayertitles, favoriteRank, favoriteMap];
   return favorites;
 };
 
@@ -98,39 +112,48 @@ export const getDaily = async () => {
     const maps = await getMaps(state.dailyItems.ids[2]);
     const playercard = await getPlayerCard(state.dailyItems.ids[3]);
     const rank = await getRanks(state.dailyItems.ids[4]);
+    const playertitle = await getPlayertitles(state.dailyItems.ids[5]);
+    playertitle.displayIcon = require('../assets/playertitle.png');
+    playertitle.button = false;
     agents.context = "agents";
     weapons.context = "weapons";
     maps.context = "maps";
     playercard.context = "playerCard";
-    rank.context = "rank";
-    return [agents, weapons, maps, playercard, rank];
+    rank.context = "rankFavorite";
+    playertitle.context = "playerTitle";
+    return [agents, weapons, playercard, playertitle, rank, maps];
   } else {
     const agents = await getAgents();
     const weapons = await getWeapons();
-    const maps = await getMaps();
     const playercard = await getPlayerCard();
+    const playertitle = await getPlayertitles();
     const rank = await getRanks();
+    const maps = await getMaps();
 
     const agentsCount = agents.length - 1;
     const weaponsCount = weapons.length - 1;
-    const mapsCount = maps.length - 1;
     const playercardCount = playercard.length - 1;
+    const playertitleCount = playertitle.length - 1;
     const rankCount = rank.tiers.length - 1;
+    const mapsCount = maps.length - 1;
 
     const dailyItems = [
       agents[Math.floor(Math.random() * agentsCount)],
       weapons[Math.floor(Math.random() * weaponsCount)],
-      maps[Math.floor(Math.random() * mapsCount)],
       playercard[Math.floor(Math.random() * playercardCount)],
+      playertitle[Math.floor(Math.random() * playertitleCount)],
       rank.tiers[Math.floor(Math.random() * rankCount)],
+      maps[Math.floor(Math.random() * mapsCount)],
     ];
 
     dailyItems[0].context = "agents";
     dailyItems[1].context = "weapons";
-    dailyItems[2].context = "maps";
-    dailyItems[3].context = "playerCard";
-    dailyItems[4].context = "rank";
+    dailyItems[2].context = "playerCard";
+    dailyItems[3].context = "playerTitle";
+    dailyItems[3].displayIcon = require('../assets/playertitle.png');
+    dailyItems[4].context = "rankFavorite";
     dailyItems[4].uuid = dailyItems[4].tier;
+    dailyItems[5].context = "maps";
 
     state.setDaily(dailyItems, getTodayTimestamp());
 

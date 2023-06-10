@@ -8,7 +8,7 @@ import { state } from "../state";
 import { observer } from "mobx-react-lite";
 import FavoriteButton from "./FavoriteButton";
 
-const GridItem = ({context,
+const GridItem = ({ context,
   item,
   id,
   imageBg = colors.highlights,
@@ -18,7 +18,7 @@ const GridItem = ({context,
   imageType = "crop",
   title,
   imageUrl,
-  link}) => {
+  link }) => {
 
   const navigation = useNavigation();
 
@@ -54,14 +54,19 @@ const GridItem = ({context,
   }
 
   function handleClick() {
-    if (context === "rankFavorite") {
-      navigation.navigate("ProfileRank");
-      return;
+
+    switch (context) {
+      case "rankFavorite":
+        navigation.navigate("ProfileRank");
+        return;
+      case "rank":
+        state.toggleFavorite(context, item.tier)
+        return;
+      case "playerTitle":
+        navigation.navigate("ProfilePlayerTitle");
+        return;
     }
-    if (context === "rank") {
-      state.toggleFavorite(context, item.tier)
-      return;
-    }
+
     if (id) {
       console.log("navigate to item: " + id);
       navigation.navigate(context + 'Detail', { uuid: id, item: item });

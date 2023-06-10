@@ -23,6 +23,7 @@ const HomeMainScreen = () => {
     state.getFavorite("weapons"),
     state.getFavorite("playerCard"),
     state.getFavorite("rank"),
+    state.getFavorite("playerTitle"),
   ]);
 
   useEffect(() => {

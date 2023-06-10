@@ -107,6 +107,17 @@ const Grid = ({
               break;
           }
 
+          console.log('itemContext: ' + itemContext);
+
+          itemImageType = itemContext === 'playerTitle' ? "center" : itemImageType;
+
+          let itemButton;
+          if (itemContext === 'playerTitle') {
+            itemButton = false;
+          } else {
+            itemButton = button ? button : true;
+          }
+
           return (
 
             <View
@@ -127,7 +138,7 @@ const Grid = ({
                   imageBg={imageBg}
                   imageType={itemImageType}
                   size={size}
-                  button={button}
+                  button={itemButton}
                   buttonType={buttonType}
                 />
               </>
