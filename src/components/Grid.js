@@ -111,8 +111,6 @@ const Grid = ({
 
           itemImageType = itemContext === 'playerTitle' ? "center" : itemImageType;
 
-          
-
           return (
 
             <View

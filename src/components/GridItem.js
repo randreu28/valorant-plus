@@ -87,7 +87,7 @@ const GridItem = ({ context,
       <View style={styles.decorationTopLeft} />
       <View style={[styles.imageWrapper, { backgroundColor: imageBg }]}>
         <Image
-          source={{ uri: imageUrl }}
+          source={ context === 'playerTitle' ? imageUrl : { uri: imageUrl }}
           style={[
             styles.image,
             imageType === "center" ? styles.imageCenter : null,
