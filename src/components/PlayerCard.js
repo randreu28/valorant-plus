@@ -1,16 +1,7 @@
-import React from "react";
-import {
-  View,
-  Image,
-  Text,
-  TouchableHighlight,
-  StyleSheet,
-  Pressable,
-} from "react-native";
-import { colors } from "../lib/colors";
 import { useNavigation } from "@react-navigation/native";
-
-// GENIAL: El componente es muy bueno, la pinta que tiene el editable es perfecta
+import React from "react";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { colors } from "../lib/colors";
 
 /**
  * A component to display the player's Card
@@ -31,7 +22,13 @@ export default function PlayerCard({
 
   return (
     <View style={styles.generalView}>
-      <View style={styles.view}>
+      <Pressable
+        onPress={() => {
+          /* @ts-ignore */
+          if (isEditable) navigate("ProfilePlayerCard");
+        }}
+        style={styles.view}
+      >
         <Pressable
           onPress={() => {
             /* @ts-ignore */
@@ -69,7 +66,7 @@ export default function PlayerCard({
         >
           <Text style={styles.touchableText}>{playerTitle}</Text>
         </Pressable>
-      </View>
+      </Pressable>
 
       <Pressable
         onPress={() => {
