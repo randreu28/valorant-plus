@@ -111,7 +111,7 @@ export const getDaily = async () => {
     const weapons = await getWeapons(state.dailyItems.ids[1]);
     const playercard = await getPlayerCard(state.dailyItems.ids[2]);
     const playertitle = await getPlayertitles(state.dailyItems.ids[3]);
-    const rank = await getRanks(state.dailyItems.ids[4]);
+    const rank = await getRanks(parseInt(state.dailyItems.ids[4]));
     const maps = await getMaps(state.dailyItems.ids[5]);
     playertitle.displayIcon = require('../assets/playertitle.png');
     playertitle.button = false;
@@ -152,7 +152,7 @@ export const getDaily = async () => {
     dailyItems[3].context = "playerTitle";
     dailyItems[3].displayIcon = require('../assets/playertitle.png');
     dailyItems[4].context = "rankFavorite";
-    dailyItems[4].uuid = dailyItems[4].tier;
+    dailyItems[4].uuid = dailyItems[4].tier.toString();
     dailyItems[5].context = "maps";
 
     state.setDaily(dailyItems, getTodayTimestamp());

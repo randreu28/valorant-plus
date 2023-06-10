@@ -69,7 +69,6 @@ const Grid = ({
             case "favorites":
             case "daily":
               itemContext = item.context;
-              console.log("itemContext: " + itemContext);
               break;
             default:
               itemContext = context;
@@ -107,8 +106,6 @@ const Grid = ({
               break;
           }
 
-          console.log('itemContext: ' + itemContext);
-
           itemImageType = itemContext === 'playerTitle' ? "center" : itemImageType;
 
           return (
@@ -138,7 +135,7 @@ const Grid = ({
             </View>
           )
         }}
-        keyExtractor={(item) => item.uuid}
+        keyExtractor={(item) => item.uuid ? item.uuid : Math.floor(Math.random() * 9999999)}
         columnWrapperStyle={
           !horizontalScroll && columns !== 1 ? { justifyContent: "space-around" } : null
         }
