@@ -4,6 +4,7 @@ import { colors } from "../lib/colors";
 import { FontAwesome } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 import { useState, useEffect } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function AgentDetail({
   icon,
@@ -50,18 +51,28 @@ export default function AgentDetail({
         />
         <Text style={styles.detailsTitleText}>{rol}</Text>
       </View>
-      <Image
-        style={styles.detailsBgImg}
-        source={{
-          uri: bg,
+      <View style={styles.detailsBgWrapper}>
+        <Image
+          style={styles.detailsBgImg}
+          source={{
+            uri: bg,
+          }}
+        />
+      </View>
+      <View
+        style={{
+          ...styles.detailsAgentImg,
         }}
-      />
-      <View style={{ ...styles.detailsAgentImg, overflow: "hidden" }}>
+      >
         <Image
           style={{ height: 600 }}
           source={{
             uri: agent,
           }}
+        />
+        <LinearGradient
+          colors={["transparent", colors.darkBase]}
+          style={styles.gradient}
         />
       </View>
       <View style={styles.detailsinfoView}>
@@ -115,8 +126,14 @@ const styles = StyleSheet.create({
     fontFamily: "tungsten",
     textAlign: "center",
   },
+  detailsBgWrapper: {
+    height: 400,
+    width: 400,
+    overflow: "hidden",
+    position: "absolute",
+  },
   detailsBgImg: {
-    height: 500,
+    height: 600,
     position: "absolute",
     opacity: 0.1,
     top: 0,
@@ -127,6 +144,7 @@ const styles = StyleSheet.create({
   detailsAgentImg: {
     width: 400,
     height: 400,
+    overflow: "hidden",
   },
   detailsinfoView: {
     alignContent: "center",
@@ -171,5 +189,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.details,
     textAlign: "center",
+  },
+  gradient: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
 });
