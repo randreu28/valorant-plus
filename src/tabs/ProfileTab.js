@@ -57,7 +57,7 @@ export default function ProfileTab() {
             ),
           };
         }}
-        name="PlayerCardDetail"
+        name="playerCardDetail"
         component={PlayerCardDetailScreen}
       />
 

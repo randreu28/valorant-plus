@@ -5,9 +5,11 @@ import Grid from "../../components/Grid";
 import Loading from "../../components/Loading";
 import { useValorantApi } from "../../lib/hooks";
 import { state } from "../../state";
+import { observer } from "mobx-react-lite";
+import Slider from "../../components/Slider";
 
-export default function PlayerCardScreen() {
-  const { data: tiers, error, isLoading } = useValorantApi("/competitivetiers");
+const PlayerCardScreen = () => {
+  const { data: tiers, error, isLoading } = useValorantApi("/playercards");
 
   if (isLoading) {
     return <Loading />;
@@ -20,26 +22,32 @@ export default function PlayerCardScreen() {
   if (state.getView("playerCard") === "grid") {
     return (
       <View style={styles.gridWrapper}>
-        <Grid
-          items={tiers}
-          // @ts-ignore
-          horizontalScroll
-          context="agents"
-        />
-      </View>
+      {<Grid
+        context="playerCard"
+        items={tiers}
+        title="PLAYERCARDS"
+        imageBg={undefined}
+        imageType={undefined}
+        button={undefined}
+        buttonType={undefined}
+        columns={2}
+      />}
+    </View>
     );
   } else
     return (
       <View style={styles.gridWrapper}>
-        <Grid
-          // @ts-ignore
+        {<Grid
           context="playerCard"
           items={tiers}
-          title="PLAYER CARDS"
-          listViewIcon={true}
+          title="PLAYERCARDS"
+          imageBg={undefined}
+          imageType={undefined}
           size="full-width"
+          button={undefined}
+          buttonType={undefined}
           columns={1}
-        />
+        />}
       </View>
     );
 }
@@ -61,3 +69,5 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 });
+
+export default observer(PlayerCardScreen);

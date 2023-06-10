@@ -11,6 +11,7 @@ import GridItem from "./GridItem";
 import { Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Title from "./Title";
+import { Text } from "react-native";
 
 /**
  *
@@ -38,8 +39,8 @@ const Grid = ({
 
   if (!horizontalScroll) {
     if (columns === undefined) {
-        const windowWidth = Dimensions.get("window").width;
-        columns = Math.floor(windowWidth / 180);
+      const windowWidth = Dimensions.get("window").width;
+      columns = Math.floor(windowWidth / 180);
     }
   }
 
@@ -57,35 +58,56 @@ const Grid = ({
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
+        key={columns}
         horizontal={horizontalScroll}
         numColumns={!horizontalScroll ? columns : 1}
         data={items}
-        renderItem={({ item, index }) => (
-          <View
-            style={
-              horizontalScroll
-                ? { marginRight: 20 }
-                : { marginBottom: space }
+        renderItem={({ item, index }) => {
+          
+          let image;
+          if (listViewIcon || ((context === 'daily' || context === 'favorites') && index === 2)) {
+            image = "listViewIcon";
+          } else {
+            switch (context) {
+              case "playerCard":
+                image = "largeArt";
+                break;
+              default:
+                image = "displayIcon"
+                break;
             }
-          >
-            <GridItem
-              key={item.uuid}
-              context={context}
-              item={item}
-              id={item.uuid}
-              title={item.displayName}
-              imageUrl={ listViewIcon || ((context === 'daily' || context === 'favorites') && index === 2) ? item.listViewIcon : item.displayIcon}
-              imageBg={imageBg}
-              imageType={(context === "daily" || context === 'favorites' ) && index !== 0 && index !== 2 ? 'center' : imageType}
-              size={size}
-              button={button}
-              buttonType={buttonType}
-            />
-          </View>
-        )}
+          }
+
+          return (
+
+            <View
+              style={
+                horizontalScroll
+                  ? { marginRight: 20 }
+                  : { marginBottom: space }
+              }
+            >
+              <>
+                <GridItem
+                  key={item.uuid}
+                  context={context}
+                  item={item}
+                  id={item.uuid}
+                  title={item.displayName}
+                  imageUrl={item[image]}
+                  imageBg={imageBg}
+                  imageType={(context === "daily" || context === 'favorites') && index !== 0 && index !== 2 ? 'center' : imageType}
+                  size={size}
+                  button={button}
+                  buttonType={buttonType}
+                />
+              </>
+            </View>
+          )
+        }}
         keyExtractor={(item) => item.uuid}
         columnWrapperStyle={
-          !horizontalScroll && columns !==  1 ? { justifyContent: "space-around" } : null
+          !horizontalScroll && columns !== 1 ? { justifyContent: "space-around" } : null
         }
         ListHeaderComponent={
           title ? (
