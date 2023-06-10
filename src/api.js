@@ -1,4 +1,5 @@
 import { state } from "./state";
+import { useValorantApi } from "./lib/hooks";
 
 const API_ROOT = "https://valorant-api.com/v1";
 
@@ -20,12 +21,30 @@ export const getMaps = async (id = '') => {
   return maps.data;
 };
 
+export const getPlayerCard = async (id = '') => {
+  const response = await fetch(`${API_ROOT}/playercards/${id}`);
+  const playercards = await response.json();
+  return playercards.data;
+};
+
+export const getRanks = async (id = '') => {
+  const response = await fetch(`${API_ROOT}/competitivetiers/`);
+  const ranks = await response.json();
+  if (id) {
+    return ranks.data[4].tiers.find(rank => rank.tier === id);
+  } else {
+    return ranks.data[4];
+  }
+};
+
 export const getFavorites = async () => {
   const favoriteAgentId = state.getFavorite('agents');
   const favoriteWeaponId = state.getFavorite('weapons');
   const favoriteMapId = state.getFavorite('maps');
+  const favoritePlayerCardId = state.getFavorite('playerCard');
+  const favoriteRankId = state.getFavorite('rank');
 
-  let favoriteAgent; let favoriteWeapon; let favoriteMap
+  let favoriteAgent; let favoriteWeapon; let favoriteMap; let favoritePlayerCard; let favoriteRank;
 
   if (favoriteAgentId) {
     favoriteAgent = await getAgents(favoriteAgentId);
@@ -50,7 +69,22 @@ export const getFavorites = async () => {
     favoriteMap = { key: 'favoriteMap', context: 'map', uuid: 'favoriteMap', displayName: 'Map', displayIcon: '', background: '' }
   }
 
-  const favorites = [favoriteAgent, favoriteWeapon, favoriteMap];
+  if (favoritePlayerCardId) {
+    favoritePlayerCard = await getPlayerCard(favoritePlayerCardId);
+    favoritePlayerCard.context = "playerCard";
+  } else {
+    favoritePlayerCard = { key: 'favoritePlayerCard', context: 'playerCard', uuid: 'favoritePlayerCard', displayName: 'Player Card', displayIcon: '', background: '' }
+  }
+
+  if (favoriteRankId) {
+    favoriteRank = await getRanks(favoriteRankId);
+    favoriteRank.context = "rankFavorite";
+    favoriteRank.uuid = favoriteRank.tier;
+  } else {
+    favoriteRank = { key: 'favoriteRank', context: 'emptyRank', uuid: 'favoriteRank', displayName: 'Rank', displayIcon: '', background: '' }
+  }
+
+  const favorites = [favoriteAgent, favoriteWeapon, favoriteMap, favoritePlayerCard, favoriteRank];
   return favorites;
 };
 
@@ -62,28 +96,41 @@ export const getDaily = async () => {
     const agents = await getAgents(state.dailyItems.ids[0]);
     const weapons = await getWeapons(state.dailyItems.ids[1]);
     const maps = await getMaps(state.dailyItems.ids[2]);
+    const playercard = await getPlayerCard(state.dailyItems.ids[3]);
+    const rank = await getRanks(state.dailyItems.ids[4]);
     agents.context = "agents";
     weapons.context = "weapons";
     maps.context = "maps";
-    return [agents, weapons, maps];
+    playercard.context = "playerCard";
+    rank.context = "rank";
+    return [agents, weapons, maps, playercard, rank];
   } else {
     const agents = await getAgents();
     const weapons = await getWeapons();
     const maps = await getMaps();
+    const playercard = await getPlayerCard();
+    const rank = await getRanks();
 
     const agentsCount = agents.length - 1;
     const weaponsCount = weapons.length - 1;
     const mapsCount = maps.length - 1;
-    
+    const playercardCount = playercard.length - 1;
+    const rankCount = rank.tiers.length - 1;
+
     const dailyItems = [
       agents[Math.floor(Math.random() * agentsCount)],
       weapons[Math.floor(Math.random() * weaponsCount)],
       maps[Math.floor(Math.random() * mapsCount)],
+      playercard[Math.floor(Math.random() * playercardCount)],
+      rank.tiers[Math.floor(Math.random() * rankCount)],
     ];
 
     dailyItems[0].context = "agents";
     dailyItems[1].context = "weapons";
     dailyItems[2].context = "maps";
+    dailyItems[3].context = "playerCard";
+    dailyItems[4].context = "rank";
+    dailyItems[4].uuid = dailyItems[4].tier;
 
     state.setDaily(dailyItems, getTodayTimestamp());
 

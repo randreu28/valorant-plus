@@ -54,6 +54,10 @@ const GridItem = ({context,
   }
 
   function handleClick() {
+    if (context === "rankFavorite") {
+      navigation.navigate("ProfileRank");
+      return;
+    }
     if (context === "rank") {
       state.toggleFavorite(context, item.tier)
       return;
@@ -82,7 +86,7 @@ const GridItem = ({context,
           style={[
             styles.image,
             imageType === "center" ? styles.imageCenter : null,
-            imageType === "map" ? styles.imageMap : null,
+            imageType === "cover" ? styles.imageCover : null,
             size === "full-width" ? styles.imageFullWidth : null,
           ]}
         ></Image>
@@ -167,7 +171,7 @@ const styles = StyleSheet.create({
     position: "relative",
     left: "-20%",
   },
-  imageMap: {
+  imageCover: {
     left: 0,
   },
   noimage: {

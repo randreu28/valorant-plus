@@ -83,24 +83,27 @@ const Grid = ({
             case "maps":
               image = "listViewIcon";
               text = "displayName";
-              itemImageType = "map";
+              itemImageType = "cover";
               break;
             case "weapons":
-              image = "displayIcon"
-              text = "displayName"
+              image = "displayIcon";
+              text = "displayName";
               itemImageType = "center";
               break;
             case "playerCard":
               image = "largeArt";
-              text = "displayName"
+              text = "displayName";
+              itemImageType = "cover";
               break;
+            case "rankFavorite":
             case "rank":
-              text = "tierName"
-              image = "largeIcon"
+              text = "tierName";
+              image = "largeIcon";
+              itemImageType = "center";
               break;
             default:
-              image = "displayIcon"
-              text = "displayName"
+              image = "displayIcon";
+              text = "displayName";
               break;
           }
 
