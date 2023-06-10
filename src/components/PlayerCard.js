@@ -85,7 +85,13 @@ export default function PlayerCard({
           },
         ]}
       >
-        <Image source={{ uri: playerCard }} style={styles.touchableImg2} />
+        <Image
+          source={{ uri: playerCard }}
+          style={{
+            ...styles.touchableImg2,
+            backgroundColor: playerCard === undefined && colors.bg,
+          }}
+        />
       </Pressable>
     </View>
   );

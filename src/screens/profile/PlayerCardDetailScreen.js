@@ -3,14 +3,14 @@ import { Image, View, StyleSheet } from "react-native";
 import Title from "../../components/Title";
 import { colors } from "../../lib/colors";
 
-export default function PlayerCardDetailScreen() {
+export default function PlayerCardDetailScreen({ route }) {
   return (
     <View style={styles.container}>
-      <Title subtitle="PROFILE">BIRD CARD</Title>
+      <Title subtitle="PROFILE">{route.params.item.displayName}</Title>
 
       <Image
         source={{
-          uri: "https://media.valorant-api.com/playercards/fc209787-414b-10d0-dcac-04832fc2c654/largeart.png",
+          uri: route.params.item.largeArt,
         }}
         style={styles.image}
       />

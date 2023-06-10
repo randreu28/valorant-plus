@@ -43,7 +43,7 @@ function Header({ children }) {
   );
 }
 
-const fontSize = 70;
+const fontSize = 60;
 
 const styles = StyleSheet.create({
   titleWrapper: {
