@@ -98,6 +98,7 @@ const MainStackScreen = () => {
       <Tab.Screen
         name="Profile"
         component={ProfileTab}
+        options={{ animation: 'fade' }}
         listeners={({ navigation }) => ({
           tabPress: event => {
             // prevent default action
@@ -113,6 +114,7 @@ const MainStackScreen = () => {
       <Tab.Screen
         name="Agents"
         component={AgentsTab}
+        options={{ animation: 'fade' }}
         listeners={({ navigation }) => ({
           tabPress: event => {
             event.preventDefault();
@@ -127,6 +129,7 @@ const MainStackScreen = () => {
       <Tab.Screen
         name="Home"
         component={HomeTab}
+        options={{ animation: 'fade' }}
         listeners={({ navigation }) => ({
           tabPress: event => {
             event.preventDefault();
@@ -141,6 +144,7 @@ const MainStackScreen = () => {
       <Tab.Screen
         name="Weapons"
         component={WeaponsTab}
+        options={{ animation: 'fade' }}
         listeners={({ navigation }) => ({
           tabPress: event => {
             event.preventDefault();
@@ -155,6 +159,7 @@ const MainStackScreen = () => {
       <Tab.Screen
         name="Maps"
         component={MapsTab}
+        options={{ animation: 'fade' }}
         listeners={({ navigation }) => ({
           tabPress: event => {
             event.preventDefault();
