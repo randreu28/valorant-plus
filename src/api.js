@@ -109,10 +109,10 @@ export const getDaily = async () => {
   if (state.getDaily() && state.getDaily().timestamp === todayTimestamp) {
     const agents = await getAgents(state.dailyItems.ids[0]);
     const weapons = await getWeapons(state.dailyItems.ids[1]);
-    const maps = await getMaps(state.dailyItems.ids[2]);
-    const playercard = await getPlayerCard(state.dailyItems.ids[3]);
+    const playercard = await getPlayerCard(state.dailyItems.ids[2]);
+    const playertitle = await getPlayertitles(state.dailyItems.ids[3]);
     const rank = await getRanks(state.dailyItems.ids[4]);
-    const playertitle = await getPlayertitles(state.dailyItems.ids[5]);
+    const maps = await getMaps(state.dailyItems.ids[5]);
     playertitle.displayIcon = require('../assets/playertitle.png');
     playertitle.button = false;
     agents.context = "agents";
