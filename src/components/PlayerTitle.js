@@ -7,7 +7,7 @@ export default function PlayerTitle({ children, uuid }) {
     <View style={styles.playertitleView}>
       <Text style={styles.playertitleText}>{children}</Text>
 
-      <FavoriteButton context="player-title" uuid={uuid} />
+      <FavoriteButton context="playerTitle" uuid={uuid} />
     </View>
   );
 }
