@@ -16,7 +16,7 @@ export default function PlayerCard({
   playerCard = undefined,
   isEditable = false,
   playerTitle = "-",
-  playerRank = "https://media.valorant-api.com/competitivetiers/564d8e28-c226-3180-6285-e48a390db8b1/0/largeicon.png",
+  playerRank = undefined,
 }) {
   const { navigate } = useNavigation();
 
@@ -45,9 +45,15 @@ export default function PlayerCard({
         >
           <Image
             source={{
-              uri: playerRank,
+              uri:
+                playerRank !== undefined
+                  ? playerRank
+                  : "https://media.valorant-api.com/competitivetiers/564d8e28-c226-3180-6285-e48a390db8b1/0/largeicon.png",
             }}
-            style={styles.touchableImg}
+            style={{
+              ...styles.touchableImg,
+              transform: [{ translateY: playerRank === undefined ? 10 : 0 }],
+            }}
           />
         </Pressable>
         <Pressable
