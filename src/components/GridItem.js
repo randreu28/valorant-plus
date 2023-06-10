@@ -74,8 +74,8 @@ const GridItem = ({ context,
   }
 
   const lengthLimited = (string) => {
-    if (string.length > 25) {
-      return string.substring(0, 25) + '...'
+    if (string.length > 20) {
+      return string.substring(0, 20) + '...'
     }
     return string;
   }
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     marginTop: 10,
     marginBottom: 10,
-    lineHeight: 20,
+    lineHeight: 25,
   },
   decorationTopLeft: {
     position: "absolute",
