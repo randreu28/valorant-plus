@@ -4,6 +4,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Ability from "../../components/Ability";
 import AgentDetail from "../../components/AgentDetail";
 import Title from "../../components/Title";
+import Subtitle from "../../components/Subtitle";
 
 export default function AgentsDetailScreen() {
   const route = useRoute();
@@ -24,7 +25,7 @@ export default function AgentsDetailScreen() {
           soundUrl={item.voiceLine.mediaList[0]?.wave}
         />
 
-        <Text style={styles.abilitiesWrapper}>Abilities</Text>
+        <Subtitle>Abilities</Subtitle>
 
         {/* ability component */}
         <View style={styles.abilityWrapper}>

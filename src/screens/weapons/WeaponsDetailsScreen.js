@@ -6,6 +6,7 @@ import Title from "../../components/Title";
 import ManequinInfo from "../../components/ManequinInfo";
 import { colors } from "../../lib/colors";
 import WeaponStats from "../../components/WeaponStats";
+import Subtitle from "../../components/Subtitle";
 
 export default function WeaponsDetailsScreen() {
   /**
@@ -40,7 +41,7 @@ export default function WeaponsDetailsScreen() {
 
       {weaponStats && (
         <>
-          <Text style={styles.text}>Statistics</Text>
+          <Subtitle style={styles.text}>statitics</Subtitle>
           <View style={styles.mannequinWraper}>
             {weaponStats.damageRanges[0] && (
               <ManequinInfo
@@ -94,10 +95,6 @@ const styles = StyleSheet.create({
     gap: 50,
   },
   text: {
-    color: colors.highlights,
-    textAlign: "center",
-    fontSize: 25,
-    fontFamily: "tungsten",
-    marginVertical: 10,
+    marginVertical: 15,
   },
 });

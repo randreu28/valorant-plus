@@ -5,6 +5,7 @@ import Grid from "../../components/Grid";
 import Loading from "../../components/Loading";
 import Title from "../../components/Title";
 import { useValorantApi } from "../../lib/hooks";
+import Subtitle from "../../components/Subtitle";
 
 export default function RankScreen() {
   const {
@@ -39,7 +40,7 @@ export default function RankScreen() {
 
         return (
           <View style={styles.gridWrapper}>
-            <Text style={styles.abilitiesWrapper}>{rank.divisionName}</Text>
+            <Subtitle>{rank.divisionName}</Subtitle>
             <Grid
               items={ranks.slice(index, index + 3)}
               context="rank"
