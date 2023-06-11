@@ -39,9 +39,10 @@ export default function RankScreen() {
         }
 
         return (
-          <View style={styles.gridWrapper}>
+          <View key={index} style={styles.gridWrapper}>
             <Subtitle>{rank.divisionName}</Subtitle>
             <Grid
+              key={index}
               items={ranks.slice(index, index + 3)}
               context="rank"
               horizontalScroll
