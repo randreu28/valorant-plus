@@ -30,7 +30,7 @@ export default function RankScreen() {
 
   return (
     <ScrollView>
-      <Title isHeader>RANKS</Title>
+      <Title subtitle="PROFILE">RANKS</Title>
 
       {ranks.map((rank, index) => {
         /* Ranks are grouped by trios */

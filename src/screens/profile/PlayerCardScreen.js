@@ -7,6 +7,7 @@ import { useValorantApi } from "../../lib/hooks";
 import { state } from "../../state";
 import { observer } from "mobx-react-lite";
 import Slider from "../../components/Slider";
+import Title from "../../components/Title";
 
 const PlayerCardScreen = () => {
   const { data: tiers, error, isLoading } = useValorantApi("/playercards");
@@ -22,11 +23,11 @@ const PlayerCardScreen = () => {
   if (state.getView("playerCard") === "grid") {
     return (
       <View style={styles.gridWrapper}>
+      <Title subtitle="PROFILE">PLAYER CARD</Title>
         {
           <Grid
             context="playerCard"
             items={tiers}
-            title="PLAYER CARDS"
             imageBg={undefined}
             imageType={undefined}
             button={undefined}
@@ -39,11 +40,11 @@ const PlayerCardScreen = () => {
   } else
     return (
       <View style={styles.gridWrapper}>
+        <Title subtitle="PROFILE">PLAYER CARD</Title>
         {
           <Grid
             context="playerCard"
             items={tiers}
-            title="PLAYERC ARDS"
             imageBg={undefined}
             imageType={undefined}
             size="full-width"
