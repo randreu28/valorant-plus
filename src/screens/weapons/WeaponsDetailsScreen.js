@@ -22,14 +22,20 @@ export default function WeaponsDetailsScreen() {
   );
 
   let standardSkinIndex = 0;
+  let meleeSkinIndex = 0;
   filteredSkins.map((skin, index) => {
     if (skin.displayName.indexOf("Standard") === 0) {
       skin.displayIcon = params.item.displayIcon;
       standardSkinIndex = index;
     }
+    if (skin.displayName.indexOf("Melee") === 0) {
+      skin.displayIcon = params.item.displayIcon;
+      meleeSkinIndex = index;
+    }
   });
 
   filteredSkins.unshift(filteredSkins.splice(standardSkinIndex, 1)[0]);
+  filteredSkins.unshift(filteredSkins.splice(meleeSkinIndex, 1)[0]);
 
   return (
     <ScrollView>
