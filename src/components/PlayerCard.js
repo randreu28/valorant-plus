@@ -15,7 +15,7 @@ import { colors } from "../lib/colors";
 export default function PlayerCard({
   playerCard = undefined,
   isEditable = false,
-  playerTitle = "-",
+  playerTitle = "Player Title",
   playerRank = undefined,
 }) {
   const { navigate } = useNavigation();
@@ -70,7 +70,7 @@ export default function PlayerCard({
             },
           ]}
         >
-          <Text style={styles.touchableText}>{playerTitle}</Text>
+          <Text style={{...styles.touchableText,  color:playerTitle!=="Player Title" ? 'white' : 'grey'}}>{playerTitle}</Text>
         </Pressable>
       </Pressable>
 
