@@ -65,5 +65,6 @@ const styles = StyleSheet.create({
     margin: 20,
     zIndex: 5,
     resizeMode: "contain",
+    transform: [{translateY: -30}]
   },
 });
