@@ -4,6 +4,7 @@ import Grid from "../../components/Grid";
 import { useMaps } from "../../lib/hooks";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
+import Title from "../../components/Title";
 
 export default function MapListScreen({ navigation }) {
   const { data: maps, error, isLoading } = useMaps();
@@ -21,7 +22,7 @@ export default function MapListScreen({ navigation }) {
       <Grid
         context="maps"
         items={maps}
-        title="MAPS"
+        title={<Title isHeader>MAPS</Title>}
         listViewIcon={true}
         imageBg={undefined}
         imageType={undefined}

@@ -23,10 +23,10 @@ const PlayerCardScreen = () => {
   if (state.getView("playerCard") === "grid") {
     return (
       <View style={styles.gridWrapper}>
-      <Title subtitle="PROFILE">PLAYER CARD</Title>
         {
           <Grid
             context="playerCard"
+            title={<Title subtitle="PROFILE">PLAYER CARD</Title>}
             items={tiers}
             imageBg={undefined}
             imageType={undefined}
@@ -40,11 +40,11 @@ const PlayerCardScreen = () => {
   } else
     return (
       <View style={styles.gridWrapper}>
-        <Title subtitle="PROFILE">PLAYER CARD</Title>
         {
           <Grid
             context="playerCard"
             items={tiers}
+            title={<Title subtitle="PROFILE">PLAYER CARD</Title>}
             imageBg={undefined}
             imageType={undefined}
             size="full-width"

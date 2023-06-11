@@ -27,7 +27,7 @@ const WeaponsMainScreen = () => {
         <Grid
           items={weapons}
           context="weapons"
-          title="WEAPONS"
+          title={<Title isHeader>WEAPONS</Title>}
           imageType="center"
         />
       </View>

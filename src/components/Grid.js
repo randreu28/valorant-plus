@@ -142,7 +142,7 @@ const Grid = ({
         ListHeaderComponent={
           title ? (
             <View>
-              <Title isHeader>{title}</Title>
+              {title}
             </View>
           ) : null
         }
