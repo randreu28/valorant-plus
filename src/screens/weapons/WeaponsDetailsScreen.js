@@ -17,7 +17,7 @@ export default function WeaponsDetailsScreen() {
 
   const filteredSkins = params.item.skins.filter(
     (skin) =>
-      skin.displayName !== "Random Favorite Skin" && skin.displayIcon !== null
+      skin.displayName !== "Random Favorite Skin" && skin.displayName !== "Luxe Knife" && skin.displayIcon !== null
   );
 
   let standardSkinIndex = 0;
