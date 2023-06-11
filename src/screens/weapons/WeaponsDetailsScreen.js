@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     gap: 50,
   },
   text: {
-    marginVertical: 15,
+    marginTop: 30,
+    marginBottom: 15,
   },
 });
