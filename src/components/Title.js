@@ -49,9 +49,11 @@ const styles = StyleSheet.create({
   titleWrapper: {
     marginTop: 25,
     marginBottom: 20,
+    zIndex: 5,
   },
   headerWrapper: {
     width: "100%",
+    zIndex: 5,
   },
   baseText: {
     textAlign: "center",
